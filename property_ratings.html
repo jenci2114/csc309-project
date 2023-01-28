@@ -4,27 +4,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Restify</title>
     <style>
-        /* make image the same size*/
-        .card-img-top {
-            width: 100%;
-            height: 15vw;
-            object-fit: cover;
+        #property_img {
+            width: 50%;
         }
 
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        a:hover {
-            color: blueviolet;
+        .container {
+            text-align: center;
         }
     </style>
 </head>
@@ -100,7 +91,7 @@
         <link href="sidebars.css" rel="stylesheet">
         <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                 class="bi bi-r-square-fill" viewBox="0 0 16 16" style="margin-right: 10px">
+                 class="bi bi-r-square-fill" viewBox="0 0 16 16" , style="margin-right: 10px">
                 <path d="M6.835 5.092v2.777h1.549c.995 0 1.573-.463 1.573-1.36 0-.913-.596-1.417-1.537-1.417H6.835Z"/>
                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2Zm3.5 4.002h3.11c1.71 0 2.741.973 2.741 2.46 0 1.138-.667 1.94-1.495 2.24L11.5 12H9.98L8.52 8.924H6.836V12H5.5V4.002Z"/>
             </svg>
@@ -165,103 +156,10 @@
             </ul>
         </div>
     </div>
-
     <div class="container">
-        <h1 class="fs-1 fw-semibold text-center">My Properties</h1>
-        <div style="text-align:right">
-            <a class="btn btn-primary" href="add_property.html" role="button">Add Property</a>
-        </div>
-        <br>
-
-        <div class="row row-cols-1 g-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-            <div class="col">
-              <div class="card h-100">
-                <a href="edit_property.html">
-                <img src="property_images/1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Toronto, CA</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="fa fa-home"></span> Feb.16 - 29</li>
-                    <li class="list-group-item"><span class="fa fa-money"></span> $55 night</li>
-                    <li class="list-group-item"><span class="fa fa-bed"></span> 2</li>
-                    <li class="list-group-item"><span class="fa fa-star"></span> 4.99</li>
-                  </ul>
-                </div>
-                </a>
-                <a href="property_ratings.html">
-                <div class="card-footer text-muted h-100">
-                    <span class="fa fa-bell"></span> Comments
-                </div>
-                </a>
-
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100">
-                <a href="edit_property.html">
-                <img src="property_images/2.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Vancouver, CA</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="fa fa-home"></span> Feb.7 - Mar.7</li>
-                    <li class="list-group-item"><span class="fa fa-money"></span> $20 night</li>
-                    <li class="list-group-item"><span class="fa fa-bed"></span> 0</li>
-                    <li class="list-group-item"><span class="fa fa-star"></span> 3.78</li>
-                  </ul>
-                </div>
-            </a>
-            <a href="property_ratings.html">
-                <div class="card-footer text-muted h-100">
-                    <span class="fa fa-bell"></span> Comments
-                </div>
-                </a>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100">
-                <a href="edit_property.html">
-                <img src="property_images/3.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Washington, USA</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="fa fa-home"></span> Feb.10 - 12</li>
-                    <li class="list-group-item"><span class="fa fa-money"></span> $35 night</li>
-                    <li class="list-group-item"><span class="fa fa-bed"></span> 2</li>
-                    <li class="list-group-item"><span class="fa fa-star"></span> 4.96</li>
-                  </ul>
-                </div>
-                </a>
-                <a href="property_ratings.html">
-                    <div class="card-footer text-muted h-100">
-                        <span class="fa fa-bell"></span> Comments
-                    </div>
-                    </a>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card h-100">
-                <a href="edit_property.html">
-                <img src="property_images/4.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">San Francisco, USA</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="fa fa-home"></span> Feb.5 - 10</li>
-                    <li class="list-group-item"><span class="fa fa-money"></span> $45 night</li>
-                    <li class="list-group-item"><span class="fa fa-bed"></span> 3</li>
-                    <li class="list-group-item"><span class="fa fa-star"></span> 4.88</li>
-                  </ul>
-                </div>
-                </a>
-                <a href="property_ratings.html">
-                    <div class="card-footer text-muted h-100">
-                        <span class="fa fa-bell"></span> Comments
-                    </div>
-                    </a>
-              </div>
-            </div>
-          </div>
+        <h1 class="fs-1 fw-semibold text-center">Public Comments</h1>
+        <img src="property_images/1.png" alt="..." id="property_img">
     </div>
 </main>
-
 </body>
 </html>

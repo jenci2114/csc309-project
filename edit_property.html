@@ -8,6 +8,12 @@
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
     <meta charset="UTF-8">
+    <style>
+        #remove_property {
+            background-color: red;
+            border-color: red;
+        }
+    </style>
     <title>Restify</title>
 </head>
 <body>
@@ -233,9 +239,10 @@
               <button type="submit" class="btn btn-primary">Confirm Change</button>
             </div>
           </form>
-
-          
-
+        <br>
+          <div class="col-12">
+            <a href="my_home.html" onclick="return confirm('Are you sure you want to remove this property?');"><button id="remove_property" type="submit" class="btn btn-primary">Remove Property</button></a>
+          </div>
     </div>
 
     

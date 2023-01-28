@@ -154,42 +154,45 @@
         <form class="row g-3">
             <div class="col-12">
               <label for="inputAddress" class="form-label">Address</label>
-              <input type="text" class="form-control" id="inputAddress" placeholder="Apartment, studio, or floor">
+              <input type="text" class="form-control" id="inputAddress" placeholder="Apartment, studio, or floor" required>
             </div>
             <div class="col-md-6">
               <label for="inputCity" class="form-label">City</label>
-              <input type="text" class="form-control" id="inputCity">
+              <input type="text" class="form-control" id="inputCity" required>
             </div>
             <div class="col-md-4">
-              <label for="inputState" class="form-label">State</label>
-              <select id="inputState" class="form-select">
+              <label for="inputState" class="form-label">State/Province</label>
+              <select id="inputState" class="form-select" required>
                 <option selected>Choose...</option>
-                <option>...</option>
+                <option>British Columbia</option>
+                <option>California</option>
+                <option>Ontario</option>
+                <option>Other</option>
               </select>
             </div>
             <div class="col-md-2">
               <label for="inputZip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="inputZip">
+              <input type="text" class="form-control" id="inputZip" required>
             </div>
             <div class="col-md-4">
                 <label for="num_guests" class="form-label"># of Guests</label>
-                <input type="number" class="form-control" id="num_guests" min="0" max="100">
+                <input type="number" class="form-control" id="num_guests" min="0" max="100" required value="0">
               </div>
               <div class="col-md-4">
                 <label for="num_beds" class="form-label"># of Beds</label>
-                <input type="number" class="form-control" id="num_beds" min="0" max="100">
+                <input type="number" class="form-control" id="num_beds" min="0" max="100" required value="0">
               </div>
               <div class="col-md-4">
                 <label for="num_beds" class="form-label"># of Baths</label>
-                <input type="number" class="form-control" id="num_baths" min="0" max="100">
+                <input type="number" class="form-control" id="num_baths" min="0" max="100" required value="0">
               </div>
               <div class="col-md-12">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description">
+                <input type="text" class="form-control" id="description" required>
               </div>
               <div class="col-md-12">
                 <label for="image" class="form-label">Image</label>
-                <input type="file" class="form-control" id="iamge" accept="image/*">
+                <input type="file" class="form-control" id="iamge" accept="image/*" required>
               </div>
               <h3>Amenities</h3>
               <div class="col-12">
@@ -223,7 +226,7 @@
                 <input type="text" class="form-control" id="comments">
               </div>
             <div class="col-12">
-              <button type="submit" class="btn btn-primary">Sign in</button>
+              <button type="submit" class="btn btn-primary">Add property</button>
             </div>
           </form>
 

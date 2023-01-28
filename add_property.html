@@ -150,7 +150,88 @@
 
     <div class="container">
         <h1 class="fs-1 fw-semibold text-center">Add property</h1>
+
+        <form class="row g-3">
+            <div class="col-12">
+              <label for="inputAddress" class="form-label">Address</label>
+              <input type="text" class="form-control" id="inputAddress" placeholder="Apartment, studio, or floor">
+            </div>
+            <div class="col-md-6">
+              <label for="inputCity" class="form-label">City</label>
+              <input type="text" class="form-control" id="inputCity">
+            </div>
+            <div class="col-md-4">
+              <label for="inputState" class="form-label">State</label>
+              <select id="inputState" class="form-select">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="col-md-2">
+              <label for="inputZip" class="form-label">Zip</label>
+              <input type="text" class="form-control" id="inputZip">
+            </div>
+            <div class="col-md-4">
+                <label for="num_guests" class="form-label"># of Guests</label>
+                <input type="number" class="form-control" id="num_guests" min="0" max="100">
+              </div>
+              <div class="col-md-4">
+                <label for="num_beds" class="form-label"># of Beds</label>
+                <input type="number" class="form-control" id="num_beds" min="0" max="100">
+              </div>
+              <div class="col-md-4">
+                <label for="num_beds" class="form-label"># of Baths</label>
+                <input type="number" class="form-control" id="num_baths" min="0" max="100">
+              </div>
+              <div class="col-md-12">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description">
+              </div>
+              <div class="col-md-12">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control" id="iamge" accept="image/*">
+              </div>
+              <h3>Amenities</h3>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="air_conditioner">
+                  <label class="form-check-label" for="air_conditioner">Air Conditioner</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="refrigerator">
+                  <label class="form-check-label" for="refrigerator">Refrigerator</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="microwave">
+                  <label class="form-check-label" for="microwave">Microwave</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="dishwasher">
+                  <label class="form-check-label" for="dishwasher">Dishwasher</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="washing_machine">
+                  <label class="form-check-label" for="washing_machine">Washing Machine</label>
+                </div>
+                  <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="wifi">
+                <label class="form-check-label" for="wifi">WIFI</label>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <label for="comments" class="form-label">Additional Comments</label>
+                <input type="text" class="form-control" id="comments">
+              </div>
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </div>
+          </form>
+
+          
+
     </div>
+
+    
 </main>
 </body>
 </html>

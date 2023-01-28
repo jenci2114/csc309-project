@@ -149,86 +149,61 @@
     </div>
 
     <div class="container">
-        <h1 class="fs-1 fw-semibold text-center">Edit Property</h1>
+        <h1 class="fs-1 fw-semibold text-center">Edit Availability</h1>
 
-                <div style="text-align:right">
-            <a class="btn btn-primary" href="edit_availability.html" role="button">Add/Edit Availability</a>
-        </div>
-        <br>
-
-        <form class="row g-3" action="my_home.html">
-            <div class="col-12">
-              <label for="inputAddress" class="form-label">Address</label>
-              <input type="text" class="form-control" id="inputAddress" value="123 Happy Avenue" required>
-            </div>
-            <div class="col-md-6">
-              <label for="inputCity" class="form-label">City</label>
-              <input type="text" class="form-control" id="inputCity" value="Toronto" required>
+        <form class="row g-3" action="edit_property.html">
+            <h3>Existing:</h3>
+            <div class="col-md-4">
+                <label for="availability" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="availability" value="2023-06-01">
             </div>
             <div class="col-md-4">
-              <label for="inputState" class="form-label">State/Province</label>
-              <select id="inputState" class="form-select" required>
-                <option selected>Ontario</option>
-                <option>British Columbia</option>
-                <option>California</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="col-md-2">
-              <label for="inputZip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="inputZip" value="A1B 2C3"required>
+                <label for="availability" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="availability" value="2023-06-30">
             </div>
             <div class="col-md-4">
-                <label for="num_guests" class="form-label"># of Guests</label>
-                <input type="number" class="form-control" id="num_guests" min="0" max="100" required value="4">
-              </div>
-              <div class="col-md-4">
-                <label for="num_beds" class="form-label"># of Beds</label>
-                <input type="number" class="form-control" id="num_beds" min="0" max="100" required value="2">
-              </div>
-              <div class="col-md-4">
-                <label for="num_beds" class="form-label"># of Baths</label>
-                <input type="number" class="form-control" id="num_baths" min="0" max="100" required value="2">
-              </div>
-              <div class="col-md-12">
-                <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" value="A lovely house that looks like a face"required>
-              </div>
-              <div class="col-md-12">
-                <label for="image" class="form-label">New Image</label>
-                <input type="file" class="form-control" id="image" accept="image/*">
-              </div>
-              <h3>Amenities</h3>
-              <div class="col-12">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="air_conditioner" checked>
-                  <label class="form-check-label" for="air_conditioner">Air Conditioner</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="refrigerator" checked>
-                  <label class="form-check-label" for="refrigerator">Refrigerator</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="microwave" checked>
-                  <label class="form-check-label" for="microwave">Microwave</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="dishwasher">
-                  <label class="form-check-label" for="dishwasher">Dishwasher</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="washing_machine">
-                  <label class="form-check-label" for="washing_machine">Washing Machine</label>
-                </div>
-                  <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="wifi" checked>
-                <label class="form-check-label" for="wifi">WIFI</label>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <label for="comments" class="form-label">Additional Comments</label>
-                <input type="text" class="form-control" id="comments" value="It'll be an amazing experience!">
-              </div>
+                <label for="price" class="form-label">Price per night</label>
+                <input type="number" class="form-control" id="price" min="1" max="1000" value="30">
+            </div>
+
+            <div class="col-md-4">
+                <label for="availability" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="availability" value="2023-12-30">
+            </div>
+            <div class="col-md-4">
+                <label for="availability" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="availability" value="2024-01-05">
+            </div>
+            <div class="col-md-4">
+                <label for="price" class="form-label">Price per night</label>
+                <input type="number" class="form-control" id="price" min="1" max="1000" value="50">
+            </div>
+
+            <div class="col-md-4">
+                <label for="availability" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="availability" value="2024-01-30">
+            </div>
+            <div class="col-md-4">
+                <label for="availability" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="availability" value="2024-02-13">
+            </div>
+            <div class="col-md-4">
+                <label for="price" class="form-label">Price per night</label>
+                <input type="number" class="form-control" id="price" min="1" max="1000" value="40">
+            </div>
+            <h3>New Availability:</h3>
+            <div class="col-md-4">
+                <label for="availability" class="form-label">Start Date</label>
+                <input type="date" class="form-control" id="availability">
+            </div>
+            <div class="col-md-4">
+                <label for="availability" class="form-label">End Date</label>
+                <input type="date" class="form-control" id="availability">
+            </div>
+            <div class="col-md-4">
+                <label for="price" class="form-label">Price per night</label>
+                <input type="number" class="form-control" id="price" min="1" max="1000" value="1">
+            </div>
             <div class="col-12">
               <button type="submit" class="btn btn-primary">Confirm Change</button>
             </div>

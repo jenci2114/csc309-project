@@ -11,39 +11,12 @@
     <meta charset="UTF-8">
     <title>Restify</title>
     <style>
+        #property_img {
+            width: 50%;
+        }
+
         .container {
             text-align: center;
-        }
-
-        /* make image the same size*/
-        .card-img-top {
-            width: 100%;
-            height: 15vw;
-            object-fit: cover;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-        }
-
-        a:hover {
-            color: blueviolet;
-        }
-
-        .button-group {
-            display: inline-block;
-            border-radius: 20%;
-        }
-
-        .green {
-            background-color: lightgreen;
-            border-color: lightgreen;
-        }
-
-        .red {
-            background-color: red;
-            border-color: red;
         }
     </style>
 </head>
@@ -184,162 +157,28 @@
             </ul>
         </div>
     </div>
-
-
     <div class="container">
-        <h1 class="fs-1 fw-semibold text-center">Reservations</h1>
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" data-bs-toggle="collapse" data-bs-target=".pending_review" aria-expanded="false" aria-controls="pending_review" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-            <label class="btn btn-outline-primary" for="btnradio1">Pending Review</label>
-        
-            <input type="radio" data-bs-toggle="collapse" data-bs-target=".upcoming" aria-expanded="false" aria-controls="upcoming" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnradio2">Upcoming</label>
-        
-            <input type="radio" data-bs-toggle="collapse" data-bs-target=".currently_hosting" aria-expanded="false" aria-controls="currently_hosting" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnradio3">Currenty Hosting</label>
-
-            <input type="radio" data-bs-toggle="collapse" data-bs-target=".completed" aria-expanded="false" aria-controls="completed" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnradio4">Completed</label>
-        </div>
+        <h1 class="fs-1 fw-semibold text-center">User: froggy</h1>
+        <img src="property_images/poggers.png" alt="..." id="property_img">
 
         <br>
-        <br> 
-        
-        <div class="row row-cols-1 g-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
-            <div class="col pending_review collapse show">
-              <div class="card h-100">
-                <a href="edit_property.html">
-                <img src="property_images/1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Toronto</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="fa fa-calendar"></span> Mar.16 - 29</li>
-                    <li class="list-group-item"><span class="fa fa-money"></span> $55 night</li>
-                    <li class="list-group-item"><span class="fa fa-users"></span> 4</li>
-                  </ul>
-                  <a href="#"><button class="button-group green" type="submit" class="btn btn-primary"><span class="fa fa-check"></span></button></a>
-                  <a href="#"><button class="button-group red" type="submit" class="btn btn-primary"><span class="fa fa-times"></span></button></a>
+        <br>
+        <div class="card">
+            <div class="card-header">
+            <form>
+                <div class="form-group">
+                <label for="comment">Response:</label>
+                <textarea class="form-control" rows="3" id="comment" required></textarea>
+                <label for="rating" class="form-label">Rating</label>
+                <input type="number" class="form-control" id="rating" min="1" max="5" required placeholder="choose from 1 to 5">
                 </div>
-                </a>
-                <a href="user_ratings.html">
-                <div class="card-footer text-muted h-100">
-                    <span class="fa fa-user-circle-o"></span> Tenant Info
-                </div>
-                </a>
+                <br>
+                <a class="btn btn-primary" href="reservations.html" role="button">Submit</a>
+            </form>
+            </div>
+        </div>
 
-              </div>
-            </div>
-
-            <div class="col pending_review collapse show">
-              <div class="card h-100">
-                <a href="edit_property.html">
-                <img src="property_images/4.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">San Jose</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="fa fa-calendar"></span> Mar.5 - 10</li>
-                    <li class="list-group-item"><span class="fa fa-money"></span> $45 night</li>
-                    <li class="list-group-item"><span class="fa fa-users"></span> 5</li>
-                  </ul>
-                  <a href="#"><button class="button-group green" type="submit" class="btn btn-primary"><span class="fa fa-check"></span></button></a>
-                  <a href="#"><button class="button-group red" type="submit" class="btn btn-primary"><span class="fa fa-times"></span></button></a>
-                </div>
-                </a>
-                <a href="user_ratings.html">
-                    <div class="card-footer text-muted h-100">
-                        <span class="fa fa-user-circle-o"></span> Tenant Info
-                    </div>
-                    </a>
-              </div>
-            </div>
-            <div class="col upcoming collapse">
-              <div class="card h-100">
-                <a href="edit_property.html">
-                <img src="property_images/2.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Vancouver</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="fa fa-calendar"></span> Feb.29 - 31</li>
-                    <li class="list-group-item"><span class="fa fa-money"></span> $20 night</li>
-                    <li class="list-group-item"><span class="fa fa-users"></span> 1</li>
-                  </ul>
-                  <a href="#" onclick="return confirm('Are you sure you want to cancel this reservation?');"><button class="button-group red" type="submit" class="btn btn-primary"><span class="fa fa-times"></span>Cancel</button></a>
-                </div>
-            </a>
-            <a href="user_ratings.html">
-                <div class="card-footer text-muted h-100">
-                    <span class="fa fa-user-circle-o"></span> Tenant Info
-                </div>
-                </a>
-              </div>
-            </div>
-            <div class="col currently_hosting collapse">
-              <div class="card h-100">
-                <a href="edit_property.html">
-                <img src="property_images/3.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Washington</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="fa fa-calendar"></span> Feb.10 - 12</li>
-                    <li class="list-group-item"><span class="fa fa-money"></span> $35 night</li>
-                    <li class="list-group-item"><span class="fa fa-users"></span> 3</li>
-                  </ul>
-                  <a href="#" onclick="return confirm('Are you sure you want to terminate this reservation while it\'s ongoing?');"><button class="button-group red" type="submit" class="btn btn-primary"><span class="fa fa-times"></span>Terminate</button></a>
-                </div>
-                </a>
-                <a href="user_ratings.html">
-                    <div class="card-footer text-muted h-100">
-                        <span class="fa fa-user-circle-o"></span> Tenant Info
-                    </div>
-                    </a>
-              </div>
-            </div>
-            <div class="col completed collapse">
-              <div class="card h-100">
-                <a href="edit_property.html">
-                <img src="property_images/4.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">San Jose</h5>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><span class="fa fa-calendar"></span> Jan.15 - 20</li>
-                    <li class="list-group-item"><span class="fa fa-money"></span> $45 night</li>
-                    <li class="list-group-item"><span class="fa fa-users"></span> 6</li>
-                  </ul>
-                  <a href="reservation_completion_rating.html"><button class="button-group green" type="submit" class="btn btn-primary"><span class="fa fa-star"></span>Rate</button></a>
-                </div>
-                </a>
-                <a href="user_ratings.html">
-                    <div class="card-footer text-muted h-100">
-                        <span class="fa fa-user-circle-o"></span> Tenant Info
-                    </div>
-                    </a>
-              </div>
-            </div>
-
-            <div class="col completed collapse">
-                <div class="card h-100">
-                  <a href="edit_property.html">
-                  <img src="property_images/4.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">San Jose</h5>
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item"><span class="fa fa-calendar"></span> Jan.5 - 10</li>
-                      <li class="list-group-item"><span class="fa fa-money"></span> $45 night</li>
-                      <li class="list-group-item"><span class="fa fa-users"></span> 4</li>
-                    </ul>
-                    <a href="reservation_completion_rating.html"><button class="button-group green" type="submit" class="btn btn-primary"><span class="fa fa-star"></span>Rate</button></a>
-                  </div>
-                  </a>
-                  <a href="user_ratings.html">
-                      <div class="card-footer text-muted h-100">
-                          <span class="fa fa-user-circle-o"></span> Tenant Info
-                      </div>
-                      </a>
-                </div>
-              </div>
-          </div>
-
-        </div>  
+    </div>
 </main>
 </body>
 </html>

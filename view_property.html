@@ -78,75 +78,10 @@
                   d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z"/>
         </symbol>
     </svg>
-    <div class="flex-shrink-0 p-3 bg-white" style="width: 280px; height: 100vh">
-        <link href="sidebars.css" rel="stylesheet">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                 class="bi bi-r-square-fill" viewBox="0 0 16 16" style="margin-right: 10px">
-                <path d="M6.835 5.092v2.777h1.549c.995 0 1.573-.463 1.573-1.36 0-.913-.596-1.417-1.537-1.417H6.835Z"/>
-                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2Zm3.5 4.002h3.11c1.71 0 2.741.973 2.741 2.46 0 1.138-.667 1.94-1.495 2.24L11.5 12H9.98L8.52 8.924H6.836V12H5.5V4.002Z"/>
-            </svg>
-            <span class="fs-1 fw-semibold">Restify</span>
-        </a>
-        <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="fw-normal fs-5 btn btn-toggle align-items-center rounded collapsed"
-                        data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-                    Home
-                </button>
-                <div class="collapse show" id="home-collapse">
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="fw-normal fs-5 btn btn-toggle align-items-center rounded collapsed"
-                        data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-                    Tenant
-                </button>
-                <div class="collapse" id="dashboard-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded">Wishlist</a></li>
-                        <li><a href="#" class="link-dark rounded">Booking</a></li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="fw-normal fs-5 btn btn-toggle align-items-center rounded collapsed"
-                        data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-                    Host
-                </button>
-                <div class="collapse" id="orders-collapse">
-                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded">My properties</a></li>
-                        <li><a href="#" class="link-dark rounded">Reservations</a></li>
-                    </ul>
-                </div>
-            </li>
-            <!--      <li class="border-top my-3"></li>-->
-
-        </ul>
-        <!--     <hr style="position: absolute; bottom: 50px; width: 280px;">-->
-        <div style="position:absolute; bottom: 50px; width: 245px">
-            <ul class="list-unstyled ps-0">
-                <li class="border-top my-3"></li>
-            </ul>
-        </div>
-
-        <div class="dropdown" style="position: absolute; bottom: 15px">
-            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-               id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="property_images/poggers.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong>mdo</strong>
-            </a>
-            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2" style="">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-        </div>
-    </div>
+    <script src="navbar.js"></script>
+<!--    <div w3-include-html="nav_bar_logout.html"></div>-->
+    <div w3-include-html="nav_bar_login.html"></div>
+    <script>includeHTML();</script>
     <div class="container">
       <h1 class="fs-1 fw-semibold text-center">View Property</h1>
 

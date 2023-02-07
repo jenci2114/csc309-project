@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="booking.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="booking.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Booking</title>
+</head>
+<body>
+  <script src="navbar.js"></script>
+<!--    <div w3-include-html="nav_bar_logout.html"></div>-->
+  <div w3-include-html="nav_bar_login.html"></div>
+  <script>includeHTML();</script>
+
+  <div class="container">
+    <h1 class="fs-1 fw-semibold text-center">Booking</h1>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" data-bs-toggle="collapse" data-bs-target=".present" aria-expanded="false" aria-controls="present" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="btnradio1">Present</label>
+
+      <input type="radio" data-bs-toggle="collapse" data-bs-target=".past" aria-expanded="false" aria-controls="past" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio2">Past</label>
+
+      <input type="radio" data-bs-toggle="collapse" data-bs-target=".pending" aria-expanded="false" aria-controls="pending" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+      <label class="btn btn-outline-primary" for="btnradio3">Pending</label>
+    </div>
+    <br>
+    <br>
+    <div class="row row-cols-1 g-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+            <div class="col present collapse show">
+                <div class="card h-100">
+                    <a href="view_property.html">
+                        <img src="property_images/1.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Toronto</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><span class="fa fa-calendar"></span> Feb. 16 - 18</li>
+                                <li class="list-group-item"><span class="fa fa-money"></span> $110 </li>
+                            </ul>
+                            <a href="#">
+                              <button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this reservation?')">Cancel</button>
+                            </a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col present collapse show">
+                <div class="card h-100">
+                    <a href="view_property.html">
+                        <img src="property_images/2.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Vancouver</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><span class="fa fa-calendar"></span> Feb.7 - 21</li>
+                                <li class="list-group-item"><span class="fa fa-money"></span> $20 night</li>
+                            </ul>
+                            <a href="#">
+                              <button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this reservation?')">Cancel</button>
+                            </a>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+  </div>
+
+</body>
+</html>

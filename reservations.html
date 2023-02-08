@@ -11,28 +11,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+            $("input[id=btnradio1]").prop("disabled", true);
             $('input[name=btnradio]').click(function() {
-            // var target = $(this).data('target');
-            $('.collapse').collapse('hide');
-            // $(target).collapse('show');
+                var target = $(this).data('target');
+                $('.collapse').collapse('hide');
+                $(this).prop("disabled", true);
+                $("input[type='radio']").not(this).prop("disabled", false);
+                $(target).collapse('show');
             });
         });
-
-        const radios = document.querySelectorAll('.btn-check');
-        const content = document.querySelectorAll('.card');
-
-        radios.forEach(radio => {
-          radio.addEventListener('click', function() {
-            // const contentId = this.id.replace('button', 'content');
-            // const content = document.querySelector(`#${contentId}`);
-            if (this.checked) {
-              content.style.display = 'none';
-            } else {
-              content.style.display = 'block';
-            }
-          });
-        });
-
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">

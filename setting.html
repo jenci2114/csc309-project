@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="setting.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <title>Login</title>
+</head>
+
+<body class="login-background">
+<main>
+    <script src="navbar.js"></script>
+    <div w3-include-html="nav_bar_login.html"></div>
+    <script>includeHTML();</script>
+
+<!--    modified the open source code from https://www.bootdey.com/snippets/view/Profile-settings-->
+
+    <div class="container" style="padding-top: 5vw">
+
+      <div class="row gutters-sm">
+        <div class="col-md-4 d-none d-md-block">
+          <div class="card">
+            <div class="card-body">
+              <nav class="nav flex-column nav-pills nav-gap-y-1">
+                <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile Information
+                </a>
+                <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Security
+                </a>
+                <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Notification
+                </a>
+                <a href="#billing" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>Billing
+                </a>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header border-bottom mb-3 d-flex d-md-none">
+              <ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">
+                <li class="nav-item">
+                  <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
+                </li>
+                <li class="nav-item">
+                  <a href="#billing" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body tab-content">
+              <div class="tab-pane active" id="profile">
+                <h6>YOUR PROFILE INFORMATION</h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="ABCD EFGH">
+                    <small id="fullNameHelp" class="form-text text-muted">Your name may appear around here where you are mentioned.</small>
+                  </div>
+                  <div class="form-group">
+                    <label for="bio">Your Bio</label>
+                    <textarea class="form-control autosize" id="bio" placeholder="Write something about you" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;">I like swimming and travelling!</textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="occupation">Occupation</label>
+                    <input type="text" class="form-control" id="occupation" placeholder="Enter your job?" value="Toronto, ON">
+                  </div>
+                  <div class="form-group">
+                    <label for="occupation">Phone</label>
+                    <input type="text" class="form-control" id="phone" placeholder="Your phone number?" value="(123)-456-7890">
+                  </div>
+                  <div class="form-group">
+                    <label for="location">Location</label>
+                    <input type="text" class="form-control" id="location" placeholder="Enter your location" value="Toronto, ON">
+                  </div>
+                  <button type="button" class="btn btn-dark">Update Profile</button>
+                  <button type="reset" class="btn btn-light">Reset Changes</button>
+                </form>
+              </div>
+              <div class="tab-pane" id="security">
+                <h6>SECURITY SETTINGS</h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label class="d-block">Change Password</label>
+                    <input type="text" class="form-control" placeholder="Enter your old password">
+                    <input type="text" class="form-control mt-1" placeholder="New password">
+                    <input type="text" class="form-control mt-1" placeholder="Confirm new password">
+                  </div>
+                  <button class="btn btn-dark" type="button">Confirm</button>
+                </form>
+              </div>
+              <div class="tab-pane" id="notification">
+                <h6>NOTIFICATION SETTINGS</h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label class="d-block mb-0">Alerts</label>
+                    <div class="small text-muted mb-3">Receive notifications or promotion via email</div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
+                      <label class="custom-control-label" for="customCheck1">Email me when the status of an order changes</label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="customCheck2" checked="">
+                      <label class="custom-control-label" for="customCheck2">Email a digest summary of restify news</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <div class="tab-pane" id="billing">
+                <h6>BILLING SETTINGS</h6>
+                <hr>
+                <form>
+                  <div class="form-group">
+                    <label class="d-block mb-0">Payment Method</label>
+                    <div class="small text-muted mb-3">You have not added a payment method</div>
+                    <button class="btn btn-dark" type="button">Add Payment Method</button>
+                  </div>
+                  <div class="form-group mb-0">
+                    <label class="d-block">Payment History</label>
+                    <div class="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">You have not made any payment.</div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+</main>
+</body>
+</html>

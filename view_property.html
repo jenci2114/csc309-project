@@ -81,7 +81,43 @@
           </div>
         </div>
       </div>
+      <br>
+      <a href="search_comments.html">
+        <button type="button" class="btn btn-success">View Comments</button>
+      </a>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#book">Book</button>
     </div>
   </main>
+
+  <div class="modal fade" id="book" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="book-title">Book</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="mb-3">
+              <label for="book_date_start" class="col-form-label">Start Date</label>
+              <input type="date" id="book_date_start" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="book_date_end" class="col-form-label">End Date</label>
+              <input type="date" id="book_date_end" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label for="additional_comments" class="col-form-label">Additional Comments</label>
+              <textarea id="additional_comments" class="form-control"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

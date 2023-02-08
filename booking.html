@@ -80,6 +80,25 @@
                         <li class="list-group-item"><span class="fa fa-calendar"></span> Jan.10 - 12</li>
                         <li class="list-group-item"><span class="fa fa-money"></span> $70</li>
                     </ul>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="stars">
+                          <form action="">
+                            <input class="star star-5" id="first-star-5" type="radio" name="star"/>
+                            <label class="star star-5" for="first-star-5"></label>
+                            <input class="star star-4" id="first-star-4" type="radio" name="star"/>
+                            <label class="star star-4" for="first-star-4"></label>
+                            <input class="star star-3" id="first-star-3" type="radio" name="star"/>
+                            <label class="star star-3" for="first-star-3"></label>
+                            <input class="star star-2" id="first-star-2" type="radio" name="star"/>
+                            <label class="star star-2" for="first-star-2"></label>
+                            <input class="star star-1" id="first-star-1" type="radio" name="star"/>
+                            <label class="star star-1" for="first-star-1"></label>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
                     <a href="#">
                       <button type="button" class="btn btn-primary" onclick="" data-bs-toggle="modal" data-bs-target="#comment">Comment</button>
                     </a>
@@ -97,6 +116,25 @@
                         <li class="list-group-item"><span class="fa fa-calendar"></span> Jan. 16 - 20</li>
                         <li class="list-group-item"><span class="fa fa-money"></span> $220</li>
                     </ul>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="stars">
+                          <form action="">
+                            <input class="star star-5" id="star-5" type="radio" name="star"/>
+                            <label class="star star-5" for="star-5"></label>
+                            <input class="star star-4" id="star-4" type="radio" name="star" checked/>
+                            <label class="star star-4" for="star-4"></label>
+                            <input class="star star-3" id="star-3" type="radio" name="star"/>
+                            <label class="star star-3" for="star-3"></label>
+                            <input class="star star-2" id="star-2" type="radio" name="star"/>
+                            <label class="star star-2" for="star-2"></label>
+                            <input class="star star-1" id="star-1" type="radio" name="star"/>
+                            <label class="star star-1" for="star-1"></label>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
                     <a href="#">
                       <button type="button" class="btn btn-success">View Comment</button>
                     </a>
@@ -151,11 +189,16 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <form action="">
+            <div class="mb-3">
+              <label for="comment_body" class="col-form-label">Comment:</label>
+              <textarea class="form-control" id="comment_body"></textarea>
+            </div>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
+          <button type="button" class="btn btn-primary">Submit Comment</button>
         </div>
       </div>
     </div>

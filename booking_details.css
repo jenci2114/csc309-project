@@ -1,0 +1,5 @@
+.carousel-inner {
+    width: 100%;
+    height: 35vw;
+    object-fit: cover;
+}

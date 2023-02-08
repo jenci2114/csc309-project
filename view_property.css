@@ -3,3 +3,7 @@
     height: 35vw;
     object-fit: cover;
 }
+
+.container {
+    padding: 50px 0;
+}

@@ -12,11 +12,27 @@
     <script>
         $(document).ready(function() {
             $('input[name=btnradio]').click(function() {
-            var target = $(this).data('target');
+            // var target = $(this).data('target');
             $('.collapse').collapse('hide');
-            $(target).collapse('show');
+            // $(target).collapse('show');
             });
         });
+
+        const radios = document.querySelectorAll('.btn-check');
+        const content = document.querySelectorAll('.card');
+
+        radios.forEach(radio => {
+          radio.addEventListener('click', function() {
+            // const contentId = this.id.replace('button', 'content');
+            // const content = document.querySelector(`#${contentId}`);
+            if (this.checked) {
+              content.style.display = 'none';
+            } else {
+              content.style.display = 'block';
+            }
+          });
+        });
+
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
@@ -103,7 +119,7 @@
         <div class="row row-cols-1 g-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
             <div class="col pending_review collapse show">
               <div class="card h-100">
-                <a href="edit_property.html">
+                <a href="reservation_details.html">
                 <img src="property_images/1.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Toronto</h5>
@@ -127,7 +143,7 @@
 
             <div class="col pending_review collapse show">
               <div class="card h-100">
-                <a href="edit_property.html">
+                <a href="reservation_details.html">
                 <img src="property_images/4.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">San Jose</h5>
@@ -149,7 +165,7 @@
             </div>
             <div class="col upcoming collapse">
               <div class="card h-100">
-                <a href="edit_property.html">
+                <a href="reservation_details.html">
                 <img src="property_images/2.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Vancouver</h5>
@@ -170,7 +186,7 @@
             </div>
             <div class="col currently_hosting collapse">
               <div class="card h-100">
-                <a href="edit_property.html">
+                <a href="reservation_details.html">
                 <img src="property_images/3.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Washington</h5>
@@ -191,7 +207,7 @@
             </div>
             <div class="col completed collapse">
               <div class="card h-100">
-                <a href="edit_property.html">
+                <a href="reservation_details.html">
                 <img src="property_images/4.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">San Jose</h5>
@@ -213,7 +229,7 @@
 
             <div class="col completed collapse">
                 <div class="card h-100">
-                  <a href="edit_property.html">
+                  <a href="reservation_details.html">
                   <img src="property_images/4.png" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">San Jose</h5>

@@ -1,83 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-    <meta charset="UTF-8">
-    <title>Restify</title>
-    <style>
-        #property_img {
-            width: 50%;
-        }
-
-        .container {
-            text-align: center;
-        }
-    </style>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="booking_details.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+          crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="booking_details.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <title>Booking</title>
 </head>
 <body>
-
-<main>
+  <main>
     <script src="navbar.js"></script>
-<!--    <div w3-include-html="nav_bar_logout.html"></div>-->
+  <!--    <div w3-include-html="nav_bar_logout.html"></div>-->
     <div w3-include-html="nav_bar_login.html"></div>
     <script>includeHTML();</script>
     <div class="container">
-        <h1 class="fs-1 fw-semibold text-center">Reservation Details</h1>
-        <img src="property_images/poggers.png" alt="..." id="property_img">
-
-        <br>
-        <br>
-
-        <h3><span class="fa fa-star-o"></span> Host Rating: 5.00</h3>
-        <br>
-        <div class="card">
-            <div class="card-header">
-            <h5>Host: welcominghost</h5>
-            </div>
-            <div class="card-body">
-            <p>Quiet and clean tenant.</p>
-            </div>
-            <div class="card-footer text-muted h-100">
-                <span class="fa fa-star"></span> 5
-            </div>
-        </div>
-        <br>
-        <div class="card">
-            <div class="card-header">
-            <h5>Host: patrickhahaha</h5>
-            </div>
-            <div class="card-body">
-            <p>Definitely recommend froggy to other hosts.</p>
-            </div>
-            <div class="card-footer text-muted h-100">
-                <span class="fa fa-star"></span> 5
-            </div>
-        </div>
-        <br>
-        <div class="card">
-            <div class="card-header">
-            <h5>Host: imthehost</h5>
-            </div>
-            <div class="card-body">
-            <p>Welcome back anytime!</p>
-            </div>
-            <div class="card-footer text-muted h-100">
-                <span class="fa fa-star"></span> 5
-            </div>
-        </div>
-
-        <br>
-
-        <div style="text-align:center">
-            <a class="btn btn-primary" href="reservations.html" role="button">Go Back</a>
-        </div>
+      <h1 class="fs-1 fw-semibold text-center">Reservation Details</h1>
     </div>
-</main>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="property_images/1.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="property_images/int1.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="property_images/int2.png" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Username: </strong>froggy</li>
+      <li class="list-group-item"><strong>User Rating: </strong>5.00</li>
+      <li class="list-group-item"><strong>Date Requested: </strong>Feb. 14</li>
+      <li class="list-group-item"><strong>User Request Comments: </strong>I'd like to book the property for two days.</li>
+      <li class="list-group-item"><strong>Dates Reserved: </strong>Feb. 16 - 18</li>
+      <li class="list-group-item"><strong>Price per day: </strong>$55</li>
+      <li class="list-group-item"><strong>Price Paid: </strong>$110</li>
+      <li class="list-group-item"><strong>Address: </strong>123 Happy Avenue</li>
+      <li class="list-group-item"><strong>City: </strong>Toronto</li>
+      <li class="list-group-item"><strong>State/Province: </strong>Ontario</li>
+      <li class="list-group-item"><strong>Zip: </strong>A1B 2C3</li>
+      <li class="list-group-item"><strong># of Guests: </strong>4</li>
+      <li class="list-group-item"><strong># of Beds: </strong>2</li>
+      <li class="list-group-item"><strong># of Baths: </strong>2</li>
+      <li class="list-group-item">
+        <a href="#" id="present_button">
+          <button type="button" class="btn btn-danger" onclick="return confirm('Request host\'s approval to cancel?')">Request Cancel</button>
+        </a>
+        <a href="#" id="past_button">
+          <button type="button" class="btn btn-primary" onclick="">Comment</button>
+        </a>
+        <a href="#" id="past_commented">
+          <button type="button" class="btn btn-success">View Comment</button>
+        </a>
+        <a href="#" id="pending_button">
+            <button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel this reservation?')">Cancel</button>
+        </a>
+        <span style="float: right">
+          <span id="current_view">Current view:</span>
+          <a href="#">
+            <button type="button" class="btn btn-outline-secondary" onclick="switch_view()">Switch View</button>
+          </a>
+        </span>
+
+      </li>
+    </ul>
+
+  </main>
 </body>
 </html>

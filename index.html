@@ -9,6 +9,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="index.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <title>Restify</title>
@@ -48,12 +50,12 @@
                     <option value="name_asc">Name (Z-A)</option>
                     <option value="price_desc">Price (High-Low)</option>
                     <option value="price_asc">Price (Low-High)</option>
-                    <option value="rating_desc">Rating (High-Low)</option>
+                    <option value="rating_desc" selected>Rating (High-Low)</option>
                 </select>
             </div>
             <div class="col-md-12">
-                <button class="btn btn-secondary">Reset Filter</button>
-                <button class="btn btn-primary">Search</button>
+                <button type="button" class="btn btn-secondary" onclick="reset_filter()">Reset Filter</button>
+                <button type="button" class="btn btn-primary" onclick="apply_filter()">Search</button>
             </div>
         </form>
         <br>
@@ -79,7 +81,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col">
+            <div class="col filter-hide">
                 <div class="card h-100">
                     <a href="view_property.html">
                         <img src="property_images/2.png" class="card-img-top" alt="...">
@@ -121,7 +123,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col">
+            <div class="col filter-hide">
                 <div class="card h-100">
                     <a href="view_property.html">
                         <img src="property_images/4.png" class="card-img-top" alt="...">

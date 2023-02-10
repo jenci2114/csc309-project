@@ -14,3 +14,7 @@ a:hover {
 body {
     padding-bottom: 3vh;
 }
+
+#home:hover {
+    font-weight: bold;
+}

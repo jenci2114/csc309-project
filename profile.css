@@ -1,0 +1,32 @@
+.profile-bg2 {
+    min-height: 100vh;
+    background-image: url('property_images/bg2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.profile-bg {
+    object-fit: cover;
+    height: 200px;
+    background: rgb(238,174,202);
+    /*background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgb(0, 0, 0) 100%);*/
+    /*overflow: hidden;*/
+}
+
+.profile-back {
+    /*background: rgb(238,174,202);*/
+    /*background: linear-gradient(90deg, rgba(238, 174, 202, 0.29) 0%, rgba(148, 187, 233, 0.24) 100%);*/
+    margin: 20px;
+    border-radius: 20px;
+    height: 80vh;
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.53) 100%);
+
+    overflow: hidden;
+}
+
+.profile-photo{
+    position: relative;
+    top: -10px;
+    border: 3px solid white;
+}

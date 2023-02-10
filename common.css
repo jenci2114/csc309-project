@@ -18,3 +18,10 @@ body {
 #home:hover {
     font-weight: bold;
 }
+
+#carouselExampleIndicators {
+    margin: 0 auto;
+    width: 50%;
+}
+
+

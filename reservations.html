@@ -86,7 +86,7 @@
 
     <div class="container">
         <h1 class="fs-1 fw-semibold text-center">Reservations</h1>
-        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic radio toggle button group">
             <input type="radio" data-bs-toggle="collapse" data-bs-target=".pending_review" aria-expanded="false" aria-controls="pending_review" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
             <label class="btn btn-outline-primary" for="btnradio1">Pending Review</label>
 
@@ -94,7 +94,7 @@
             <label class="btn btn-outline-primary" for="btnradio2">Upcoming</label>
 
             <input type="radio" data-bs-toggle="collapse" data-bs-target=".currently_hosting" aria-expanded="false" aria-controls="currently_hosting" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnradio3">Currenty Hosting</label>
+            <label class="btn btn-outline-primary" for="btnradio3">Currently Hosting</label>
 
             <input type="radio" data-bs-toggle="collapse" data-bs-target=".completed" aria-expanded="false" aria-controls="completed" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
             <label class="btn btn-outline-primary" for="btnradio4">Completed</label>
@@ -203,7 +203,7 @@
                     <li class="list-group-item"><span class="fa fa-money"></span> $45 night</li>
                     <li class="list-group-item"><span class="fa fa-users"></span> 6</li>
                   </ul>
-                  <a href="reservation_completion_rating.html"><button class="button-group green" type="submit" class="btn btn-primary"><span class="fa fa-star"></span>Rate</button></a>
+                    <a href="#"><button class="button-group green" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comment"><span class="fa fa-star"></span>Rate</button></a>
                 </div>
                 </a>
                 <a href="user_ratings.html">
@@ -225,7 +225,7 @@
                       <li class="list-group-item"><span class="fa fa-money"></span> $45 night</li>
                       <li class="list-group-item"><span class="fa fa-users"></span> 4</li>
                     </ul>
-                    <a href="reservation_completion_rating.html"><button class="button-group green" type="submit" class="btn btn-primary"><span class="fa fa-star"></span>Rate</button></a>
+                      <a href="#"><button class="button-group green" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#comment"><span class="fa fa-star"></span>Rate</button></a>
                   </div>
                   </a>
                   <a href="user_ratings.html">
@@ -238,6 +238,29 @@
           </div>
 
         </div>
+
+      <div class="modal fade" id="comment" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Comment on San Jose (You may only comment ONCE)</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="mb-3">
+              <label for="comment_body" class="col-form-label">Comment:</label>
+              <textarea class="form-control" id="comment_body"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Submit Comment</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 </body>
 </html>

@@ -2,3 +2,6 @@ venv
 
 .idea
 .DS_store
+
+*/migrations
+db.sqlite3

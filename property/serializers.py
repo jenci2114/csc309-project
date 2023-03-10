@@ -16,3 +16,10 @@ class PropertySerializer(serializers.ModelSerializer):
         fields = ['id', 'user', 'address', 'city', 'province', 'zip',
                   'beds', 'bathrooms', 'max_guests', 'description']
         read_only_fields = ['user']
+
+
+class AvailabilitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PropertyAvailability
+        fields = ['id', 'start_date', 'end_date', 'price_per_night', 'property']
+        read_only_fields = ['property']

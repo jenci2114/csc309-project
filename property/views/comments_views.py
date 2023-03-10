@@ -6,12 +6,14 @@ from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from collections import defaultdict
+from rest_framework.generics import get_object_or_404
 
 
 class PropertyCommentView(ListAPIView):
     permission_classes = [permissions.AllowAny]
     serializer_class = PropertyCommentSerializer
     pagination_class = PageNumberPagination
+    lookup_field = 'pk'
 
     def get_queryset(self):
         # return all comments for a property, from property attribute in reservation
@@ -21,7 +23,10 @@ class PropertyCommentView(ListAPIView):
         # change all entries in the queryset to read = True once opened
         comment_group = defaultdict(list)
         for comment in self.get_queryset():
-            comment_group[comment.reservation.id].append(comment)
+            comment_group[comment.reservation.id].append({
+                'msg': comment.msg,
+                'comment_number': comment.comment_number,
+            })
         
         return Response(comment_group)
     
@@ -29,6 +34,7 @@ class PropertyCommentView(ListAPIView):
 class CreateReservationCommentView(CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = PropertyCommentSerializer
+    lookup_field = 'pk'
 
     def post(self, request, pk):
         # create a comment for a reservation
@@ -38,7 +44,7 @@ class CreateReservationCommentView(CreateAPIView):
         client = Reservation.objects.get(id=pk).client
         host = Reservation.objects.get(id=pk).property.user
         if self.request.user != client and self.request.user != host:
-            return Response("You are not authorized to commen on this reservation",status=403)
+            return Response("You are not authorized to comment on this reservation",status=403)
         
         current_count = PropertyComment.objects.filter(reservation__id=pk).count()
         if self.request.user == client and current_count % 2 == 1:

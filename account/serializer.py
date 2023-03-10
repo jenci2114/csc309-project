@@ -25,7 +25,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         return data
     
     def create(self, validated_data):
-        print(validated_data)
         user = User.objects.create(
             username=validated_data['username'],
             password=validated_data['password'],
@@ -88,6 +87,7 @@ class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Notification
         fields = ['msg', 'time', 'user_from']
+
 
 
 

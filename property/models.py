@@ -35,11 +35,9 @@ class Reservation(models.Model):
     host_to_user_msg = models.TextField(blank=True)
     host_to_user_rating = models.PositiveIntegerField(null=True, blank=True)
     user_to_property_rating = models.PositiveIntegerField(null=True, blank=True)
-    number_of_property_comment = models.PositiveIntegerField(default=0)
 
 
 class PropertyComment(models.Model):
     msg = models.TextField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     reservation = models.ForeignKey(Reservation, on_delete=models.CASCADE)
     comment_number = models.PositiveIntegerField()

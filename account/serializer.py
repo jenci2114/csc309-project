@@ -1,7 +1,7 @@
 # serializer for register user
 
 from rest_framework import serializers
-from .models import User
+from .models import User, Notification
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate
 from django.core.validators import validate_email
@@ -84,6 +84,11 @@ class ProfileEditSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Both passwords must be provided")
         instance.save()
         return instance
+    
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = ['msg', 'time']
 
 
 

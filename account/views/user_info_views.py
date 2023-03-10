@@ -1,16 +1,9 @@
 
 from ..serializer import RegisterSerializer, ProfileEditSerializer
 from rest_framework.views import APIView 
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.exceptions import TokenError
-from django.shortcuts import get_object_or_404
-from ..models import User
-
-from django.contrib.auth import logout
 
 # class-based apiview for register user
 class RegisterView(CreateAPIView):

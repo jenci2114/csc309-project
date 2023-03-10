@@ -23,3 +23,10 @@ class PropertyCommentSerializer(serializers.ModelSerializer):
         model = PropertyComment
         fields = ['msg', 'user', 'reservation']
         extra_kwargs = {'user': {'required': False}, 'reservation': {'required': False}}
+
+
+class AvailabilitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PropertyAvailability
+        fields = ['id', 'start_date', 'end_date', 'price_per_night', 'property']
+        read_only_fields = ['property']

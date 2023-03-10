@@ -86,9 +86,10 @@ class ProfileEditSerializer(serializers.ModelSerializer):
         return instance
     
 class NotificationSerializer(serializers.ModelSerializer):
+    user_from = serializers.ReadOnlyField(source='user_from.username')
     class Meta:
         model = Notification
-        fields = ['msg', 'time']
+        fields = ['msg', 'time', 'user_from']
 
 
 

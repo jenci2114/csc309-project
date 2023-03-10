@@ -11,7 +11,7 @@ class HostNotificationView(ListAPIView):
     serializer_class = NotificationSerializer
 
     def get_queryset(self):
-        return Notification.objects.filter(user=self.request.user, is_host=True)
+        return Notification.objects.filter(user_to=self.request.user, is_host=True)
     
     def get(self, request):
         # change all entries in the queryset to read = True once opened
@@ -26,7 +26,7 @@ class TenentNotificationView(ListAPIView):
     serializer_class = NotificationSerializer
 
     def get_queryset(self):
-        return Notification.objects.filter(user=self.request.user, is_host=False)
+        return Notification.objects.filter(user_to=self.request.user, is_host=False)
     
     def get(self, request):
         # change all entries in the queryset to read = True once opened
@@ -41,7 +41,7 @@ class HostNotificationDeleteView(APIView):
     serializer_class = NotificationSerializer
 
     def delete(self, request):
-        for notification in Notification.objects.filter(user=request.user, is_host=True):
+        for notification in Notification.objects.filter(user_to=request.user, is_host=True, read=True):
             notification.delete()
         return Response(status=204)
     
@@ -51,6 +51,6 @@ class TenentNotificationDeleteView(APIView):
     serializer_class = NotificationSerializer
 
     def delete(self, request):
-        for notification in Notification.objects.filter(user=request.user, is_host=False):
+        for notification in Notification.objects.filter(user_to=request.user, is_host=False, read=True):
             notification.delete()
         return Response(status=204)

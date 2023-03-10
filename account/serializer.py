@@ -2,8 +2,6 @@
 
 from rest_framework import serializers
 from .models import User, Notification
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth import authenticate
 from django.core.validators import validate_email
 
 class RegisterSerializer(serializers.ModelSerializer):

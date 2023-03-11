@@ -63,6 +63,11 @@ class ReserveView(APIView):
                                               property=reserve_property,
                                               status=APPROVED):
                     is_valid = False
+                if Reservation.objects.filter(start_date__lte=current_date,
+                                end_date__gte=current_date,
+                                property=reserve_property,
+                                status=CANCELING):
+                    is_valid = False
                 r_set = PropertyAvailability.objects.filter(start_date__lte=current_date,
                                                             end_date__gte=current_date,
                                                             property=reserve_property)

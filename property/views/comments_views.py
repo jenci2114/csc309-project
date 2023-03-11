@@ -1,4 +1,4 @@
-from ..serializers import PropertyCommentSerializer, ReservationUserToPropertyRatingSerializer, ReservationHostToUserRatingSerializer
+from ..serializers import PropertyCommentSerializer, ReservationUserToPropertyRatingSerializer, ReservationHostToUserRatingSerializer, ReservationHostToUserMsgSerializer, UserCommentSerializer
 from ..models import PropertyComment, Reservation
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
 from rest_framework.views import APIView
@@ -9,7 +9,7 @@ from collections import defaultdict
 from rest_framework.generics import get_object_or_404
 
 
-class ReservationCommentsPagination(PageNumberPagination):
+class CommentsPagination(PageNumberPagination):
     def get_paginated_response(self, data):
         return Response({
             'count': self.page.paginator.count,
@@ -20,8 +20,7 @@ class ReservationCommentsPagination(PageNumberPagination):
 
 class PropertyCommentView(ListAPIView):
     permission_classes = [permissions.AllowAny]
-    serializer_class = PropertyCommentSerializer
-    pagination_class = ReservationCommentsPagination
+    pagination_class = CommentsPagination
     pagination_class.page_size = 1
     lookup_field = 'pk'
 
@@ -102,7 +101,7 @@ class UpdateUserToPropertyRatingView(APIView):
         if rating not in {'1', '2', '3', '4', '5'}:
             return Response("Rating must be an integer between 1 and 5", status=400)
         
-        Reservation.objects.filter(id=pk).update(user_to_property_rating=request.data.get('user_to_property_rating'))
+        Reservation.objects.filter(id=pk).update(user_to_property_rating=rating)
         return Response("You have successfully rated this property", status=200)
     
     
@@ -128,5 +127,42 @@ class UpdateHostToUserRatingView(APIView):
         if rating not in {'1', '2', '3', '4', '5'}:
             return Response("Rating must be an integer between 1 and 5", status=400)
         
-        Reservation.objects.filter(id=pk).update(host_to_user_rating=request.data.get('host_to_user_rating'))
+        Reservation.objects.filter(id=pk).update(host_to_user_rating=rating)
         return Response("You have successfully rated this tenant", status=200)
+
+
+class UpdateHostToUserMsgView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = ReservationHostToUserMsgSerializer
+    lookup_field = 'pk'
+
+    def put(self, request, pk):
+        # update the user_to_property_rating for a reservation
+        if not Reservation.objects.filter(id=pk).exists():
+            return Response(status=404)
+        
+        host = Reservation.objects.get(id=pk).property.user
+
+        if self.request.user != host:
+            return Response("You are not authorized to comment on this tenant of the reservation",status=403)
+        
+        if not Reservation.objects.get(id=pk).status == 'terminated':
+            return Response("Reservation is not completed, you cannot comment on the tenant yet", status=403)
+        
+        msg = request.data.get('host_to_user_msg')
+        if msg == '' or msg is None:
+            return Response("Message cannot be empty", status=400)
+        
+        Reservation.objects.filter(id=pk).update(host_to_user_msg=msg)
+        return Response("You have successfully commented on this tenant", status=200)
+    
+
+class UserCommentView(ListAPIView):
+    permission_classes = [permissions.AllowAny]
+    pagination_class = CommentsPagination
+    serializer_class = UserCommentSerializer
+    pagination_class.page_size = 1
+    lookup_field = 'pk'
+
+    def get_queryset(self):
+        return Reservation.objects.filter(client=self.request.user).order_by('-start_date')

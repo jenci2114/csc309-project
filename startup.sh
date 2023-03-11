@@ -1,6 +1,6 @@
 python3 -m venv ./venv
 source venv/bin/activate
-pip3 install -r requirements.txt
+python3 -m pip install -r requirements.txt
 chmod u+x manage.py
 chmod u+x startup.sh
 chmod u+x run.sh

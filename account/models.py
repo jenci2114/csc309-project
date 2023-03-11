@@ -9,7 +9,6 @@ class User(AbstractUser):
     email = models.EmailField(max_length=254)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    rating = models.DecimalField(max_digits=3, decimal_places=2, default=0.00)
     phone = models.CharField(max_length=15)
     location = models.CharField(max_length=100)
     avatar_url = models.ImageField(upload_to='avatars/', blank=True, null=True)

@@ -32,7 +32,7 @@ class Reservation(models.Model):
     status = models.CharField(max_length=50, default='pending')
     start_date = models.DateField()
     end_date = models.DateField()
-    host_to_user_msg = models.TextField(blank=True)
+    host_to_user_msg = models.TextField(null=True, blank=True)
     host_to_user_rating = models.PositiveIntegerField(null=True, blank=True)
     user_to_property_rating = models.PositiveIntegerField(null=True, blank=True)
 

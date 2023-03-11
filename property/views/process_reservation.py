@@ -124,12 +124,12 @@ class CancelView(APIView):
                         reservation.status = CANCELED
                     else:
                         reservation.status = CANCELING
-                    reservation.save()
-
-                    Notification(msg='You got a new cancel request.',
+                        Notification(msg='You got a new cancel request.',
                                  is_host=True,
                                  user_from=user,
-                                 user_to=reservation.user).save()
+                                 user_to=reservation.property.user).save()
+                    reservation.save()
+
 
                     return Response({'message': 'Reservation requested.',
                                      'id': reservation.id,
@@ -170,8 +170,8 @@ class ProcessPendingView(APIView):
 
                     Notification(msg=message,
                                  is_host=False,
-                                 user_from=reservation.user,
-                                 user_to=user).save()
+                                 user_from=user,
+                                 user_to=reservation.client).save()
 
                     return Response({'message': 'Your decision has been made.',
                                      'id': reservation.id,
@@ -211,8 +211,8 @@ class ProcessCancelView(APIView):
 
                     Notification(msg=message,
                                  is_host=False,
-                                 user_from=reservation.user,
-                                 user_to=user).save()
+                                 user_from=user,
+                                 user_to=reservation.client).save()
 
                     reservation.save()
                     return Response({'message': 'Your decision has been made.',
@@ -248,8 +248,8 @@ class TerminateView(APIView):
 
                     Notification(msg='One of your reservation has been terminated',
                                  is_host=False,
-                                 user_from=reservation.user,
-                                 user_to=user).save()
+                                 user_from=user,
+                                 user_to=reservation.client).save()
 
                     return Response({'message': 'Your decision has been made.',
                                      'id': reservation.id,

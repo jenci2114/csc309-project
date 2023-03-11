@@ -7,6 +7,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
 from rest_framework import status
 from ..models import Reservation, Property, PropertyAvailability
+from account.models import Notification
 from django import forms
 from backend.constants import *
 import datetime
@@ -64,9 +65,9 @@ class ReserveView(APIView):
                                               status=APPROVED):
                     is_valid = False
                 if Reservation.objects.filter(start_date__lte=current_date,
-                                end_date__gte=current_date,
-                                property=reserve_property,
-                                status=CANCELING):
+                                              end_date__gte=current_date,
+                                              property=reserve_property,
+                                              status=CANCELING):
                     is_valid = False
                 r_set = PropertyAvailability.objects.filter(start_date__lte=current_date,
                                                             end_date__gte=current_date,
@@ -87,7 +88,13 @@ class ReserveView(APIView):
                     end_date=end_date
                 )
                 new_reservation.save()
-                return Response({'message': 'Reservation created successfully.',
+
+                Notification(msg='You got a new reservation request.',
+                             is_host=True,
+                             user_from=user,
+                             user_to=reserve_property.user).save()
+
+                return Response({'message': 'Reservation requested successfully.',
                                  'id': new_reservation.id,
                                  'status': new_reservation.status,
                                  'guest': new_reservation.client.username,
@@ -118,6 +125,12 @@ class CancelView(APIView):
                     else:
                         reservation.status = CANCELING
                     reservation.save()
+
+                    Notification(msg='You got a new cancel request.',
+                                 is_host=True,
+                                 user_from=user,
+                                 user_to=reservation.user).save()
+
                     return Response({'message': 'Reservation requested.',
                                      'id': reservation.id,
                                      'status': reservation.status,
@@ -149,9 +162,17 @@ class ProcessPendingView(APIView):
                 if reservation.status == PENDING:
                     if decision:
                         reservation.status = APPROVED
+                        message = 'One of your reservation has been approved.'
                     else:
                         reservation.status = DENIED
+                        message = 'One of your reservation has been denied.'
                     reservation.save()
+
+                    Notification(msg=message,
+                                 is_host=False,
+                                 user_from=reservation.user,
+                                 user_to=user).save()
+
                     return Response({'message': 'Your decision has been made.',
                                      'id': reservation.id,
                                      'status': reservation.status,
@@ -183,8 +204,16 @@ class ProcessCancelView(APIView):
                 if reservation.status == CANCELING:
                     if decision:
                         reservation.status = CANCELED
+                        message = 'One of your cancel request has been approved.'
                     else:
                         reservation.status = APPROVED
+                        message = 'One of your cancel request has been denied.'
+
+                    Notification(msg=message,
+                                 is_host=False,
+                                 user_from=reservation.user,
+                                 user_to=user).save()
+
                     reservation.save()
                     return Response({'message': 'Your decision has been made.',
                                      'id': reservation.id,
@@ -216,6 +245,12 @@ class TerminateView(APIView):
                 if reservation.status == APPROVED:
                     reservation.status = TERMINATED
                     reservation.save()
+
+                    Notification(msg='One of your reservation has been terminated',
+                                 is_host=False,
+                                 user_from=reservation.user,
+                                 user_to=user).save()
+
                     return Response({'message': 'Your decision has been made.',
                                      'id': reservation.id,
                                      'status': reservation.status,

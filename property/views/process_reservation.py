@@ -122,16 +122,17 @@ class CancelView(APIView):
                 if reservation.status in [PENDING, APPROVED]:
                     if reservation.status == PENDING:
                         reservation.status = CANCELED
+                        message = 'Reservation Canceled.'
                     else:
                         reservation.status = CANCELING
+                        message = 'Reservation Cancel requested.'
                         Notification(msg='You got a new cancel request.',
-                                 is_host=True,
-                                 user_from=user,
-                                 user_to=reservation.property.user).save()
+                                     is_host=True,
+                                     user_from=user,
+                                     user_to=reservation.property.user).save()
                     reservation.save()
 
-
-                    return Response({'message': 'Reservation requested.',
+                    return Response({'message': message,
                                      'id': reservation.id,
                                      'status': reservation.status,
                                      'guest': reservation.client.username,

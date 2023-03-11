@@ -46,6 +46,9 @@ class CreateReservationCommentView(CreateAPIView):
         if self.request.user != client and self.request.user != host:
             return Response("You are not authorized to comment on this reservation",status=403)
         
+        if not Reservation.objects.get(id=pk).status == 'terminated':
+            return Response("Reservation is not completed, you cannot comment yet", status=403)
+        
         current_count = PropertyComment.objects.filter(reservation__id=pk).count()
         if self.request.user == client and current_count % 2 == 1:
             return Response("You need to wait for host to comment first", status=403)

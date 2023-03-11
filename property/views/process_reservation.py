@@ -46,8 +46,8 @@ class ReserveView(APIView):
             end_date = form.cleaned_data['end_date']
             property_id = form.cleaned_data['property_id']
 
-            if end_date < start_date:
-                return Response({'errors': 'invalid reserve request'}, status=status.HTTP_400_BAD_REQUEST)
+            if end_date < start_date or start_date < datetime.date.today():
+                return Response({'errors': 'invalid reserve request, bad date'}, status=status.HTTP_400_BAD_REQUEST)
 
             current_date = start_date
             total_price = 0

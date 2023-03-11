@@ -23,6 +23,16 @@ class PropertyCommentSerializer(serializers.ModelSerializer):
         model = PropertyComment
         fields = ['msg']
 
+class ReservationUserToPropertyRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservation
+        fields = ['user_to_property_rating']
+
+class ReservationHostToUserRatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservation
+        fields = ['host_to_user_rating']
+
 
 class AvailabilitySerializer(serializers.ModelSerializer):
     class Meta:

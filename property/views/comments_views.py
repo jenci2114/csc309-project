@@ -1,6 +1,6 @@
 from ..serializers import PropertyCommentSerializer
 from ..models import PropertyComment, Reservation
-from rest_framework.generics import ListAPIView, CreateAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
 from rest_framework.views import APIView
 from rest_framework import permissions
 from rest_framework.response import Response
@@ -63,3 +63,47 @@ class CreateReservationCommentView(CreateAPIView):
             return Response(serializer.data, status=201)
         else:
             return Response(serializer.errors, status=400)
+        
+        
+class UpdateUserToPropertyRatingView(UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = PropertyCommentSerializer
+    lookup_field = 'pk'
+
+    def post(self, request, pk):
+        # update the user_to_property_rating for a reservation
+        if not Reservation.objects.filter(id=pk).exists():
+            return Response(status=404)
+        
+        client = Reservation.objects.get(id=pk).client
+
+        if self.request.user != client:
+            return Response("You are not authorized to rate this property",status=403)
+        
+        if not Reservation.objects.get(id=pk).status == 'terminated':
+            return Response("Reservation is not completed, you cannot rate the property yet", status=403)
+        
+        Reservation.objects.filter(id=pk).update(user_to_property_rating=request.data.get('user_to_property_rating'))
+        return Response("You have successfully rated this property", status=200)
+    
+    
+class UpdateHostToUserRatingView(UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = PropertyCommentSerializer
+    lookup_field = 'pk'
+
+    def post(self, request, pk):
+        # update the user_to_property_rating for a reservation
+        if not Reservation.objects.filter(id=pk).exists():
+            return Response(status=404)
+        
+        host = Reservation.objects.get(id=pk).property.user
+
+        if self.request.user != host:
+            return Response("You are not authorized to rate this tenant of the reservation",status=403)
+        
+        if not Reservation.objects.get(id=pk).status == 'terminated':
+            return Response("Reservation is not completed, you cannot rate the tenant yet", status=403)
+        
+        Reservation.objects.filter(id=pk).update(host_to_user_rating=request.data.get('host_to_user_rating'))
+        return Response("You have successfully rated this tenant", status=200)

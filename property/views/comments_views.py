@@ -1,5 +1,6 @@
 from ..serializers import PropertyCommentSerializer, ReservationUserToPropertyRatingSerializer, ReservationHostToUserRatingSerializer, ReservationHostToUserMsgSerializer, UserCommentSerializer
 from ..models import PropertyComment, Reservation, Property
+from account.models import User
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
 from rest_framework.views import APIView
 from rest_framework import permissions
@@ -166,4 +167,5 @@ class UserCommentView(ListAPIView):
     lookup_field = 'pk'
 
     def get_queryset(self):
-        return Reservation.objects.filter(client=self.request.user).order_by('-start_date')
+        get_object_or_404(User, id=self.kwargs['pk'])
+        return Reservation.objects.filter(client=self.kwargs['pk']).order_by('-start_date')

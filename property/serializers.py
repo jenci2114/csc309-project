@@ -6,11 +6,11 @@ from property.models import *
 class PropertyImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PropertyImage
-        fields = ['image']
+        fields = ['image', 'property']
+        read_only_fields = ['property']
 
 
 class PropertySerializer(serializers.ModelSerializer):
-    # images = PropertyImageSerializer(many=True, required=False)
     class Meta:
         model = Property
         fields = ['id', 'user', 'address', 'city', 'province', 'zip',
@@ -30,4 +30,3 @@ class AvailabilitySerializer(serializers.ModelSerializer):
         fields = ['id', 'start_date', 'end_date', 'price_per_night', 'property']
         read_only_fields = ['property']
 
-    

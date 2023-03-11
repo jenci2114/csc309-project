@@ -1,7 +1,9 @@
+from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
-from property.serializers import PropertySerializer
+from property.serializers import PropertyImageSerializer, PropertySerializer
 
 
 class CreatePropertyView(CreateAPIView):

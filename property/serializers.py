@@ -27,11 +27,15 @@ class ReservationUserToPropertyRatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
         fields = ['user_to_property_rating']
+        # fields is required
+        extra_kwargs = {'user_to_property_rating': {'required': True}}
 
 class ReservationHostToUserRatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
         fields = ['host_to_user_rating']
+        # fields is required
+        extra_kwargs = {'host_to_user_rating': {'required': True}}
 
 
 class AvailabilitySerializer(serializers.ModelSerializer):
@@ -39,5 +43,6 @@ class AvailabilitySerializer(serializers.ModelSerializer):
         model = PropertyAvailability
         fields = ['id', 'start_date', 'end_date', 'price_per_night', 'property']
         read_only_fields = ['property']
+
 
     

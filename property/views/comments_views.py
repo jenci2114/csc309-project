@@ -1,4 +1,4 @@
-from ..serializers import PropertyCommentSerializer
+from ..serializers import PropertyCommentSerializer, ReservationUserToPropertyRatingSerializer, ReservationHostToUserRatingSerializer
 from ..models import PropertyComment, Reservation
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
 from rest_framework.views import APIView
@@ -65,12 +65,12 @@ class CreateReservationCommentView(CreateAPIView):
             return Response(serializer.errors, status=400)
         
         
-class UpdateUserToPropertyRatingView(UpdateAPIView):
+class UpdateUserToPropertyRatingView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = PropertyCommentSerializer
+    serializer_class = ReservationUserToPropertyRatingSerializer
     lookup_field = 'pk'
 
-    def post(self, request, pk):
+    def put(self, request, pk):
         # update the user_to_property_rating for a reservation
         if not Reservation.objects.filter(id=pk).exists():
             return Response(status=404)
@@ -83,16 +83,20 @@ class UpdateUserToPropertyRatingView(UpdateAPIView):
         if not Reservation.objects.get(id=pk).status == 'terminated':
             return Response("Reservation is not completed, you cannot rate the property yet", status=403)
         
+        rating = request.data.get('user_to_property_rating')
+        if rating not in {'1', '2', '3', '4', '5'}:
+            return Response("Rating must be an integer between 1 and 5", status=400)
+        
         Reservation.objects.filter(id=pk).update(user_to_property_rating=request.data.get('user_to_property_rating'))
         return Response("You have successfully rated this property", status=200)
     
     
-class UpdateHostToUserRatingView(UpdateAPIView):
+class UpdateHostToUserRatingView(APIView):
     permission_classes = [permissions.IsAuthenticated]
-    serializer_class = PropertyCommentSerializer
+    serializer_class = ReservationHostToUserRatingSerializer
     lookup_field = 'pk'
 
-    def post(self, request, pk):
+    def put(self, request, pk):
         # update the user_to_property_rating for a reservation
         if not Reservation.objects.filter(id=pk).exists():
             return Response(status=404)
@@ -104,6 +108,10 @@ class UpdateHostToUserRatingView(UpdateAPIView):
         
         if not Reservation.objects.get(id=pk).status == 'terminated':
             return Response("Reservation is not completed, you cannot rate the tenant yet", status=403)
+        
+        rating = request.data.get('host_to_user_rating')
+        if rating not in {'1', '2', '3', '4', '5'}:
+            return Response("Rating must be an integer between 1 and 5", status=400)
         
         Reservation.objects.filter(id=pk).update(host_to_user_rating=request.data.get('host_to_user_rating'))
         return Response("You have successfully rated this tenant", status=200)

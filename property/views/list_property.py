@@ -1,4 +1,4 @@
-from django.db.models import Avg, Max, Min
+from django.db.models import Avg, Case, Max, Min, Value, When
 from rest_framework.generics import ListAPIView
 
 from backend.paginations import StandardResultsSetPagination
@@ -52,7 +52,14 @@ class ListPropertyView(ListAPIView):
             elif order_by == 'name_desc':
                 queryset = queryset.order_by('-city')
             elif order_by == 'price_asc':
-                queryset = queryset.annotate(min_price=Min('propertyavailability__price_per_night')).order_by('min_price')
+                queryset = queryset.annotate(
+                    min_price=Min('propertyavailability__price_per_night')
+                ).annotate(
+                    has_availability=Case(
+                        When(propertyavailability__isnull=False, then=Value(1)),
+                        default=Value(0),
+                    )
+                ).order_by('-has_availability', 'min_price')
             elif order_by == 'price_desc':
                 queryset = queryset.annotate(max_price=Max('propertyavailability__price_per_night')).order_by('-max_price')
             elif order_by == 'rating':

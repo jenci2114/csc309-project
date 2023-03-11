@@ -1,6 +1,6 @@
 
 from ..serializer import RegisterSerializer, ProfileEditSerializer
-from rest_framework.views import APIView 
+from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
@@ -20,10 +20,14 @@ class ProfileView(RetrieveAPIView):
 
 class ProfileEditView(UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
-    
+
+    def get_object(self):
+        return self.request.user
+
     def put(self, request):
         serializer = ProfileEditSerializer(request.user, data=request.data)
         if serializer.is_valid():
+            self.get_object().avatar_url.delete()
             serializer.save()
             return Response(serializer.data)
         else:

@@ -12,6 +12,7 @@ urlpatterns = [
     path('token/blacklist/', TokenBlacklistView.as_view(), name='blacklist'),
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/view/', ProfileView.as_view(), name='profile'),
+    path('profile/edit/', ProfileEditView.as_view(), name='profile_edit'),
     path('notifications/host/', HostNotificationView.as_view(), name='host_notifications'),
     path('notifications/tenant/', TenentNotificationView.as_view(), name='tenant_notifications'),
     path('notifications/host/delete/', HostNotificationDeleteView.as_view(), name='host_notifications_delete'),

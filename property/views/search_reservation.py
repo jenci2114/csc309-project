@@ -13,13 +13,16 @@ class SearchForm(forms.Form):
     state = forms.CharField(max_length=20)
 
     def clean(self):
-        user_type = self.cleaned_data['user_type']
-        state = self.cleaned_data['state']
+        cleaned_data = super().clean()
+        user_type = cleaned_data.get('user_type')
+        state = cleaned_data.get('state')
+        if user_type is None:
+            raise forms.ValidationError("User type is required")
         if user_type not in ['host', 'guest']:
             raise forms.ValidationError("User type must be 'host' or 'guest'")
         if state not in [PENDING, APPROVED, CANCELING, CANCELED, TERMINATED, DENIED, ALL]:
             raise forms.ValidationError("invalid state")
-        return self.cleaned_data
+        return cleaned_data
 
 
 class SearchView(APIView):
@@ -50,8 +53,7 @@ class SearchView(APIView):
                           'total_price': r.total_price,
                           'host_to_user_msg': r.host_to_user_msg,
                           'host_to_user_rating': r.host_to_user_rating,
-                          'user_to_property_rating': r.user_to_property_rating,
-                          'number_of_property_comment': r.number_of_property_comment} for r in query_set]
+                          'user_to_property_rating': r.user_to_property_rating} for r in query_set]
 
             # Instantiate PageNumberPagination
             paginator = PageNumberPagination()

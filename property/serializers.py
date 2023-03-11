@@ -13,9 +13,19 @@ class PropertyImageSerializer(serializers.ModelSerializer):
 class PropertySerializer(serializers.ModelSerializer):
     class Meta:
         model = Property
-        fields = ['id', 'user', 'address', 'city', 'province', 'zip',
-                  'beds', 'bathrooms', 'max_guests', 'description']
+        fields = '__all__'
         read_only_fields = ['user']
+
+
+class ReservationSerializer(serializers.ModelSerializer):
+    user_type = serializers.CharField(required=True, write_only=True)
+    state = serializers.CharField(required=True, write_only=True)
+    class Meta:
+        model = Reservation
+        fields = ['user_type', 'state']
+        extra_kwargs = {'user_type': {'required': True},
+                        'state': {'required': True}}
+
 
 
 class PropertyCommentSerializer(serializers.ModelSerializer):

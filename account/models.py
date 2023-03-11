@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, Group
+from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
@@ -20,5 +20,5 @@ class Notification(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)
     is_host = models.BooleanField()
-    user_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_to')
-    user_from = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_from')
+    user_to = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_to', null=True)
+    user_from = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_from', null=True)

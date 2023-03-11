@@ -9,10 +9,20 @@ from collections import defaultdict
 from rest_framework.generics import get_object_or_404
 
 
+class ReservationCommentsPagination(PageNumberPagination):
+    def get_paginated_response(self, data):
+        return Response({
+            'count': self.page.paginator.count,
+            'next': self.get_next_link(),
+            'previous': self.get_previous_link(),
+            'results': data
+        })
+
 class PropertyCommentView(ListAPIView):
     permission_classes = [permissions.AllowAny]
     serializer_class = PropertyCommentSerializer
-    pagination_class = PageNumberPagination
+    pagination_class = ReservationCommentsPagination
+    pagination_class.page_size = 1
     lookup_field = 'pk'
 
     def get_queryset(self):
@@ -27,6 +37,11 @@ class PropertyCommentView(ListAPIView):
                 'msg': comment.msg,
                 'comment_number': comment.comment_number,
             })
+
+        page = self.paginate_queryset(list(comment_group.items()))
+        if page is not None:
+            data = dict(page)
+            return self.get_paginated_response(data)
         
         return Response(comment_group)
     

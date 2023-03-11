@@ -1,1 +1,1365 @@
-{}
+[
+    {
+        "model": "admin.logentry",
+        "pk": 1,
+        "fields": {
+            "action_time": "2023-03-11T19:43:28.779Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "1",
+            "object_repr": "Property object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 2,
+        "fields": {
+            "action_time": "2023-03-11T19:45:38.094Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "2",
+            "object_repr": "Property object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 3,
+        "fields": {
+            "action_time": "2023-03-11T19:46:03.632Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "3",
+            "object_repr": "Property object (3)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 4,
+        "fields": {
+            "action_time": "2023-03-11T19:46:43.230Z",
+            "user": 1,
+            "content_type": 8,
+            "object_id": "4",
+            "object_repr": "Property object (4)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 5,
+        "fields": {
+            "action_time": "2023-03-11T19:50:32.797Z",
+            "user": 1,
+            "content_type": 6,
+            "object_id": "1",
+            "object_repr": "a",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Phone\", \"Location\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 6,
+        "fields": {
+            "action_time": "2023-03-11T19:54:19.255Z",
+            "user": 1,
+            "content_type": 6,
+            "object_id": "1",
+            "object_repr": "a",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"Avatar url\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 7,
+        "fields": {
+            "action_time": "2023-03-11T19:55:12.808Z",
+            "user": 1,
+            "content_type": 10,
+            "object_id": "1",
+            "object_repr": "PropertyImage object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 8,
+        "fields": {
+            "action_time": "2023-03-11T19:55:21.694Z",
+            "user": 1,
+            "content_type": 10,
+            "object_id": "2",
+            "object_repr": "PropertyImage object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 9,
+        "fields": {
+            "action_time": "2023-03-11T19:55:30.413Z",
+            "user": 1,
+            "content_type": 10,
+            "object_id": "3",
+            "object_repr": "PropertyImage object (3)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 10,
+        "fields": {
+            "action_time": "2023-03-11T19:55:38.076Z",
+            "user": 1,
+            "content_type": 10,
+            "object_id": "4",
+            "object_repr": "PropertyImage object (4)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 11,
+        "fields": {
+            "action_time": "2023-03-11T19:55:46.734Z",
+            "user": 1,
+            "content_type": 10,
+            "object_id": "5",
+            "object_repr": "PropertyImage object (5)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 12,
+        "fields": {
+            "action_time": "2023-03-11T19:55:56.115Z",
+            "user": 1,
+            "content_type": 10,
+            "object_id": "6",
+            "object_repr": "PropertyImage object (6)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 13,
+        "fields": {
+            "action_time": "2023-03-11T19:58:08.699Z",
+            "user": 1,
+            "content_type": 12,
+            "object_id": "1",
+            "object_repr": "PropertyAvailability object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 14,
+        "fields": {
+            "action_time": "2023-03-11T19:58:29.518Z",
+            "user": 1,
+            "content_type": 12,
+            "object_id": "2",
+            "object_repr": "PropertyAvailability object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 15,
+        "fields": {
+            "action_time": "2023-03-11T20:03:17.958Z",
+            "user": 1,
+            "content_type": 12,
+            "object_id": "3",
+            "object_repr": "PropertyAvailability object (3)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 16,
+        "fields": {
+            "action_time": "2023-03-11T20:04:57.143Z",
+            "user": 1,
+            "content_type": 12,
+            "object_id": "4",
+            "object_repr": "PropertyAvailability object (4)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 17,
+        "fields": {
+            "action_time": "2023-03-11T20:05:29.387Z",
+            "user": 1,
+            "content_type": 12,
+            "object_id": "4",
+            "object_repr": "PropertyAvailability object (4)",
+            "action_flag": 2,
+            "change_message": "[{\"changed\": {\"fields\": [\"End date\"]}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 18,
+        "fields": {
+            "action_time": "2023-03-11T20:20:40.131Z",
+            "user": 1,
+            "content_type": 9,
+            "object_id": "1",
+            "object_repr": "Reservation object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 19,
+        "fields": {
+            "action_time": "2023-03-11T20:21:13.294Z",
+            "user": 1,
+            "content_type": 9,
+            "object_id": "2",
+            "object_repr": "Reservation object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 20,
+        "fields": {
+            "action_time": "2023-03-11T20:21:39.263Z",
+            "user": 1,
+            "content_type": 9,
+            "object_id": "3",
+            "object_repr": "Reservation object (3)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 21,
+        "fields": {
+            "action_time": "2023-03-11T20:22:47.211Z",
+            "user": 1,
+            "content_type": 9,
+            "object_id": "4",
+            "object_repr": "Reservation object (4)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 22,
+        "fields": {
+            "action_time": "2023-03-11T20:24:19.466Z",
+            "user": 1,
+            "content_type": 11,
+            "object_id": "1",
+            "object_repr": "PropertyComment object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 23,
+        "fields": {
+            "action_time": "2023-03-11T20:29:15.415Z",
+            "user": 1,
+            "content_type": 12,
+            "object_id": "5",
+            "object_repr": "PropertyAvailability object (5)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 24,
+        "fields": {
+            "action_time": "2023-03-11T20:33:03.768Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "1",
+            "object_repr": "Notification object (1)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 25,
+        "fields": {
+            "action_time": "2023-03-11T20:33:33.230Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "2",
+            "object_repr": "Notification object (2)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 26,
+        "fields": {
+            "action_time": "2023-03-11T20:34:26.289Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "3",
+            "object_repr": "Notification object (3)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 27,
+        "fields": {
+            "action_time": "2023-03-11T20:35:19.655Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "4",
+            "object_repr": "Notification object (4)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 28,
+        "fields": {
+            "action_time": "2023-03-11T20:37:29.177Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "5",
+            "object_repr": "Notification object (5)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "admin.logentry",
+        "pk": 29,
+        "fields": {
+            "action_time": "2023-03-11T20:38:16.460Z",
+            "user": 1,
+            "content_type": 7,
+            "object_id": "6",
+            "object_repr": "Notification object (6)",
+            "action_flag": 1,
+            "change_message": "[{\"added\": {}}]"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 1,
+        "fields": {
+            "name": "Can add log entry",
+            "content_type": 1,
+            "codename": "add_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 2,
+        "fields": {
+            "name": "Can change log entry",
+            "content_type": 1,
+            "codename": "change_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 3,
+        "fields": {
+            "name": "Can delete log entry",
+            "content_type": 1,
+            "codename": "delete_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 4,
+        "fields": {
+            "name": "Can view log entry",
+            "content_type": 1,
+            "codename": "view_logentry"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 5,
+        "fields": {
+            "name": "Can add permission",
+            "content_type": 2,
+            "codename": "add_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 6,
+        "fields": {
+            "name": "Can change permission",
+            "content_type": 2,
+            "codename": "change_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 7,
+        "fields": {
+            "name": "Can delete permission",
+            "content_type": 2,
+            "codename": "delete_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 8,
+        "fields": {
+            "name": "Can view permission",
+            "content_type": 2,
+            "codename": "view_permission"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 9,
+        "fields": {
+            "name": "Can add group",
+            "content_type": 3,
+            "codename": "add_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 10,
+        "fields": {
+            "name": "Can change group",
+            "content_type": 3,
+            "codename": "change_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 11,
+        "fields": {
+            "name": "Can delete group",
+            "content_type": 3,
+            "codename": "delete_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 12,
+        "fields": {
+            "name": "Can view group",
+            "content_type": 3,
+            "codename": "view_group"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 13,
+        "fields": {
+            "name": "Can add content type",
+            "content_type": 4,
+            "codename": "add_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 14,
+        "fields": {
+            "name": "Can change content type",
+            "content_type": 4,
+            "codename": "change_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 15,
+        "fields": {
+            "name": "Can delete content type",
+            "content_type": 4,
+            "codename": "delete_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 16,
+        "fields": {
+            "name": "Can view content type",
+            "content_type": 4,
+            "codename": "view_contenttype"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 17,
+        "fields": {
+            "name": "Can add session",
+            "content_type": 5,
+            "codename": "add_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 18,
+        "fields": {
+            "name": "Can change session",
+            "content_type": 5,
+            "codename": "change_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 19,
+        "fields": {
+            "name": "Can delete session",
+            "content_type": 5,
+            "codename": "delete_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 20,
+        "fields": {
+            "name": "Can view session",
+            "content_type": 5,
+            "codename": "view_session"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 21,
+        "fields": {
+            "name": "Can add user",
+            "content_type": 6,
+            "codename": "add_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 22,
+        "fields": {
+            "name": "Can change user",
+            "content_type": 6,
+            "codename": "change_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 23,
+        "fields": {
+            "name": "Can delete user",
+            "content_type": 6,
+            "codename": "delete_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 24,
+        "fields": {
+            "name": "Can view user",
+            "content_type": 6,
+            "codename": "view_user"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 25,
+        "fields": {
+            "name": "Can add notification",
+            "content_type": 7,
+            "codename": "add_notification"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 26,
+        "fields": {
+            "name": "Can change notification",
+            "content_type": 7,
+            "codename": "change_notification"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 27,
+        "fields": {
+            "name": "Can delete notification",
+            "content_type": 7,
+            "codename": "delete_notification"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 28,
+        "fields": {
+            "name": "Can view notification",
+            "content_type": 7,
+            "codename": "view_notification"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 29,
+        "fields": {
+            "name": "Can add property",
+            "content_type": 8,
+            "codename": "add_property"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 30,
+        "fields": {
+            "name": "Can change property",
+            "content_type": 8,
+            "codename": "change_property"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 31,
+        "fields": {
+            "name": "Can delete property",
+            "content_type": 8,
+            "codename": "delete_property"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 32,
+        "fields": {
+            "name": "Can view property",
+            "content_type": 8,
+            "codename": "view_property"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 33,
+        "fields": {
+            "name": "Can add reservation",
+            "content_type": 9,
+            "codename": "add_reservation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 34,
+        "fields": {
+            "name": "Can change reservation",
+            "content_type": 9,
+            "codename": "change_reservation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 35,
+        "fields": {
+            "name": "Can delete reservation",
+            "content_type": 9,
+            "codename": "delete_reservation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 36,
+        "fields": {
+            "name": "Can view reservation",
+            "content_type": 9,
+            "codename": "view_reservation"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 37,
+        "fields": {
+            "name": "Can add property image",
+            "content_type": 10,
+            "codename": "add_propertyimage"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 38,
+        "fields": {
+            "name": "Can change property image",
+            "content_type": 10,
+            "codename": "change_propertyimage"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 39,
+        "fields": {
+            "name": "Can delete property image",
+            "content_type": 10,
+            "codename": "delete_propertyimage"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 40,
+        "fields": {
+            "name": "Can view property image",
+            "content_type": 10,
+            "codename": "view_propertyimage"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 41,
+        "fields": {
+            "name": "Can add property comment",
+            "content_type": 11,
+            "codename": "add_propertycomment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 42,
+        "fields": {
+            "name": "Can change property comment",
+            "content_type": 11,
+            "codename": "change_propertycomment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 43,
+        "fields": {
+            "name": "Can delete property comment",
+            "content_type": 11,
+            "codename": "delete_propertycomment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 44,
+        "fields": {
+            "name": "Can view property comment",
+            "content_type": 11,
+            "codename": "view_propertycomment"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 45,
+        "fields": {
+            "name": "Can add property availability",
+            "content_type": 12,
+            "codename": "add_propertyavailability"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 46,
+        "fields": {
+            "name": "Can change property availability",
+            "content_type": 12,
+            "codename": "change_propertyavailability"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 47,
+        "fields": {
+            "name": "Can delete property availability",
+            "content_type": 12,
+            "codename": "delete_propertyavailability"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 48,
+        "fields": {
+            "name": "Can view property availability",
+            "content_type": 12,
+            "codename": "view_propertyavailability"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 49,
+        "fields": {
+            "name": "Can add blacklisted token",
+            "content_type": 13,
+            "codename": "add_blacklistedtoken"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 50,
+        "fields": {
+            "name": "Can change blacklisted token",
+            "content_type": 13,
+            "codename": "change_blacklistedtoken"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 51,
+        "fields": {
+            "name": "Can delete blacklisted token",
+            "content_type": 13,
+            "codename": "delete_blacklistedtoken"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 52,
+        "fields": {
+            "name": "Can view blacklisted token",
+            "content_type": 13,
+            "codename": "view_blacklistedtoken"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 53,
+        "fields": {
+            "name": "Can add outstanding token",
+            "content_type": 14,
+            "codename": "add_outstandingtoken"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 54,
+        "fields": {
+            "name": "Can change outstanding token",
+            "content_type": 14,
+            "codename": "change_outstandingtoken"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 55,
+        "fields": {
+            "name": "Can delete outstanding token",
+            "content_type": 14,
+            "codename": "delete_outstandingtoken"
+        }
+    },
+    {
+        "model": "auth.permission",
+        "pk": 56,
+        "fields": {
+            "name": "Can view outstanding token",
+            "content_type": 14,
+            "codename": "view_outstandingtoken"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 1,
+        "fields": {
+            "app_label": "admin",
+            "model": "logentry"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 2,
+        "fields": {
+            "app_label": "auth",
+            "model": "permission"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 3,
+        "fields": {
+            "app_label": "auth",
+            "model": "group"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 4,
+        "fields": {
+            "app_label": "contenttypes",
+            "model": "contenttype"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 5,
+        "fields": {
+            "app_label": "sessions",
+            "model": "session"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 6,
+        "fields": {
+            "app_label": "account",
+            "model": "user"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 7,
+        "fields": {
+            "app_label": "account",
+            "model": "notification"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 8,
+        "fields": {
+            "app_label": "property",
+            "model": "property"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 9,
+        "fields": {
+            "app_label": "property",
+            "model": "reservation"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 10,
+        "fields": {
+            "app_label": "property",
+            "model": "propertyimage"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 11,
+        "fields": {
+            "app_label": "property",
+            "model": "propertycomment"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 12,
+        "fields": {
+            "app_label": "property",
+            "model": "propertyavailability"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 13,
+        "fields": {
+            "app_label": "token_blacklist",
+            "model": "blacklistedtoken"
+        }
+    },
+    {
+        "model": "contenttypes.contenttype",
+        "pk": 14,
+        "fields": {
+            "app_label": "token_blacklist",
+            "model": "outstandingtoken"
+        }
+    },
+    {
+        "model": "sessions.session",
+        "pk": "7xgu1cq0u28sugharrb8q5rgeu7e6jio",
+        "fields": {
+            "session_data": ".eJxVjEEOwiAQRe_C2pAWGUZcuvcMZGAGqRpISrsy3l2bdKHb_977LxVoXUpYu8xhYnVWozr8bpHSQ-oG-E711nRqdZmnqDdF77Tra2N5Xnb376BQL996YPTsfQbAEyELeZeSZIiYLYMwR3SW83EgZ40TtDklNCOItxIBjHp_AApUOLk:1pb55O:aRpQcZykj8-1eXF9seJjf3vwiNg6nEX_WQj5T3Dm62g",
+            "expire_date": "2023-03-25T19:40:58.135Z"
+        }
+    },
+    {
+        "model": "account.user",
+        "pk": 1,
+        "fields": {
+            "last_login": "2023-03-11T19:40:58Z",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-03-11T19:40:08Z",
+            "username": "a",
+            "password": "pbkdf2_sha256$390000$VsQrgAlsvHnP6KDKwYPb1O$CFkVB47BmoZwRI5JPKsRmEPXENG54SwuUa7+GwuyY9M=",
+            "email": "a@gmail.com",
+            "first_name": "Chat",
+            "last_name": "GPT",
+            "phone": "1111111111",
+            "location": "ai.com",
+            "avatar_url": "avatars/poggers.png",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "account.user",
+        "pk": 2,
+        "fields": {
+            "last_login": null,
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-03-11T19:40:38.015Z",
+            "username": "b",
+            "password": "pbkdf2_sha256$390000$REndG2D5RHMmhgGUFiUmYO$sjr4O4yg/rN7IUycXy740Crg1wrO0XA3YEQSKhb3t8M=",
+            "email": "b@gmail.com",
+            "first_name": "",
+            "last_name": "",
+            "phone": "",
+            "location": "",
+            "avatar_url": "",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "account.user",
+        "pk": 3,
+        "fields": {
+            "last_login": null,
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-03-11T19:40:51.768Z",
+            "username": "c",
+            "password": "pbkdf2_sha256$390000$A3tnuHM7DvtECOcd6pSuo2$p8Cn2HcYT5WTnWnXYjsCCjMv4qg0xIKxfLfUIgffPVo=",
+            "email": "c@gmail.com",
+            "first_name": "",
+            "last_name": "",
+            "phone": "",
+            "location": "",
+            "avatar_url": "",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "account.notification",
+        "pk": 1,
+        "fields": {
+            "msg": "new reservation for property 1",
+            "time": "2023-03-11T20:33:03.764Z",
+            "read": false,
+            "is_host": true,
+            "user_to": 1,
+            "user_from": 2
+        }
+    },
+    {
+        "model": "account.notification",
+        "pk": 2,
+        "fields": {
+            "msg": "reservation for property 1 approved",
+            "time": "2023-03-11T20:33:33.228Z",
+            "read": false,
+            "is_host": false,
+            "user_to": 2,
+            "user_from": 1
+        }
+    },
+    {
+        "model": "account.notification",
+        "pk": 3,
+        "fields": {
+            "msg": "new reservation request for property 1",
+            "time": "2023-03-11T20:34:26.286Z",
+            "read": false,
+            "is_host": true,
+            "user_to": 1,
+            "user_from": 3
+        }
+    },
+    {
+        "model": "account.notification",
+        "pk": 4,
+        "fields": {
+            "msg": "reservation approved for property a",
+            "time": "2023-03-11T20:35:19.653Z",
+            "read": false,
+            "is_host": false,
+            "user_to": 3,
+            "user_from": 1
+        }
+    },
+    {
+        "model": "account.notification",
+        "pk": 5,
+        "fields": {
+            "msg": "request for property 4",
+            "time": "2023-03-11T20:37:29.173Z",
+            "read": false,
+            "is_host": true,
+            "user_to": 2,
+            "user_from": 3
+        }
+    },
+    {
+        "model": "account.notification",
+        "pk": 6,
+        "fields": {
+            "msg": "your reservation is denied for property 4",
+            "time": "2023-03-11T20:38:16.457Z",
+            "read": false,
+            "is_host": false,
+            "user_to": 2,
+            "user_from": 3
+        }
+    },
+    {
+        "model": "property.property",
+        "pk": 1,
+        "fields": {
+            "user": 1,
+            "address": "111 street",
+            "city": "City A",
+            "province": "Province A",
+            "zip": "11111",
+            "beds": 2,
+            "bathrooms": 1,
+            "max_guests": 4,
+            "description": "A house from A"
+        }
+    },
+    {
+        "model": "property.property",
+        "pk": 2,
+        "fields": {
+            "user": 1,
+            "address": "222 street",
+            "city": "city A",
+            "province": "Province A",
+            "zip": "11111",
+            "beds": 3,
+            "bathrooms": 2,
+            "max_guests": 5,
+            "description": "Property 2 from user a"
+        }
+    },
+    {
+        "model": "property.property",
+        "pk": 3,
+        "fields": {
+            "user": 1,
+            "address": "333 street",
+            "city": "city A",
+            "province": "Province A",
+            "zip": "11111",
+            "beds": 1,
+            "bathrooms": 1,
+            "max_guests": 2,
+            "description": "apartment 3 from user a"
+        }
+    },
+    {
+        "model": "property.property",
+        "pk": 4,
+        "fields": {
+            "user": 2,
+            "address": "1234 street",
+            "city": "City B",
+            "province": "Province B",
+            "zip": "22222",
+            "beds": 2,
+            "bathrooms": 1,
+            "max_guests": 3,
+            "description": "only house from B"
+        }
+    },
+    {
+        "model": "property.propertyimage",
+        "pk": 1,
+        "fields": {
+            "property": 1,
+            "image": "property_images/1.png"
+        }
+    },
+    {
+        "model": "property.propertyimage",
+        "pk": 2,
+        "fields": {
+            "property": 2,
+            "image": "property_images/2.png"
+        }
+    },
+    {
+        "model": "property.propertyimage",
+        "pk": 3,
+        "fields": {
+            "property": 3,
+            "image": "property_images/3.png"
+        }
+    },
+    {
+        "model": "property.propertyimage",
+        "pk": 4,
+        "fields": {
+            "property": 4,
+            "image": "property_images/4.png"
+        }
+    },
+    {
+        "model": "property.propertyimage",
+        "pk": 5,
+        "fields": {
+            "property": 1,
+            "image": "property_images/int1.png"
+        }
+    },
+    {
+        "model": "property.propertyimage",
+        "pk": 6,
+        "fields": {
+            "property": 1,
+            "image": "property_images/int2.png"
+        }
+    },
+    {
+        "model": "property.propertyavailability",
+        "pk": 1,
+        "fields": {
+            "start_date": "2023-01-01",
+            "end_date": "2023-01-31",
+            "price_per_night": "10.00",
+            "property": 1
+        }
+    },
+    {
+        "model": "property.propertyavailability",
+        "pk": 2,
+        "fields": {
+            "start_date": "2023-02-01",
+            "end_date": "2023-02-28",
+            "price_per_night": "20.00",
+            "property": 1
+        }
+    },
+    {
+        "model": "property.propertyavailability",
+        "pk": 3,
+        "fields": {
+            "start_date": "2023-04-01",
+            "end_date": "2023-04-30",
+            "price_per_night": "30.00",
+            "property": 1
+        }
+    },
+    {
+        "model": "property.propertyavailability",
+        "pk": 4,
+        "fields": {
+            "start_date": "2023-03-01",
+            "end_date": "2023-04-30",
+            "price_per_night": "400.00",
+            "property": 4
+        }
+    },
+    {
+        "model": "property.propertyavailability",
+        "pk": 5,
+        "fields": {
+            "start_date": "2023-05-01",
+            "end_date": "2023-05-30",
+            "price_per_night": "200.00",
+            "property": 4
+        }
+    },
+    {
+        "model": "property.reservation",
+        "pk": 1,
+        "fields": {
+            "client": 2,
+            "property": 1,
+            "total_price": "150.00",
+            "status": "terminated",
+            "start_date": "2023-01-01",
+            "end_date": "2023-01-15",
+            "host_to_user_msg": "",
+            "host_to_user_rating": null,
+            "user_to_property_rating": null
+        }
+    },
+    {
+        "model": "property.reservation",
+        "pk": 2,
+        "fields": {
+            "client": 3,
+            "property": 1,
+            "total_price": "50.00",
+            "status": "terminated",
+            "start_date": "2023-03-01",
+            "end_date": "2023-03-10",
+            "host_to_user_msg": "",
+            "host_to_user_rating": null,
+            "user_to_property_rating": null
+        }
+    },
+    {
+        "model": "property.reservation",
+        "pk": 3,
+        "fields": {
+            "client": 3,
+            "property": 4,
+            "total_price": "4000.00",
+            "status": "denied",
+            "start_date": "2023-03-01",
+            "end_date": "2023-03-10",
+            "host_to_user_msg": "",
+            "host_to_user_rating": null,
+            "user_to_property_rating": null
+        }
+    },
+    {
+        "model": "property.reservation",
+        "pk": 4,
+        "fields": {
+            "client": 1,
+            "property": 4,
+            "total_price": "4400.00",
+            "status": "approved",
+            "start_date": "2023-03-20",
+            "end_date": "2023-03-30",
+            "host_to_user_msg": "",
+            "host_to_user_rating": null,
+            "user_to_property_rating": null
+        }
+    },
+    {
+        "model": "property.propertycomment",
+        "pk": 1,
+        "fields": {
+            "msg": "I love it!",
+            "reservation": 1,
+            "comment_number": 1
+        }
+    }
+]

@@ -27,8 +27,10 @@ class ProfileEditView(UpdateAPIView):
     def put(self, request):
         serializer = ProfileEditSerializer(request.user, data=request.data)
         if serializer.is_valid():
-            self.get_object().avatar_url.delete()
-            serializer.save()
+            # delete only when a new avatar is uploaded
+            if 'avatar_url' in request.data:
+                self.get_object().avatar_url.delete()
+                serializer.save()
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

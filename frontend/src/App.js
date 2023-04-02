@@ -1,11 +1,15 @@
 import logo from './logo.svg';
+import Navbar from "./components/navbar";
 import './App.css';
 
 function App() {
   return (
-    <p>
-      Restify Frontend
-    </p>
+    <div>
+        <Navbar
+            login = "true"
+            name = "user386"
+        />
+    </div>
   );
 }
 

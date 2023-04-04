@@ -1,6 +1,6 @@
 from ..serializers import PropertyCommentSerializer, ReservationUserToPropertyRatingSerializer, ReservationHostToUserRatingSerializer, ReservationHostToUserMsgSerializer, UserCommentSerializer
 from ..models import PropertyComment, Reservation, Property
-from account.models import User
+from account.models import User, Notification
 from rest_framework.generics import ListAPIView, CreateAPIView, UpdateAPIView
 from rest_framework.views import APIView
 from rest_framework import permissions
@@ -73,9 +73,16 @@ class CreateReservationCommentView(CreateAPIView):
         
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
+            comment_number = PropertyComment.objects.filter(reservation__id=pk).count() + 1
+            reservation = Reservation.objects.get(id=pk)
             serializer.save(msg=request.data.get('msg'),
-                            reservation=Reservation.objects.get(id=pk),
-                            comment_number=PropertyComment.objects.filter(reservation__id=pk).count() + 1)
+                            reservation=reservation.client,
+                            comment_number=comment_number)
+            if comment_number == 1:
+                Notification(msg='Your property have a new comment from your tenant',
+                is_host=True,
+                user_from=reservation,
+                user_to=self.request.user).save()
             return Response(serializer.data, status=201)
         else:
             return Response(serializer.errors, status=400)

@@ -1,7 +1,7 @@
 export default function LogoutNavBar({handleLogin}) {
  return (<nav className="navbar navbar-expand-lg navbar-light bg-light">
  <div className="container-fluid">
-<a className="navbar-brand" href="index.html">
+<a className="navbar-brand" href="index">
   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
     className="bi bi-r-square-fill" viewBox="0 0 16 16" style={{ marginRight: '10px' }}>
     <path d="M6.835 5.092v2.777h1.549c.995 0 1.573-.463 1.573-1.36 0-.913-.596-1.417-1.537-1.417H6.835Z" />
@@ -16,7 +16,7 @@ export default function LogoutNavBar({handleLogin}) {
 <div className="collapse navbar-collapse" id="navbarSupportedContent">
   <ul className="navbar-nav me-auto mb-2 mb-lg-0">
     <li className="nav-item">
-      <a className="nav-link active" aria-current="page" href="index.html" id="home">Home</a>
+      <a className="nav-link active" aria-current="page" href="index" id="home">Home</a>
     </li>
   </ul>
 

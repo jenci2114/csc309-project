@@ -3,7 +3,7 @@ export default function LoginNavBar(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
 <div className="container-fluid">
-                <a className="navbar-brand" href="index.html">
+                <a className="navbar-brand" href="index">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="32"
@@ -34,7 +34,7 @@ export default function LoginNavBar(props) {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="index.html" id="home">
+                            <a className="nav-link active" aria-current="page" href="index" id="home">
                                 Home
                             </a>
                         </li>
@@ -51,7 +51,7 @@ export default function LoginNavBar(props) {
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a className="dropdown-item" href="booking.html">
+                                    <a className="dropdown-item" href="booking">
                                         Booking
                                     </a>
                                 </li>
@@ -59,7 +59,7 @@ export default function LoginNavBar(props) {
                                     <hr className="dropdown-divider"/>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="tenant_notification.html">
+                                    <a className="dropdown-item" href="tenant_notification">
                                         Notification
                                     </a>
                                 </li>
@@ -78,7 +78,7 @@ export default function LoginNavBar(props) {
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a className="dropdown-item" href="my_home.html">
+                                    <a className="dropdown-item" href="my_home">
                                         My properties
                                     </a>
                                 </li>
@@ -94,7 +94,7 @@ export default function LoginNavBar(props) {
                                     <hr className="dropdown-divider"/>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="host_notification.html">
+                                    <a className="dropdown-item" href="host_notification">
                                         Notification
                                     </a>
                                 </li>
@@ -123,13 +123,13 @@ export default function LoginNavBar(props) {
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{left: '-20px'}}>
                                 <li>
-                                    <a className="dropdown-item" href="profile.html">
+                                    <a className="dropdown-item" href="profile">
                                         Profile
                                     </a>
                                 </li>
                                 {/* <li><hr className="dropdown-divider"></li> */}
                                 <li>
-                                    <a className="dropdown-item" href="setting.html">
+                                    <a className="dropdown-item" href="setting">
                                         Setting
                                     </a>
                                 </li>

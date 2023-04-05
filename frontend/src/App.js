@@ -6,6 +6,8 @@ import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import HostNotifications from "./pages/HostNotifications";
 import TenantNotifications from "./pages/TenantNotifications";
+import LoginNavBar from "./components/LoginNavBar";
+import LogoutNavBar from "./components/LogoutNavBar";
 
 function App() {
    const {isLoggedin} = useAuth();
@@ -13,9 +15,9 @@ function App() {
     <div>
 
         {isLoggedin ? (
-          <Navbar login = "true" name = {localStorage.username} avatar = {localStorage.avatar} />
+          <LoginNavBar name = {localStorage.username} avatar = {localStorage.avatar} />
         ) : ( 
-          <Navbar login = "false" />
+          <LogoutNavBar/>
         )}
 
       <Router>
@@ -24,6 +26,7 @@ function App() {
           <Route path="/login/" element={<Login />} />
           <Route path="/notifications/host/" element={<HostNotifications/>} />
           <Route path="/notifications/tenant/" element={<TenantNotifications/>} />
+          <Route path="*" element={<h1>404: Not Found</h1>} />
         </Routes>
       </Router>
 	

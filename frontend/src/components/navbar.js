@@ -115,7 +115,7 @@ export default function Navbar(props) {
                                 aria-expanded="false"
                             >
                                 <img
-                                    src="property_images/poggers.png"
+                                    src={"/assets/" + props.avatar}
                                     alt=""
                                     width="32"
                                     height="32"

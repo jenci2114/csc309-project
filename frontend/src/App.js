@@ -11,7 +11,7 @@ function App() {
     <div>
 
         {localStorage.username ? (
-          <Navbar login = "true" name = {localStorage.username} />
+          <Navbar login = "true" name = {localStorage.username} avatar = {localStorage.avatar} />
         ) : ( 
           <Navbar login = "false" />
         )}

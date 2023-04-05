@@ -139,7 +139,7 @@ export default function Navbar(props) {
                                     <hr className="dropdown-divider"/>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="login.html">
+                                    <a className="dropdown-item" href="login">
                                         Logout
                                     </a>
                                 </li>
@@ -170,8 +170,8 @@ export default function Navbar(props) {
         </li>
       </ul>
 
-      <a href="register.html"><button type="button" className="btn btn-outline-primary" style={{ marginRight: '5px' }}>Sign up</button></a>
-      <a href="login.html"><button className="btn btn-outline-success" type="button">Login</button></a>
+      <a href="register"><button type="button" className="btn btn-outline-primary" style={{ marginRight: '5px' }}>Sign up</button></a>
+      <a href="login"><button className="btn btn-outline-success" type="button">Login</button></a>
 
     </div>
   </div>

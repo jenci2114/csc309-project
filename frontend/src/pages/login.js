@@ -7,7 +7,7 @@ import '../styles/common.css';
 import logo2 from '../assets/property_images/logo2.jpeg'
 export default function LoginPage() {
 	const host = "http://localhost:8000";
-	const [username, setusername] = useState("");
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const {isLoggedin, login} = useAuth();
 	const [wrongPass, setWrongPass] = useState(false);
@@ -24,25 +24,18 @@ export default function LoginPage() {
 					setShowError(false);
 					console.log("logging in....");
 					localStorage.setItem("username", username);
+					localStorage.setItem("token", queryResult.access);
 					login();
 				} else {
 					console.log("incorect pass");
 					setShowError(false);
 					setWrongPass(true);
-					setPassword("");
-					setusername("");
 				}
 			})
 			.catch((err) => {
-				setPassword("");
-				setusername("");
 				setShowError(true);
 				setWrongPass(false);
-				if (err.message === "user not found") {
-					setErrorMsg(err.message);
-				} else {
-					setErrorMsg("an unexpected error has occured on our side, please try again later or contact the admins");
-				}
+				setErrorMsg("Incorrect Username or Password");
 			});
 	}
 
@@ -55,7 +48,7 @@ export default function LoginPage() {
 			axios({
 				method: "post",
 				url: "http://127.0.0.1:8000/account/token/",
-				data: {'username': 'a', 'password': 'b'},
+				data: {'username': username, 'password': password},
 			  })
 				.then((ret) => {
 					console.log(ret.data);
@@ -86,11 +79,11 @@ export default function LoginPage() {
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="username" className="form-label">Username</label>
-                        <input type="text" className="form-control" id="username" aria-describedby="emailHelp"></input>
+                        <input type="text" className="form-control" id="username" aria-describedby="emailHelp" onChange={(event) => setUsername(event.target.value)}></input>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="passwd" className="form-label">Password</label>
-                        <input type="password" className="form-control" id="passwd"></input>
+                        <input type="password" className="form-control" id="passwd" onChange={(event) => setPassword(event.target.value)}></input>
                     </div>
                     <div style={{display: wrongPass ? "block" : "none"}}>
                         <p className="text-red-400"> Your password is incorrect </p>

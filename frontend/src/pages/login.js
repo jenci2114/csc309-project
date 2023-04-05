@@ -10,7 +10,6 @@ export default function LoginPage() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const {isLoggedin, login} = useAuth();
-	const [wrongPass, setWrongPass] = useState(false);
 	const [showErr, setShowError] = useState(false);
 	const [errMesg, setErrorMsg] = useState("");
 
@@ -18,32 +17,19 @@ export default function LoginPage() {
 		e.preventDefault(); //prevent the web page from automatically submitting the form after we press log in
 		await requestAuth()
 			.then((queryResult) => {
-				console.log("it is");
-				console.log(queryResult);
-				if (queryResult) {
-					setShowError(false);
-					console.log("logging in....");
-					localStorage.setItem("username", username);
-					localStorage.setItem("token", queryResult.access);
-					login();
-				} else {
-					console.log("incorect pass");
-					setShowError(false);
-					setWrongPass(true);
-				}
+				setShowError(false)
+				localStorage.setItem("username", username);
+				localStorage.setItem("token", queryResult.access);
+				login();
+
 			})
 			.catch((err) => {
 				setShowError(true);
-				setWrongPass(false);
 				setErrorMsg("Incorrect Username or Password");
 			});
 	}
 
 	async function requestAuth() {
-		console.log("hi")
-		console.log(username)
-		console.log(password)
-
 		return new Promise((resolve, reject) => {
 			axios({
 				method: "post",
@@ -85,9 +71,7 @@ export default function LoginPage() {
                         <label htmlFor="passwd" className="form-label">Password</label>
                         <input type="password" className="form-control" id="passwd" onChange={(event) => setPassword(event.target.value)}></input>
                     </div>
-                    <div style={{display: wrongPass ? "block" : "none"}}>
-                        <p className="text-red-400"> Your password is incorrect </p>
-                    </div>
+
                     <div style={{display: showErr ? "block" : "none"}}>
                         <p className="text-red-400"> {errMesg} </p>
                     </div>

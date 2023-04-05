@@ -32,10 +32,9 @@ const HostNotifications = () => {
   const deleteViewedNotifications = async () => {
     const headers = {Authorization: `Bearer ${localStorage.token}`};
     const response = await fetch("http://127.0.0.1:8000/account/notifications/host/delete/", {headers, method: "DELETE"});
-    const data = await response.json();
-    setNotifications(data);
+    setNotifications([]);
+    fetchNotifications("http://127.0.0.1:8000/account/notifications/host/", headers);
     setIsDeleted(true);
-    console.log(isDeleted);
   }
 
   if (!isLoggedin) {
@@ -51,7 +50,7 @@ const HostNotifications = () => {
             <button className="btn btn-primary" onClick={deleteViewedNotifications}>Delete Viewed Notifications</button>
         </div>
 
-        {isDeleted && <div className="alert alert-success" role="alert"><p>Successfully deleted viewed notifications!</p></div>}
+        {isDeleted && <div className="alert alert-success" role="alert"><p>Successfully deleted viewed notifications</p></div>}
 
         {notifications.map((notification, index) => (
             <Notification

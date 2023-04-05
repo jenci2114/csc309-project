@@ -6,7 +6,6 @@ import '../styles/index.css'
 import '../styles/common.css';
 import logo2 from '../assets/property_images/logo2.jpeg'
 export default function LoginPage() {
-	const host = "http://localhost:8000";
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const {isLoggedin, login} = useAuth();

@@ -1,12 +1,12 @@
 import Navbar from "./components/navbar";
 import './App.css';
 import {Route, Routes, BrowserRouter as Router} from "react-router-dom";
-import useAuth from "./hooks/useAuth";
+// import useAuth from "./hooks/useAuth";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 
 function App() {
-  const {isAuthenticated, login} = useAuth();
+  // const {isLoggedin, login} = useAuth();
   return (
     <div>
 

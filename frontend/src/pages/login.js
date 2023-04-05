@@ -47,9 +47,16 @@ export default function LoginPage() {
 	}
 
 	async function requestAuth() {
+		console.log("hi")
+		console.log(username)
+		console.log(password)
+
 		return new Promise((resolve, reject) => {
-			axios
-				.post(`${host}/account/token/`, {username, password})
+			axios({
+				method: "post",
+				url: "http://127.0.0.1:8000/account/token/",
+				data: {'username': 'a', 'password': 'b'},
+			  })
 				.then((ret) => {
 					console.log(ret.data);
 					resolve(ret.data);
@@ -76,10 +83,10 @@ export default function LoginPage() {
         <div className="row mb-3">
             <div className="col-lg-4 themed-grid-col"></div>
             <div className="col-lg-4 themed-grid-col user-form">
-                <form method="post" onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <div className="mb-3">
-                        <label htmlFor="user-email" className="form-label">Username</label>
-                        <input type="text" className="form-control" id="user-email" aria-describedby="emailHelp"></input>
+                        <label htmlFor="username" className="form-label">Username</label>
+                        <input type="text" className="form-control" id="username" aria-describedby="emailHelp"></input>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="passwd" className="form-label">Password</label>

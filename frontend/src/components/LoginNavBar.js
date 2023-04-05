@@ -1,5 +1,8 @@
+import useAuth from "../hooks/useAuth";
 
 export default function LoginNavBar(props) {
+    const {logout} = useAuth();
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
 <div className="container-fluid">
@@ -137,7 +140,7 @@ export default function LoginNavBar(props) {
                                     <hr className="dropdown-divider"/>
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="login">
+                                    <a className="dropdown-item" href="login" onClick={logout}>
                                         Logout
                                     </a>
                                 </li>

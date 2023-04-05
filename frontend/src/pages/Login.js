@@ -20,7 +20,7 @@ export default function LoginPage() {
 				localStorage.setItem("username", username);
 				localStorage.setItem("token", queryResult.access);
 				login();
-
+				window.location.href = "/"
 			})
 			.catch((err) => {
 				setShowError(true);

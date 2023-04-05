@@ -13,7 +13,7 @@ class HostNotificationView(ListAPIView):
     pagination_class = PageNumberPagination
 
     def get_queryset(self):
-        return Notification.objects.filter(user_to=self.request.user, is_host=True)
+        return Notification.objects.filter(user_to=self.request.user, is_host=True).order_by('-time')
     
     def get(self, request):
         # change all entries in the queryset to read = True once opened
@@ -30,7 +30,7 @@ class TenentNotificationView(ListAPIView):
     pagination_class = PageNumberPagination
 
     def get_queryset(self):
-        return Notification.objects.filter(user_to=self.request.user, is_host=False)
+        return Notification.objects.filter(user_to=self.request.user, is_host=False).order_by('-time')
     
     def get(self, request):
         # change all entries in the queryset to read = True once opened

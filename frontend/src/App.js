@@ -5,6 +5,7 @@ import {Route, Routes, BrowserRouter as Router} from "react-router-dom";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import HostNotifications from "./pages/HostNotifications";
+import TenantNotifications from "./pages/TenantNotifications";
 
 function App() {
    const {isLoggedin} = useAuth();
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="/login/" element={<Login />} />
           <Route path="/notifications/host/" element={<HostNotifications/>} />
+          <Route path="/notifications/tenant/" element={<TenantNotifications/>} />
         </Routes>
       </Router>
 	

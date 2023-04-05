@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
-
-const Notification = ({ msg, time, userFrom }) => {
-  return (
-    <div>
-      <p>{msg}</p>
-      <p>{time}</p>
-      <p>{userFrom}</p>
-    </div>
-  );
-};
+import { Navigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import Notification from "../components/Notification";
 
 const HostNotifications = () => {
   const [notifications, setNotifications] = useState([]);
   const [nextPage, setNextPage] = useState(null);
+  const {isLoggedin} = useAuth();
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const fetchNotifications = async (url, headers) => {
     const response = await fetch(url, {headers});
@@ -25,31 +20,53 @@ const HostNotifications = () => {
   };
 
   useEffect(() => {
-    const isLoggedIn = true; // check if user is logged in
-    if (!isLoggedIn) {
-      window.location.href = "/login"; // redirect to login page
-      return;
-    }
     const headers = {Authorization: `Bearer ${localStorage.token}`};
     fetchNotifications("http://127.0.0.1:8000/account/notifications/host/", headers);
   }, []);
 
   const loadMoreNotifications = () => {
-    fetchNotifications(nextPage);
+    const headers = {Authorization: `Bearer ${localStorage.token}`};
+    fetchNotifications(nextPage, headers);
   };
 
+  const deleteViewedNotifications = async () => {
+    const headers = {Authorization: `Bearer ${localStorage.token}`};
+    const response = await fetch("http://127.0.0.1:8000/account/notifications/host/delete/", {headers, method: "DELETE"});
+    const data = await response.json();
+    setNotifications(data);
+    setIsDeleted(true);
+    console.log(isDeleted);
+  }
+
+  if (!isLoggedin) {
+    return <Navigate to="/login/" />;
+  }
+
   return (
-    <div>
-      {notifications.map((notification, index) => (
-        <Notification
-          key={index}
-          msg={notification.msg}
-          time={notification.time}
-          userFrom={notification.user_from}
-        />
-      ))}
-      {nextPage && <button onClick={loadMoreNotifications}>Load More</button>}
-    </div>
+    <>
+    <div className="container" style={{paddingTop: "30px", paddingBottom: "30px"}}>
+        <h1 className="display-4 text-center">Host Notifications</h1>
+
+        <div style={{marginBottom: "30px", textAlign: 'right'}}>
+            <button className="btn btn-primary" onClick={deleteViewedNotifications}>Delete Viewed Notifications</button>
+        </div>
+
+        {isDeleted && <div className="alert alert-success" role="alert"><p>Successfully deleted viewed notifications!</p></div>}
+
+        {notifications.map((notification, index) => (
+            <Notification
+            key={index}
+            msg={notification.msg}
+            time={notification.time}
+            userFrom={notification.user_from}
+            />
+        ))}
+        <div style={{textAlign: "center"}}>
+        {nextPage && <button className="btn btn-primary" onClick={loadMoreNotifications}>Load More</button>}
+        {!nextPage && <p><b>End of Page</b></p>}
+        </div>
+      </div> 
+    </>
   );
 };
 

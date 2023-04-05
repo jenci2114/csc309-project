@@ -1,0 +1,27 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: blueviolet;
+}
+
+.card img{
+    min-height: 30vh;
+}
+
+body {
+    padding-bottom: 3vh;
+}
+
+#home:hover {
+    font-weight: bold;
+}
+
+#carouselExampleIndicators {
+    margin: 0 auto;
+    width: 50%;
+}
+
+

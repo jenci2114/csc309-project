@@ -6,3 +6,5 @@ venv
 */migrations
 db.sqlite3
 
+*.pyc
+package-lock.json

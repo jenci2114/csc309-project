@@ -1,4 +1,4 @@
-const UserComment = ({ host, host_to_user_msg, host_to_user_rating, end_date }) => {;
+const UserComment = ({ host, host_to_user_msg, host_to_user_rating, end_date }) => {
     // if (!host_to_user_msg && !host_to_user_rating) {
     //     return null;
     // }

@@ -11,6 +11,8 @@ function useAuth() {
 	function logout() {
 		setIsLoggedIn(false);
 		localStorage.removeItem("isLoggedin");
+		localStorage.removeItem("token");
+		localStorage.removeItem("username");
 	}
 
 	return {isLoggedin, login, logout};

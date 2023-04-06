@@ -107,10 +107,11 @@
 const PropertyComment = ({msg, comment_number, user_from}) => {
 
     const is_tenant = localStorage.username === user_from && comment_number % 2 === 1;
-
+    console.log(localStorage.username);
+    console.log(is_tenant);
     return (
         <>
-            <div className="card" style={{ marginBottom: "30px", textAlign: "center" }}>
+            <div className="card" style={{textAlign: "center" }}>
                     <div className="card-header">
                         <h5>From user: {user_from}</h5>
                     </div>
@@ -135,9 +136,6 @@ const PropertyComment = ({msg, comment_number, user_from}) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="card-footer text-muted h-100">
-                        <p># {comment_number}</p>
                     </div>
                 </div>
         </>

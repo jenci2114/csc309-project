@@ -83,13 +83,13 @@ class CreateReservationCommentView(CreateAPIView):
             comment_number = PropertyComment.objects.filter(reservation__id=pk).count() + 1
             reservation = Reservation.objects.get(id=pk)
             serializer.save(msg=request.data.get('msg'),
-                            reservation=reservation.client,
+                            reservation=reservation,
                             comment_number=comment_number)
             if comment_number == 1:
                 Notification(msg='Your property have a new comment from your tenant',
                 is_host=True,
-                user_from=reservation,
-                user_to=self.request.user).save()
+                user_from=reservation.client,
+                user_to=reservation.property.user).save()
             return Response(serializer.data, status=201)
         else:
             return Response(serializer.errors, status=400)

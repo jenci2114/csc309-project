@@ -119,7 +119,7 @@ function Register() {
               <button type="submit" className="btn btn-dark">
                 Register
               </button>
-              <a href="login.html" className="link-secondary" style={{ paddingLeft: '1rem' }}>
+              <a href="/login" className="link-secondary" style={{ paddingLeft: '1rem' }}>
             Already have an account? Login
           </a>
         </form>

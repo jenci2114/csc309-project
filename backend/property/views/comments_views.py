@@ -175,4 +175,4 @@ class UserCommentView(ListAPIView):
 
     def get_queryset(self):
         get_object_or_404(User, id=self.kwargs['pk'])
-        return Reservation.objects.filter(client=self.kwargs['pk']).order_by('-start_date')
+        return Reservation.objects.filter(client=self.kwargs['pk']).order_by('-end_date')

@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView
 from rest_framework.response import Response
 from rest_framework import status, permissions
+from ..models import User
 
 # class-based apiview for register user
 class RegisterView(CreateAPIView):
@@ -36,4 +37,10 @@ class ProfileEditView(UpdateAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class UsernameByIdView(APIView):
+    permission_classes = [permissions.AllowAny]
 
+    def get(self, request, pk):
+        if not User.objects.filter(id=pk).exists():
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response(User.objects.get(id=pk).username)

@@ -13,6 +13,7 @@ from property.views.update_availabiity import UpdateAvailabilityView
 from property.views.delete_availability import DeleteAvailabilityView
 from property.views.create_property_image import CreatePropertyImageView
 from property.views.delete_property_image import DeletePropertyImageView
+from property.views.get_users_via_reservation import UsersByReservationView
 
 
 app_name = 'property'
@@ -38,4 +39,5 @@ urlpatterns = [
     path('availability/delete/<int:pk>/', DeleteAvailabilityView.as_view(), name='delete_availability'),
     path('image/create/<int:pk>/', CreatePropertyImageView.as_view(), name='create_image'),
     path('image/delete/<int:pk>/', DeletePropertyImageView.as_view(), name='delete_image'),
+    path('reservation/users/<int:pk>/', UsersByReservationView.as_view(), name='user_by_reservation'),
 ]

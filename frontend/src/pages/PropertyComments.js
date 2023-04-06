@@ -56,9 +56,11 @@ const PropertyComments = () => {
                         {propertyComments[key].map((comment, index) => (
                             <PropertyComment
                                 key={index}
+                                reservation_id={key}
                                 msg={comment.msg}
                                 comment_number={comment.comment_number}
                                 user_from={comment.user_from}
+                                len={propertyComments[key].length}
                             />
                         ))}
                     </div>

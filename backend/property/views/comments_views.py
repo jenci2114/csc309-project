@@ -34,9 +34,16 @@ class PropertyCommentView(ListAPIView):
         # change all entries in the queryset to read = True once opened
         comment_group = defaultdict(list)
         for comment in self.get_queryset():
+            if comment.comment_number % 2 == 0:
+                # host comment
+                user = comment.reservation.property.user.username
+            else:
+                # client comment
+                user = comment.reservation.client.username
             comment_group[comment.reservation.id].append({
                 'msg': comment.msg,
                 'comment_number': comment.comment_number,
+                'user_from': user,
             })
 
         page = self.paginate_queryset(list(comment_group.items()))

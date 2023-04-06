@@ -124,7 +124,7 @@ export default function LoginNavBar(props) {
                                 />
                                 {props.name}
                             </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{ left: '-20px' }}>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{ left: '-60px' }}>
                                 <li>
                                     <a className="dropdown-item" href="/profile">
                                         Profile

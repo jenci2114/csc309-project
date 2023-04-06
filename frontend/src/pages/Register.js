@@ -1,168 +1,131 @@
-import {useState} from "react";
-import {Link, Navigate, useResolvedPath} from "react-router-dom";
-import axios from "axios";
-import useAuth from "../hooks/useAuth";
-export default function RegisterPage() {
-	const host = "http://localhost:8000";
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [username, setusername] = useState("");
-	const [country, setCountry] = useState("");
-	const [confirmPassword, setConfirmPassword] = useState("");
-	const [IsUserErrorVisible, setIsUserErrorVisible] = useState(false);
-	const [IsPassErrorVisible, setIsPassErrorVisible] = useState(false);
-	const [OtherErrorDisplay, setOtherErrorDisplay] = useState(false);
-	const [OtherErrorMsg, setOtherErrorMsg] = useState(false);
-	const {isLoggedin, login} = useAuth();
-	async function handleSubmit(e) {
-		e.preventDefault(); //prevent the web page from automatically submitting the form after we press log in
-		const queryResult = await checkDuplicate();
-		console.log(queryResult);
-		console.log(`there are ${queryResult} existing user `);
-		if (queryResult.data > 0) {
-			setIsUserErrorVisible(true);
-			setIsPassErrorVisible(false);
-			setEmail("");
-			setPassword("");
-			setusername("");
-			setCountry("");
-			setConfirmPassword("");
-		} else if (confirmPassword !== password) {
-			setIsPassErrorVisible(true);
-			setIsUserErrorVisible(false);
-			setEmail("");
-			setPassword("");
-			setusername("");
-			setCountry("");
-			setConfirmPassword("");
-		} else {
-			setIsPassErrorVisible(false);
-			setIsUserErrorVisible(false);
-			console.log("registering....");
-			const body = {
-				country: country,
-				email: email,
-				username: username,
-				password: password,
-				account_balance: 0,
-				ktc_status: false,
-				suspended: false,
-			};
-			await signupUser(body)
-				.then(() => {
-					login();
-					return;
-				})
-				.catch((err) => {
-					const errorMsg = err.response.data.message;
-					setOtherErrorDisplay(true);
-					setIsPassErrorVisible(false);
-					setIsUserErrorVisible(false);
-					setEmail("");
-					setPassword("");
-					setusername("");
-					setCountry("");
-					setConfirmPassword("");
-					setOtherErrorMsg("An error has occured on our side, please contact our admins or simply try again later");
-				});
-		}
-	}
+import React, { useState } from 'react';
+export default Register;
 
-	async function signupUser(body) {
-		await axios.post(`${host}/players`, body);
-	}
+function Register() {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    password2: '',
+  });
 
-	async function checkDuplicate() {
-		const ret = await axios.get(`${host}/players/${username}/${email}`);
-		return ret;
-	}
-	if (isLoggedin) {
-		return <Navigate to="/" />;
-	}
-	return (
-		<div class="border-solid border-2 text-center">
-			<form onSubmit={handleSubmit}>
-				<label>
-					Email:
-					<input
-						class="border-solid border-2"
-						type="email"
-						value={email}
-						onChange={(event) => setEmail(event.target.value)}
-						placeholder="Enter email"
-					/>
-				</label>
-				<br />
-				<label>
-					Username:
-					<input
-						class="border-solid border-2 mt-2"
-						value={username}
-						onChange={(event) => setusername(event.target.value)}
-						placeholder="Eneter username"
-					/>
-				</label>
-				<br />
-				<label>
-					Password:
-					<input
-						class="border-solid border-2 mt-2"
-						type="password"
-						value={password}
-						onChange={(event) => setPassword(event.target.value)}
-						placeholder="Enter your password"
-					/>
-				</label>
-				<br />
-				<label>
-					Confirm Password:
-					<input
-						class="border-solid border-2 mt-2"
-						type="password"
-						value={confirmPassword}
-						onChange={(event) => setConfirmPassword(event.target.value)}
-						placeholder="Confirm Password "
-					/>
-				</label>
-				<br />
-				<label>
-					country:
-					<input
-						class="border-solid border-2 mt-2"
-						value={country}
-						onChange={(event) => setCountry(event.target.value)}
-						placeholder="Country"
-					/>
-				</label>
-				<br />
-				<br />
-				<div style={{display: IsUserErrorVisible ? "block" : "none"}}>
-					<p class="text-red-400"> A user already exist with the current email or username </p>
-				</div>
+  const [errorMessage, setErrorMessage] = useState('');
 
-				<br />
-				<div style={{display: IsPassErrorVisible ? "block" : "none"}}>
-					<p class="text-red-400"> Your passwords do not match, please try again with the same passwords</p>
-				</div>
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-				<div style={{display: OtherErrorDisplay ? "block" : "none"}}>
-					<p class="text-red-400"> {OtherErrorMsg} </p>
-				</div>
-				<br />
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-				<button type="submit">Sign Up</button>
-			</form>
-			<br></br>
-			<Link to="/login">
-				<p class="text-sm">
-					Have an account? <span class="text-green-500"> Log in </span>
-				</p>
-			</Link>
-			<Link to="/">
-				<p class="text-sm">
-					<span class="text-green-500"> Home</span>
-				</p>
-			</Link>
-		</div>
-	);
+    if (formData.password !== formData.password2) {
+      setErrorMessage('Passwords do not match.');
+      return;
+    }
+
+    if (formData.password.length < 8) {
+      setErrorMessage('Password must be at least 8 characters long.');
+      return;
+    }
+
+    const response = await fetch('http://localhost:8000/account/register/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        password2: formData.password2,
+      }),
+    });
+
+    if (response.status === 201) {
+      setErrorMessage('');
+      window.alert('Successfully registered! Click OK to go to the login page.');
+      window.location.href = '/login';
+    } else {
+      const data = await response.json();
+      setErrorMessage(data.message || 'User name already existed.');
+    }
+  };
+
+  return (
+    <>
+      <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '15vh' }}>
+        <h1 className="display-4">Welcome to Restify</h1>
+      </div>
+      <div className="container" style={{ marginTop: '30px', marginBottom: '0px' }}>
+        {errorMessage && (
+          <div className="col-lg-4 alert alert-danger start-50 translate-middle" role="alert" style={{bottom:"-20px"}}>
+            {errorMessage}
+          </div>
+        )}
+        <div className="row mb-3">
+          <div className="col-lg-4 themed-grid-col"></div>
+          <div className="col-lg-4 themed-grid-col user-form">
+            <form onSubmit={handleSubmit}>
+              <div className="form-floating mb-3">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="username"
+                  name="username"
+                  placeholder="name@example.com"
+                  value={formData.username}
+                  onChange={handleChange}
+                />
+                <label htmlFor="username">Username</label>
+              </div>
+              <div className="form-floating mb-3">
+                <input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="name@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                <label htmlFor="email">Email address</label>
+              </div>
+
+              <div className="form-floating" style={{ marginBottom: '10px' }}>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+                <label htmlFor="password">Password</label>
+              </div>
+              <div className="form-floating" style={{ marginBottom: '20px' }}>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password2"
+                  name="password2"
+                  placeholder="Confirm Password"
+                  value={formData.password2}
+                  onChange={handleChange}
+                />
+                <label htmlFor="password2">Confirm Password</label>
+              </div>
+              <button type="submit" className="btn btn-dark">
+                Register
+              </button>
+              <a href="login.html" className="link-secondary" style={{ paddingLeft: '1rem' }}>
+            Already have an account? Login
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>
+</>
+      );
 }

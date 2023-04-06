@@ -21,7 +21,7 @@ export default function LogoutNavBar({handleLogin}) {
   </ul>
 
                 <a href="register"><button type="button" className="btn btn-outline-primary" style={{ marginRight: '5px' }}>Sign up</button></a>
-                <a href="login"><button className="btn btn-outline-success" type="button">Login</button></a>
+                <a href="/login"><button className="btn btn-outline-success" type="button">Login</button></a>
 
             </div>
         </div>

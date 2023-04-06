@@ -8,6 +8,7 @@ import TenantNotifications from "./pages/TenantNotifications";
 import LoginNavBar from "./components/LoginNavBar";
 import LogoutNavBar from "./components/LogoutNavBar";
 import UserComments from "./pages/UserComments";
+import Register from "./pages/Register";
 
 function App() {
    const {isLoggedin} = useAuth();
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/login/" element={<Login />} />
+             <Route path="/register/" element={<Register />} />
           <Route path="/notifications/host/" element={<HostNotifications/>} />
           <Route path="/notifications/tenant/" element={<TenantNotifications/>} />
           <Route path="/comments/user/:id/" element={<UserComments/>} />

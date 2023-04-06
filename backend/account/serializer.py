@@ -8,7 +8,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True)
     class Meta:
         model = User
-        fields = ['username', 'password', 'password2']
+        fields = ['username', 'password', 'password2', 'email']
         # hide the password from the response
         extra_kwargs = {'password': {'write_only': True}}
 
@@ -28,6 +28,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         user = User.objects.create(
             username=validated_data['username'],
             password=validated_data['password'],
+            email=validated_data['email']
         )
         user.set_password(validated_data['password'])
         user.save()

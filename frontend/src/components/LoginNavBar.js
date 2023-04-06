@@ -6,7 +6,7 @@ export default function LoginNavBar(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
 <div className="container-fluid">
-                <a className="navbar-brand" href="index">
+                <a className="navbar-brand" href="/index">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="32"
@@ -54,7 +54,7 @@ export default function LoginNavBar(props) {
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a className="dropdown-item" href="booking">
+                                    <a className="dropdown-item" href="/booking">
                                         Booking
                                     </a>
                                 </li>
@@ -62,7 +62,7 @@ export default function LoginNavBar(props) {
                                     <hr className="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="tenant_notification">
+                                    <a className="dropdown-item" href="/notifications/tenant/">
                                         Notification
                                     </a>
                                 </li>
@@ -81,7 +81,7 @@ export default function LoginNavBar(props) {
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li>
-                                    <a className="dropdown-item" href="my_home">
+                                    <a className="dropdown-item" href="/my_home">
                                         My properties
                                     </a>
                                 </li>
@@ -89,7 +89,7 @@ export default function LoginNavBar(props) {
                                     <hr className="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="reservations">
+                                    <a className="dropdown-item" href="/reservations">
                                         Reservations
                                     </a>
                                 </li>
@@ -97,7 +97,7 @@ export default function LoginNavBar(props) {
                                     <hr className="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="host_notification">
+                                    <a className="dropdown-item" href="/notifications/host/">
                                         Notification
                                     </a>
                                 </li>
@@ -126,13 +126,13 @@ export default function LoginNavBar(props) {
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{ left: '-20px' }}>
                                 <li>
-                                    <a className="dropdown-item" href="profile">
+                                    <a className="dropdown-item" href="/profile">
                                         Profile
                                     </a>
                                 </li>
                                 {/* <li><hr className="dropdown-divider"></li> */}
                                 <li>
-                                    <a className="dropdown-item" href="setting">
+                                    <a className="dropdown-item" href="/setting">
                                         Setting
                                     </a>
                                 </li>
@@ -140,7 +140,7 @@ export default function LoginNavBar(props) {
                                     <hr className="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a className="dropdown-item" href="login" onClick={logout}>
+                                    <a className="dropdown-item" href="/login" onClick={logout}>
                                         Logout
                                     </a>
                                 </li>

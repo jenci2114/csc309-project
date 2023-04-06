@@ -1,4 +1,3 @@
-import Navbar from "./components/navbar";
 import './App.css';
 import {Route, Routes, BrowserRouter as Router} from "react-router-dom";
  import useAuth from "./hooks/useAuth";
@@ -8,6 +7,7 @@ import HostNotifications from "./pages/HostNotifications";
 import TenantNotifications from "./pages/TenantNotifications";
 import LoginNavBar from "./components/LoginNavBar";
 import LogoutNavBar from "./components/LogoutNavBar";
+import UserComments from "./pages/UserComments";
 
 function App() {
    const {isLoggedin} = useAuth();
@@ -26,6 +26,7 @@ function App() {
           <Route path="/login/" element={<Login />} />
           <Route path="/notifications/host/" element={<HostNotifications/>} />
           <Route path="/notifications/tenant/" element={<TenantNotifications/>} />
+          <Route path="/comments/user/:id/" element={<UserComments/>} />
           <Route path="*" element={<h1>404: Not Found</h1>} />
         </Routes>
       </Router>

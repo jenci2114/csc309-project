@@ -7,6 +7,7 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
     const [reservation_users, setReservationUsers] = useState([]);
     const [message, setMessage] = useState("");
     const [rating, setRating] = useState(0);
+    const [replied, setReplied] = useState("");
 
     const fetchReservationUsers = async (url) => {
         try {
@@ -43,7 +44,7 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
             .then(response => response.json())
             .then(data => console.log(data))
             .catch(error => console.error(error));
-
+        setReplied(message);
     };
 
 
@@ -75,7 +76,7 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
                     <div className="row" style={{ display: comment_number === 1 && is_tenant ? "block" : "none" }}>
                         <div className="col-md-12">
                             <div className="stars">
-                                <form action="">
+                                <form>
                                     <input className="star star-5" id={`first-star-5-${reservation_id}`} type="radio" name="star" value="5" onClick={handleRatingChange} />
                                     <label className="star star-5" htmlFor={`first-star-5-${reservation_id}`}></label>
                                     <input className="star star-4" id={`first-star-4-${reservation_id}`} type="radio" name="star" value="4" onClick={handleRatingChange} />
@@ -93,15 +94,13 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
                 </div>
             </div>
 
-            <div className="card" style={{ textAlign: "center", display: ((is_host || is_tenant) && is_last) ? "block" : "none" }}>
+            <div className="card" style={{ textAlign: "center", display: ((is_host || is_tenant) && is_last) && !replied ? "block" : "none" }}>
                 <div className="card-header" style={{ display: (!host_wait && !tenant_wait) ? "block" : "none" }}>
-                    <form onSubmit={replyComment}>
                         <div className="form-group">
                             <label htmlFor="comment">Response:</label>
                             <textarea className="form-control" rows="3" id="comment" required onChange={(event) => setMessage(event.target.value)}></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary">Reply</button>
-                    </form>
+                        <button type="submit" className="btn btn-primary" onClick={(replyComment)}>Reply</button>
                 </div>
                 <div className="card-header" style={{ display: host_wait ? "block" : "none" }}>
                     <p>You have to wait for the tenant to reply before you can add more reply</p>
@@ -110,6 +109,16 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
                     <p>You have to wait for the host to reply before you can add more reply</p>
                 </div>
             </div>
+            <div className="card" style={{ textAlign: "center", display: replied ? "block": "none" }}>
+                <div className="card-header">
+                    {is_host && <h5>From user: {reservation_users[0]}</h5>}
+                    {is_tenant && <h5>From user: {reservation_users[1]}</h5>}
+                </div>
+                <div className="card-body">
+                    <p>{replied}</p>
+                </div>
+            </div>
+            {replied && <div className="alert alert-success" style={{ paddingBottom: "0px" }} role="alert"><p className="text-center">Successfully replied</p></div>}
         </>
     );
 };

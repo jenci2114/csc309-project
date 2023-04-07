@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./booking.css";
 
 const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }) => {
     const [reservation_users, setReservationUsers] = useState([]);
     const [message, setMessage] = useState("");
+    const [rating, setRating] = useState(0);
 
     const fetchReservationUsers = async (url) => {
         try {
@@ -29,23 +31,36 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
     const tenant_wait = is_tenant && (len % 2 === 1);
     const is_last = comment_number === len;
 
-    const replyComment = async () => {
-        const headers = { Authorization: `Bearer ${localStorage.token}` };
-        await axios({
-            method: "post",
-            headers: headers,
-            url: `http://127.0.0.1:8000/property/comments/add/reservation/${reservation_id}/`,
-            data: { 'msg': message },
+    const replyComment = () => {
+        fetch(`http://127.0.0.1:8000/property/comments/add/reservation/${reservation_id}/`, {
+            method: 'POST',
+            body: JSON.stringify({ msg: message }),
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+                'Content-Type': 'application/json'
+            }
         })
-            .then((ret) => {
-                console.log(ret.data);
-            })
-            .catch((err) => {
-                console.log(err.response.data);
-            });
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
 
-        //fetch(`http://127.0.0.1:8000/property/comments/add/reservation/${reservation_id}/`, { headers, method: "POST" , body: JSON.stringify(body)});
-    }
+    };
+
+
+    const handleRatingChange = (event) => {
+        setRating(event.target.value);
+        fetch(`http://127.0.0.1:8000/property/reservation/${reservation_id}/user_to_property_rating/`, {
+            method: 'PUT',
+            body: JSON.stringify({ user_to_property_rating: event.target.value }),
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+    };
 
     return (
         <>
@@ -61,16 +76,16 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
                         <div className="col-md-12">
                             <div className="stars">
                                 <form action="">
-                                    <input className="star star-5" id="first-star-5" type="radio" name="star" />
-                                    <label className="star star-5" htmlFor="first-star-5"></label>
-                                    <input className="star star-4" id="first-star-4" type="radio" name="star" />
-                                    <label className="star star-4" htmlFor="first-star-4"></label>
-                                    <input className="star star-3" id="first-star-3" type="radio" name="star" />
-                                    <label className="star star-3" htmlFor="first-star-3"></label>
-                                    <input className="star star-2" id="first-star-2" type="radio" name="star" />
-                                    <label className="star star-2" htmlFor="first-star-2"></label>
-                                    <input className="star star-1" id="first-star-1" type="radio" name="star" />
-                                    <label className="star star-1" htmlFor="first-star-1"></label>
+                                    <input className="star star-5" id={`first-star-5-${reservation_id}`} type="radio" name="star" value="5" onClick={handleRatingChange} />
+                                    <label className="star star-5" htmlFor={`first-star-5-${reservation_id}`}></label>
+                                    <input className="star star-4" id={`first-star-4-${reservation_id}`} type="radio" name="star" value="4" onClick={handleRatingChange} />
+                                    <label className="star star-4" htmlFor={`first-star-4-${reservation_id}`}></label>
+                                    <input className="star star-3" id={`first-star-3-${reservation_id}`} type="radio" name="star" value="3" onClick={handleRatingChange} />
+                                    <label className="star star-3" htmlFor={`first-star-3-${reservation_id}`}></label>
+                                    <input className="star star-2" id={`first-star-2-${reservation_id}`} type="radio" name="star" value="2" onClick={handleRatingChange} />
+                                    <label className="star star-2" htmlFor={`first-star-2-${reservation_id}`}></label>
+                                    <input className="star star-1" id={`first-star-1-${reservation_id}`} type="radio" name="star" value="1" onClick={handleRatingChange} />
+                                    <label className="star star-1" htmlFor={`first-star-1-${reservation_id}`}></label>
                                 </form>
                             </div>
                         </div>

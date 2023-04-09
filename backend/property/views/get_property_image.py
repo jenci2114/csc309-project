@@ -6,7 +6,7 @@ from backend.paginations import StandardResultsSetPagination
 
 class GetPropertyImageView(ListAPIView):
     serializer_class = PropertyImageSerializer
-    pagination_class = StandardResultsSetPagination
+    pagination_class = None
 
     def get_queryset(self):
         return PropertyImage.objects.filter(property_id=self.kwargs['pk'])

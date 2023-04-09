@@ -1,6 +1,7 @@
 from django.urls import path
 
 from property.views.create_property import CreatePropertyView
+from property.views.get_availability import GetAvailabilityView
 from property.views.search_reservation import SearchView
 from property.views.process_reservation import *
 from property.views.update_property import UpdatePropertyView
@@ -38,6 +39,7 @@ urlpatterns = [
     path('availability/create/<int:pk>/', CreateAvailabilityView.as_view(), name='create_availability'),
     path('availability/update/<int:pk>/', UpdateAvailabilityView.as_view(), name='update_availability'),
     path('availability/delete/<int:pk>/', DeleteAvailabilityView.as_view(), name='delete_availability'),
+    path('availability/get/<int:pk>/', GetAvailabilityView.as_view(), name='get_availability'),
     path('image/create/<int:pk>/', CreatePropertyImageView.as_view(), name='create_image'),
     path('image/delete/<int:pk>/', DeletePropertyImageView.as_view(), name='delete_image'),
     path('image/get/<int:pk>/', GetPropertyImageView.as_view(), name='get_image'),

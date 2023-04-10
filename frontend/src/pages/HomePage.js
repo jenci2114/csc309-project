@@ -1,5 +1,6 @@
 import axios from "axios";
 import {useState} from "react";
+import PropertyCard from "../components/PropertyCard";
 
 export default function HomePage() {
     const [propertySearch, setPropertySearch] = useState("");
@@ -46,6 +47,9 @@ export default function HomePage() {
                 response.data.results[i].end_date = endDate;
                 response.data.results[i].cheapest_price = cheapestPrice;
                 response.data.results[i].priciest_price = priciestPrice;
+
+                // get rating
+                response.data.results[i].rating = await getRating(id);
             }
 
             setPropertyList(response.data.results);
@@ -106,11 +110,17 @@ export default function HomePage() {
         })
     }
 
-    // async function getRating(id) {
-    //     try {
-    //         const response =
-    //     }
-    // }
+    async function getRating(id) {
+        try {
+            const response = await axios({
+                method: 'get',
+                url: `http://localhost:8000/property/${id}/rating/`,
+            });
+            return response.data.rating;
+        } catch (err) {
+            alert(err);
+        }
+    }
 
 
     return (
@@ -165,53 +175,7 @@ export default function HomePage() {
                 <div className="row row-cols-1 g-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                     {propertyList.map(property => (
                         <div className="col" key={property.id}>
-                            <div className="card h-100">
-                                <a href={`property/view/${property.id}/`}> {/* view property page */}
-                                    <img src={property.image} className="card-img-top" alt="..."/>
-                                    <div className="card-body">
-                                        <h5 className="card-title">{property.city}</h5>
-                                        <ul className="list-group list-group-flush">
-                                            {property.start_date == null ? (
-                                                <li className="list-group-item">
-                                                    <span className="fa fa-calendar"></span> Not Available
-                                                    <br/>
-                                                    <span className="fa fa-calendar" style={{ visibility: 'hidden' }}></span>
-                                                </li>
-                                            ) : (
-                                                <li className="list-group-item">
-                                                    <span className="fa fa-calendar"></span> {property.start_date} -
-                                                    <br/>
-                                                    <span className="fa fa-calendar" style={{ visibility: 'hidden' }}></span> {property.end_date}
-                                                </li>
-                                            )}
-                                            {property.cheapest_price == null ? (
-                                                <li className="list-group-item"><span
-                                                    className="fa fa-money"></span> Not Available
-                                                </li>
-                                            ) : property.cheapest_price == property.priciest_price ? (
-                                                <li className="list-group-item"><span
-                                                    className="fa fa-money"></span> ${property.cheapest_price}
-                                                </li>
-                                            ) : (
-                                                <li className="list-group-item"><span
-                                                    className="fa fa-money"></span> ${property.cheapest_price}-{property.priciest_price}
-                                                </li>
-                                            )}
-                                            <li className="list-group-item"><span
-                                                className="fa fa-bed"></span> {property.beds}
-                                            </li>
-                                            <li className="list-group-item"><span
-                                                className="fa fa-star"></span>{property.rating}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </a>
-                                <a href=""> {/* view comments page */}
-                                    <div className="card-footer h-100">
-                                        <span className="fa fa-bell"></span> Comments
-                                    </div>
-                                </a>
-                            </div>
+                            <PropertyCard property={property}/>
                         </div>
                     ))}
                 </div>

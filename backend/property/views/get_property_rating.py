@@ -16,7 +16,7 @@ class GetPropertyRatingView(APIView):
         if queryset.exists():
             average_rating = queryset.aggregate(Avg('user_to_property_rating')).get('user_to_property_rating__avg')
             if average_rating is not None:
-                return Response({'rating': average_rating}, status=status.HTTP_200_OK)
+                return Response({'rating': round(average_rating, 2)}, status=status.HTTP_200_OK)
             else:
                 return Response({'rating': "No ratings available"}, status=status.HTTP_200_OK)
         else:

@@ -1,5 +1,6 @@
 import axios from "axios";
 import {useState} from "react";
+import '../styles/HomePage.css';
 
 export default function HomePage() {
     const [propertySearch, setPropertySearch] = useState("");
@@ -34,10 +35,67 @@ export default function HomePage() {
                     order_by: sortBy,
                 }
             });
+
+            for (let i = 0; i < response.data.results.length; i++) {
+                // get image
+                const id = response.data.results[i].id;
+                response.data.results[i].image = await getImage(id);
+
+                // get start and end date
+                const [start_date, end_date] = await getStartAndEndDate(id);
+                console.log(start_date, end_date)
+                response.data.results[i].start_date = start_date;
+                response.data.results[i].end_date = end_date;
+            }
+
             setPropertyList(response.data.results);
         } catch (err) {
             alert(err);
         }
+    }
+
+    async function getImage(id) {
+        try {
+            const response = await axios({
+                method: 'get',
+                url: `http://127.0.0.1:8000/property/image/get/${id}/`,
+            })
+            if (response.data.results == []) {
+                return null;
+            } else {
+                return response.data[0].image;
+            }
+        } catch (err) {
+            alert(err);
+        }
+    }
+
+    async function getAvailability(id) {
+        try {
+            const response = await axios({
+                method: 'get',
+                url: `http://127.0.0.1:8000/property/availability/get/${id}/`,
+            })
+            return response.data;
+        } catch (err) {
+            alert(err);
+        }
+    }
+
+    async function getStartAndEndDate(id) {
+        return await getAvailability(id).then((data) => {
+            if (data.length == 0) {
+                return [null, null];
+            } else {
+                const earliest_start = data.reduce(
+                    (prev, curr) => (prev.start_date < curr.start_date) ? prev : curr
+                )
+                const latest_end = data.reduce(
+                    (prev, curr) => (prev.end_date > curr.end_date) ? prev : curr
+                )
+                return [earliest_start.start_date, latest_end.end_date];
+            }
+        })
     }
 
     return (
@@ -90,16 +148,26 @@ export default function HomePage() {
             <br/>
             <div className="row row-cols-1 g-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                 {propertyList.map(property => (
-                    <div className="col">
+                    <div className="col" key={property.id}>
                         <div className="card h-100">
                             <a href=""> {/* view property page */}
-                                <img src="../assets/property_images/1.png" className="card-img-top" alt="..."/>
+                                <img src={property.image} className="card-img-top" alt="..."/>
                                 <div className="card-body">
                                     <h5 className="card-title">{property.city}</h5>
                                     <ul className="list-group list-group-flush">
-                                        <li className="list-group-item"><span
-                                            className="fa fa-calendar"></span>{property.start_date} - {property.end_date}
-                                        </li>
+                                        {property.start_date == null ? (
+                                            <li className="list-group-item">
+                                                <span className="fa fa-calendar"></span> Not Available
+                                                <br/>
+                                                <span className="fa fa-calendar" style={{ visibility: 'hidden' }}></span>
+                                            </li>
+                                        ) : (
+                                            <li className="list-group-item">
+                                                <span className="fa fa-calendar"></span> {property.start_date} -
+                                                <br/>
+                                                <span className="fa fa-calendar" style={{ visibility: 'hidden' }}></span> {property.end_date}
+                                            </li>
+                                        )}
                                         <li className="list-group-item"><span
                                             className="fa fa-money"></span>${property.price} per night
                                         </li>

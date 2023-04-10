@@ -1,5 +1,4 @@
 import './App.css';
-import "bootstrap/dist/css/bootstrap.min.css";
 import {Route, Routes, BrowserRouter as Router} from "react-router-dom";
  import useAuth from "./hooks/useAuth";
 import Login from "./pages/Login";
@@ -12,6 +11,8 @@ import UserComments from "./pages/UserComments";
 import Register from "./pages/Register";
 import PropertyComments from "./pages/PropertyComments";
 import ViewProperty from "./pages/ViewProperty";
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
 
 function App() {
    const {isLoggedin} = useAuth();

@@ -10,6 +10,37 @@ export default function LoginPage() {
 	const [showErr, setShowError] = useState(false);
 	const [errMesg, setErrorMsg] = useState("");
 
+	async function handleAll(e) {
+		console.log("handle all");
+		await handleSubmit(e);
+		await getProfile(e);
+	}
+
+
+    async function getProfile(e) {
+		e.preventDefault(); //prevent the web page from automatically submitting the form after we press log in
+		await requestProfile()
+			.then((queryResult) => {
+				setShowError(false)
+				localStorage.setItem("avatar", "http://127.0.0.1:8000" + queryResult.avatar_url);
+				localStorage.setItem("email", queryResult.email);
+				localStorage.setItem("first_name", queryResult.first_name);
+				console.log(localStorage.first_name)
+				localStorage.setItem("last_name", queryResult.last_name);
+				console.log(localStorage.last_name)
+				localStorage.setItem("phone", queryResult.phone);
+				localStorage.setItem("location", queryResult.location);
+				console.log(localStorage.avatar)
+				login();
+				window.location.href = "/";
+			})
+			.catch((err) => {
+				setShowError(true);
+				setErrorMsg("Incorrect Username or Password");
+			});
+	}
+
+
 	async function handleSubmit(e) {
 		e.preventDefault(); //prevent the web page from automatically submitting the form after we press log in
 		await requestAuth()
@@ -17,8 +48,6 @@ export default function LoginPage() {
 				setShowError(false)
 				localStorage.setItem("username", username);
 				localStorage.setItem("token", queryResult.access);
-				login();
-				window.location.href = "/"
 			})
 			.catch((err) => {
 				setShowError(true);
@@ -42,6 +71,24 @@ export default function LoginPage() {
 				});
 		});
 	}
+
+	async function requestProfile() {
+		return new Promise((resolve, reject) => {
+			axios({
+				method: "get",
+				url: "http://127.0.0.1:8000/account/profile/view/",
+				headers: { Authorization: `Bearer ${localStorage.token}` },
+			})
+				.then((ret) => {
+					console.log(ret.data);
+					resolve(ret.data);
+				})
+				.catch((err) => {
+					reject(new Error(err.response.data.message));
+				});
+		});
+	}
+
 	if (isLoggedin) {
 		return <Navigate to="/" />;
 	}
@@ -59,7 +106,7 @@ export default function LoginPage() {
 				<div className="row mb-3">
 					<div className="col-lg-4 themed-grid-col"></div>
 					<div className="col-lg-4 themed-grid-col user-form">
-						<form onSubmit={handleSubmit}>
+						<form onSubmit={handleAll}>
 							<div className="mb-3">
 								<label htmlFor="username" className="form-label">Username</label>
 								<input type="text" className="form-control" id="username" aria-describedby="emailHelp" onChange={(event) => setUsername(event.target.value)}></input>

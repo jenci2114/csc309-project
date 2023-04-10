@@ -116,7 +116,7 @@ export default function LoginNavBar(props) {
                                 aria-expanded="false"
                             >
                                 <img
-                                    src={"/assets/" + props.avatar}
+                                    src={props.avatar}
                                     alt=""
                                     width="32"
                                     height="32"

@@ -11,8 +11,9 @@ import UserComments from "./pages/UserComments";
 import Register from "./pages/Register";
 import PropertyComments from "./pages/PropertyComments";
 import ViewProperty from "./pages/ViewProperty";
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/js/bootstrap.bundle.min.js"
+// import "bootstrap/dist/css/bootstrap.min.css"
+// import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import Profile from "./pages/Profile";
 
 function App() {
    const {isLoggedin} = useAuth();
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="/login/" element={<Login />} />
              <Route path="/register/" element={<Register />} />
+            <Route path="/profile/" element={<Profile />} />
           <Route path="/notifications/host/" element={<HostNotifications/>} />
           <Route path="/notifications/tenant/" element={<TenantNotifications/>} />
           <Route path="/comments/user/:id/" element={<UserComments/>} />

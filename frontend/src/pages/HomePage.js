@@ -1,6 +1,5 @@
 import axios from "axios";
 import {useState} from "react";
-import styles from '../styles/HomePage.module.css';
 
 export default function HomePage() {
     const [propertySearch, setPropertySearch] = useState("");
@@ -115,7 +114,7 @@ export default function HomePage() {
 
 
     return (
-        <div className={styles.container}>
+        <div>
             <div className="container">
                 <h1 className="fs-1 fw-semibold text-center">Search for properties</h1>
 
@@ -152,9 +151,9 @@ export default function HomePage() {
                             <option value="rating_desc">Rating (High-Low)</option>
                         </select>
                     </div>
-                    <div className="col-md-12">
+                    <div className="col-md-12 homeButtons">
                         <button type="button" className="btn btn-secondary"
-                                onClick={resetFilter}>
+                                onClick={resetFilter} style={{marginRight: "10px"}}>
                             Reset Filter
                         </button>
                         <button type="submit" className="btn btn-primary">

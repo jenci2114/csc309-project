@@ -10,6 +10,7 @@ import LogoutNavBar from "./components/LogoutNavBar";
 import UserComments from "./pages/UserComments";
 import Register from "./pages/Register";
 import PropertyComments from "./pages/PropertyComments";
+import ViewProperty from "./pages/ViewProperty";
 
 function App() {
    const {isLoggedin} = useAuth();
@@ -18,7 +19,7 @@ function App() {
 
         {isLoggedin ? (
           <LoginNavBar name = {localStorage.username} avatar = {localStorage.avatar} />
-        ) : ( 
+        ) : (
           <LogoutNavBar/>
         )}
 
@@ -31,10 +32,11 @@ function App() {
           <Route path="/notifications/tenant/" element={<TenantNotifications/>} />
           <Route path="/comments/user/:id/" element={<UserComments/>} />
           <Route path="/comments/property/:id/" element={<PropertyComments/>} />
+            <Route path="/property/view/:id/" element={<ViewProperty/>} />
           <Route path="*" element={<h1>404: Not Found</h1>} />
         </Routes>
       </Router>
-	
+
     </div>
   );
 }

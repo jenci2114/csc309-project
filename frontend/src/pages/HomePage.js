@@ -166,7 +166,7 @@ export default function HomePage() {
                 {propertyList.map(property => (
                     <div className="col" key={property.id}>
                         <div className="card h-100">
-                            <a href=""> {/* view property page */}
+                            <a href={`property/view/${property.id}/`}> {/* view property page */}
                                 <img src={property.image} className="card-img-top" alt="..."/>
                                 <div className="card-body">
                                     <h5 className="card-title">{property.city}</h5>

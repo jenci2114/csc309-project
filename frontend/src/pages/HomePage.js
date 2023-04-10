@@ -41,11 +41,12 @@ export default function HomePage() {
                 const id = response.data.results[i].id;
                 response.data.results[i].image = await getImage(id);
 
-                // get start and end date
-                const [start_date, end_date] = await getStartAndEndDate(id);
-                console.log(start_date, end_date)
-                response.data.results[i].start_date = start_date;
-                response.data.results[i].end_date = end_date;
+                // get start date, end date, cheapest price, and priciest price
+                const [startDate, endDate, cheapestPrice, priciestPrice] = await getDatesAndPrices(id);
+                response.data.results[i].start_date = startDate;
+                response.data.results[i].end_date = endDate;
+                response.data.results[i].cheapest_price = cheapestPrice;
+                response.data.results[i].priciest_price = priciestPrice;
             }
 
             setPropertyList(response.data.results);
@@ -82,21 +83,36 @@ export default function HomePage() {
         }
     }
 
-    async function getStartAndEndDate(id) {
+
+    async function getDatesAndPrices(id) {
         return await getAvailability(id).then((data) => {
             if (data.length == 0) {
-                return [null, null];
+                return [null, null, null, null];
             } else {
-                const earliest_start = data.reduce(
+                const earliestStart = data.reduce(
                     (prev, curr) => (prev.start_date < curr.start_date) ? prev : curr
-                )
-                const latest_end = data.reduce(
+                );
+                const latestEnd = data.reduce(
                     (prev, curr) => (prev.end_date > curr.end_date) ? prev : curr
-                )
-                return [earliest_start.start_date, latest_end.end_date];
+                );
+                const cheapestPrice = data.reduce(
+                    (prev, curr) => (prev.price_per_night < curr.price_per_night) ? prev : curr
+                );
+                const priciestPrice = data.reduce(
+                    (prev, curr) => (prev.price_per_night > curr.price_per_night) ? prev : curr
+                );
+                return [earliestStart.start_date, latestEnd.end_date,
+                    cheapestPrice.price_per_night, priciestPrice.price_per_night];
             }
         })
     }
+
+    // async function getRating(id) {
+    //     try {
+    //         const response =
+    //     }
+    // }
+
 
     return (
         <div className="container">
@@ -168,11 +184,21 @@ export default function HomePage() {
                                                 <span className="fa fa-calendar" style={{ visibility: 'hidden' }}></span> {property.end_date}
                                             </li>
                                         )}
+                                        {property.cheapest_price == null ? (
+                                            <li className="list-group-item"><span
+                                                className="fa fa-money"></span> Not Available
+                                            </li>
+                                        ) : property.cheapest_price == property.priciest_price ? (
+                                            <li className="list-group-item"><span
+                                                className="fa fa-money"></span> ${property.cheapest_price}
+                                            </li>
+                                        ) : (
+                                            <li className="list-group-item"><span
+                                                className="fa fa-money"></span> ${property.cheapest_price}-{property.priciest_price}
+                                            </li>
+                                        )}
                                         <li className="list-group-item"><span
-                                            className="fa fa-money"></span>${property.price} per night
-                                        </li>
-                                        <li className="list-group-item"><span
-                                            className="fa fa-bed"></span>{property.num_beds}
+                                            className="fa fa-bed"></span> {property.beds}
                                         </li>
                                         <li className="list-group-item"><span
                                             className="fa fa-star"></span>{property.rating}

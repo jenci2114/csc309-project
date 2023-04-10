@@ -23,7 +23,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         elif len(password) < 8:
             raise serializers.ValidationError("Password must be at least 8 characters long")
         return data
-    
+
     def create(self, validated_data):
         user = User.objects.create(
             username=validated_data['username'],
@@ -40,22 +40,22 @@ class ProfileEditSerializer(serializers.ModelSerializer):
         model = User
         fields = ['username', 'email', 'password', 'password2', 'first_name', 'last_name', 'phone', 'location', 'avatar_url']
         # make username and email unchangeable AND everrything
-        extra_kwargs = {'username': {'read_only': True}, 
+        extra_kwargs = {'username': {'read_only': True},
                         'email': {'required': False},
-                        'password': {'required': False, 'write_only': True}, 
+                        'password': {'required': False, 'write_only': True},
                         'password2': {'required': False},
-                        'first_name': {'required': False}, 
-                        'last_name': {'required': False}, 
-                        'phone': {'required': False}, 
-                        'location': {'required': False}, 
+                        'first_name': {'required': False},
+                        'last_name': {'required': False},
+                        'phone': {'required': False},
+                        'location': {'required': False},
                         'avatar_url': {'required': False}}
 
     def update(self, instance, validated_data):
         if 'email' in validated_data:
             email = validated_data.get('email', instance.email)
-            try: 
+            try:
                 validate_email(email)
-            except: 
+            except:
                 raise serializers.ValidationError("Invalid email")
             else:
                 instance.email = validated_data.get('email', instance.email)
@@ -82,12 +82,18 @@ class ProfileEditSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Both passwords must be provided")
         instance.save()
         return instance
-    
+
 class NotificationSerializer(serializers.ModelSerializer):
     user_from = serializers.ReadOnlyField(source='user_from.username')
     class Meta:
         model = Notification
         fields = ['msg', 'time', 'user_from']
+
+
+class UserContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['phone', 'email']
 
 
 

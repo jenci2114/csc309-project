@@ -1,6 +1,8 @@
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView, TokenBlacklistView
 from .views import *
 from django.urls import path
+
+from .views.user_contact_view import UserContactView
 from .views.user_info_views import RegisterView, ProfileView, ProfileEditView
 from .views.notification_views import HostNotificationView, TenentNotificationView, HostNotificationDeleteView, TenentNotificationDeleteView
 from .views.user_info_views import UsernameByIdView
@@ -19,4 +21,5 @@ urlpatterns = [
     path('notifications/host/delete/', HostNotificationDeleteView.as_view(), name='host_notifications_delete'),
     path('notifications/tenant/delete/', TenentNotificationDeleteView.as_view(), name='tenant_notifications_delete'),
     path('username/<int:pk>/', UsernameByIdView.as_view(), name='username_by_id'),
+    path('contact/<int:pk>/', UserContactView.as_view(), name='user_contact'),
 ]

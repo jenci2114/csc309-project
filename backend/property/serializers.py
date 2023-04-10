@@ -6,7 +6,7 @@ from property.models import *
 class PropertyImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PropertyImage
-        fields = ['image', 'property']
+        fields = ['id', 'image', 'property']
         read_only_fields = ['property']
 
 
@@ -72,4 +72,4 @@ class UserCommentSerializer(serializers.ModelSerializer):
         fields = ['host', 'property', 'start_date', 'end_date', 'host_to_user_rating', 'host_to_user_msg']
 
 
-    
+

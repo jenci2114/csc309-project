@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./booking.css";
+import styles from "./booking.module.css";
 
 const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }) => {
     const [reservation_users, setReservationUsers] = useState([]);
@@ -64,7 +64,7 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
     };
 
     return (
-        <>
+        <div className={styles.container}>
             <div className="card" style={{ textAlign: "center" }}>
                 <div className="card-header">
                     <h5 style={{ display: comment_number === 1 ? "block" : "none" }}>Host: {reservation_users[0]} ---- Tenant: {reservation_users[1]}</h5>
@@ -119,7 +119,7 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
                 </div>
             </div>
             {replied && <div className="alert alert-success" style={{ paddingBottom: "0px" }} role="alert"><p className="text-center">Successfully replied</p></div>}
-        </>
+        </div>
     );
 };
 

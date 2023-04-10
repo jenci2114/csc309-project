@@ -2,8 +2,6 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
-import '../styles/index.css'
-import '../styles/common.css';
 import logo2 from '../assets/property_images/logo2.jpeg'
 export default function LoginPage() {
 	const [username, setUsername] = useState("");

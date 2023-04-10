@@ -2,6 +2,7 @@ from django.urls import path
 
 from property.views.create_property import CreatePropertyView
 from property.views.get_availability import GetAvailabilityView
+from property.views.get_property import GetPropertyView
 from property.views.search_reservation import SearchView
 from property.views.process_reservation import *
 from property.views.update_property import UpdatePropertyView
@@ -44,4 +45,5 @@ urlpatterns = [
     path('image/delete/<int:pk>/', DeletePropertyImageView.as_view(), name='delete_image'),
     path('image/get/<int:pk>/', GetPropertyImageView.as_view(), name='get_image'),
     path('reservation/users/<int:pk>/', UsersByReservationView.as_view(), name='user_by_reservation'),
+    path('<int:pk>/get/', GetPropertyView.as_view(), name='get_property'),
 ]

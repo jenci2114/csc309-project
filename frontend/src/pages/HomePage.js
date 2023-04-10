@@ -46,6 +46,9 @@ export default function HomePage() {
                 response.data.results[i].end_date = endDate;
                 response.data.results[i].cheapest_price = cheapestPrice;
                 response.data.results[i].priciest_price = priciestPrice;
+
+                // get rating
+                response.data.results[i].rating = await getRating(id);
             }
 
             setPropertyList(response.data.results);
@@ -106,11 +109,17 @@ export default function HomePage() {
         })
     }
 
-    // async function getRating(id) {
-    //     try {
-    //         const response =
-    //     }
-    // }
+    async function getRating(id) {
+        try {
+            const response = await axios({
+                method: 'get',
+                url: `http://localhost:8000/property/${id}/rating/`,
+            });
+            return response.data.rating;
+        } catch (err) {
+            alert(err);
+        }
+    }
 
 
     return (
@@ -201,7 +210,7 @@ export default function HomePage() {
                                                 className="fa fa-bed"></span> {property.beds}
                                             </li>
                                             <li className="list-group-item"><span
-                                                className="fa fa-star"></span>{property.rating}
+                                                className="fa fa-star"></span> {property.rating}
                                             </li>
                                         </ul>
                                     </div>

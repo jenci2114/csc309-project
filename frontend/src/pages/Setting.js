@@ -54,17 +54,18 @@ export default function Setting() {
         const updatedPhone = document.getElementById("phone").value;
         const updatedEmail = document.getElementById("email").value;
         const updatedLocation = document.getElementById("location").value;
+        const avatarFile = document.getElementById("avatar").files[0];
 
         // Email validation
         const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-        if (!emailRegex.test(updatedEmail)) {
+        if (updatedEmail && !emailRegex.test(updatedEmail)) {
             alert("Please enter a valid email address");
             return;
         }
 
         // Phone validation (10 digits)
         const phoneRegex = /^\d{10}$/;
-        if (!phoneRegex.test(updatedPhone)) {
+        if (updatedPhone && !phoneRegex.test(updatedPhone)) {
             alert("Please enter a valid 10-digit phone number");
             return;
         }
@@ -78,31 +79,90 @@ export default function Setting() {
             updatedLocation
         );
 
+        // let updatedAvatarUrl = localStorage.avatar;
+        if (avatarFile) {
+            console.log("avatar uploading:");
+            const formData = new FormData();
+            formData.append("avatar_url", avatarFile);
+
+            axios
+                .put("http://127.0.0.1:8000/account/profile/edit/", formData, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    },
+                })
+                .then((response) => {
+                    console.log("avatar updated successfully:", response.data);
+                })
+                .catch((error) => {
+                    console.error("Error updating avatar:", error);
+                });
+        }
+
         const payload = {
-    email: updatedEmail,
-    first_name: updatedFirstName,
-    last_name: updatedLastName,
-    phone: updatedPhone,
-    location: updatedLocation,
-  };
+            ...(updatedFirstName && {first_name: updatedFirstName}),
+            ...(updatedLastName && {last_name: updatedLastName}),
+            ...(updatedPhone && {phone: updatedPhone}),
+            ...(updatedEmail && {email: updatedEmail}),
+            ...(updatedLocation && {location: updatedLocation}),
+        };
 
-  axios
-    .put("http://127.0.0.1:8000/account/profile/edit/", payload, {
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-      },
-    })
-    .then((response) => {
-      console.log("Profile updated successfully:", response.data);
-      fetchProfileData();
-      alert("Profile updated successfully");
-      window.location.reload();
-    })
-    .catch((error) => {
-      console.error("Error updating profile:", error);
-      alert("Error updating profile");
-    });
+        axios
+            .put("http://127.0.0.1:8000/account/profile/edit/", payload, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            })
+            .then((response) => {
+                console.log("Profile updated successfully:", response.data);
+                fetchProfileData();
+                alert("Profile updated successfully");
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error("Error updating profile:", error);
+                alert("Error updating profile");
+            });
 
+    }
+
+    function handlePasswordChange(event) {
+        event.preventDefault();
+
+        const newPassword = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("password2").value;
+
+         if (newPassword.length < 8) {
+            alert("New password must be at least 8 characters long");
+            return;
+          }
+
+        if (newPassword !== confirmPassword) {
+            alert("New password and confirm password do not match");
+            return;
+        }
+
+        const payload = {
+            password: newPassword,
+            password2: confirmPassword,
+        };
+
+        axios
+            .put("http://127.0.0.1:8000/account/profile/edit/", payload, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            })
+            .then((response) => {
+                console.log("Password changed successfully:", response.data);
+                alert("Password changed successfully");
+                // Perform any other actions after a successful password change
+            })
+            .catch((error) => {
+                console.error("Error changing password:", error);
+                alert("Error changing password");
+            });
     }
 
 // Call the function to fetch the profile data and update the local storage
@@ -289,6 +349,11 @@ export default function Setting() {
                                             defaultValue={profile.location}
                                         />
                                     </div>
+                                    <div className="form-group">
+                                        <label htmlFor="avatar">Change Avatar</label>
+                                        <input type="file" className="form-control-file" id="avatar"/>
+                                    </div>
+                                    <hr/>
                                     <button type="button" className="btn btn-dark" onClick={handleProfileChange}>
                                         Update Profile
                                     </button>
@@ -301,22 +366,19 @@ export default function Setting() {
                                     <div className="form-group">
                                         <label className="d-block">Change Password</label>
                                         <input
-                                            type="text"
-                                            className="form-control"
-                                            placeholder="Enter your old password"
-                                        />
-                                        <input
-                                            type="text"
+                                            type="password"
+                                            id="password"
                                             className="form-control mt-1"
-                                            placeholder="New password"
+                                            placeholder="New password (at least 8 characters)"
                                         />
                                         <input
-                                            type="text"
+                                            type="password"
+                                            id="password2"
                                             className="form-control mt-1"
                                             placeholder="Confirm new password"
                                         />
                                     </div>
-                                    <button className="btn btn-dark" type="button">
+                                    <button className="btn btn-dark" type="button" onClick={handlePasswordChange}>
                                         Confirm
                                     </button>
                                 </form>

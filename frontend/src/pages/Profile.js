@@ -76,7 +76,7 @@ export default function Profile() {
         <div className="card-body">
           <h5 className="card-title">Username: {profile.username}</h5>
           <p className="card-text">
-            Name: {profile.firstName} {profile.lastName}
+                Name: {profile.firstName} {profile.lastName}
           </p>
           <p className="card-text">Email: {profile.email}</p>
           <p className="card-text">Phone: {profile.phone}</p>
@@ -86,6 +86,4 @@ export default function Profile() {
       </div>
     </div>
   );
-
-
 }

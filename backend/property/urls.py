@@ -19,6 +19,7 @@ from property.views.get_users_via_reservation import UsersByReservationView
 from property.views.get_property_rating import GetPropertyRatingView
 
 from property.views.get_property_image import GetPropertyImageView
+from property.views.get_user_rating import GetUserRatingView
 
 app_name = 'property'
 urlpatterns = [
@@ -48,4 +49,5 @@ urlpatterns = [
     path('reservation/users/<int:pk>/', UsersByReservationView.as_view(), name='user_by_reservation'),
     path('<int:pk>/get/', GetPropertyView.as_view(), name='get_property'),
     path('<int:pk>/rating/', GetPropertyRatingView.as_view(), name='get_property_rating'),
+    path('user_rating/<str:pk>/', GetUserRatingView.as_view(), name='get_user_rating'),
 ]

@@ -2,6 +2,7 @@ from django.urls import path
 
 from property.views.create_property import CreatePropertyView
 from property.views.get_availability import GetAvailabilityView
+from property.views.get_available_dates import GetAvailableDatesView
 from property.views.get_property import GetPropertyView
 from property.views.search_reservation import SearchView
 from property.views.process_reservation import *
@@ -50,4 +51,5 @@ urlpatterns = [
     path('<int:pk>/get/', GetPropertyView.as_view(), name='get_property'),
     path('<int:pk>/rating/', GetPropertyRatingView.as_view(), name='get_property_rating'),
     path('user_rating/<str:pk>/', GetUserRatingView.as_view(), name='get_user_rating'),
+    path('<int:pk>/available_dates/', GetAvailableDatesView.as_view(), name='get_available_dates'),
 ]

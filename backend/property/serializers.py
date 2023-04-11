@@ -1,3 +1,5 @@
+from abc import ABC
+
 from rest_framework import serializers
 
 from property.models import *
@@ -72,4 +74,14 @@ class UserCommentSerializer(serializers.ModelSerializer):
         fields = ['host', 'property', 'start_date', 'end_date', 'host_to_user_rating', 'host_to_user_msg']
 
 
+class DatePriceSerializer(serializers.Serializer):
+    date = serializers.DateField()
+    price = serializers.DecimalField(max_digits=10, decimal_places=2)
 
+    def create(self, validated_data):
+        return {'date': validated_data['date'], 'price': validated_data['price']}
+
+    def update(self, instance, validated_data):
+        instance['date'] = validated_data.get('date', instance['date'])
+        instance['price'] = validated_data.get('price', instance['price'])
+        return instance

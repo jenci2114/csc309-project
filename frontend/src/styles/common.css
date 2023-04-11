@@ -31,5 +31,21 @@ body {
     object-fit: cover;
 }
 
+.datepicker-container {
+  position: relative;
+}
+
+.DateInput {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 11px;
+}
+
+.CalendarDay__selected {
+  background: #00a699;
+  border: 1px solid #00a699;
+  color: #fff;
+}
+
 
 

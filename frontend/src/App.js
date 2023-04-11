@@ -15,6 +15,8 @@ import ViewProperty from "./pages/ViewProperty";
 // import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import Profile from "./pages/Profile";
 import Setting from "./pages/Setting";
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
 
 function App() {
    const {isLoggedin} = useAuth();

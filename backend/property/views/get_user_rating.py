@@ -23,7 +23,7 @@ class GetUserRatingView(APIView):
         if queryset.exists():
             average_rating = queryset.aggregate(Avg('host_to_user_rating')).get('host_to_user_rating__avg')
             if average_rating is not None:
-                return Response({'rating': round(average_rating, 2)}, status=status.HTTP_200_OK)
+                return Response({'rating': str(round(average_rating, 2))}, status=status.HTTP_200_OK)
             else:
                 return Response({'rating': "No ratings available"}, status=status.HTTP_200_OK)
         else:

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {Link, Navigate} from "react-router-dom";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
@@ -46,6 +46,33 @@ export default function Profile() {
             .catch((error) => {
                 console.error("Error:", error);
             });
+
+        fetch(`http://127.0.0.1:8000/property/user_rating/${localStorage.username}/`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Error fetching profile data");
+                }
+            })
+            .then((queryResult) => {
+                if (queryResult.rating !== localStorage.rating) {
+                    localStorage.setItem("rating", queryResult.rating);
+                    console.log(1);
+                    console.log(queryResult.rating);
+                    console.log(localStorage.rating);
+                    console.log(2);
+                    window.location.reload();
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
     }
 
 // Call the function to fetch the profile data and update the local storage
@@ -59,17 +86,17 @@ export default function Profile() {
     backgroundPosition: 'center',
   };
 
-  const profile = {
+  let profile = {
     username: localStorage.username,
     firstName: localStorage.first_name,
     lastName: localStorage.last_name,
     email: localStorage.email,
     phone: localStorage.phone,
     location: localStorage.location,
-    rating: 4.5,
+    rating: localStorage.rating,
     photo: localStorage.avatar,
   };
-
+    console.log(localStorage.rating+"return")
   return (
     <div style={profileBg2Style} className="d-flex justify-content-center align-items-center">
       <div className="card" style={{ width: '18rem', backgroundColor: 'rgba(255, 255, 255, 0.7)' }}>
@@ -80,7 +107,7 @@ export default function Profile() {
           </p>
           <p className="card-text">Email: {profile.email}</p>
           <p className="card-text">Phone: {profile.phone}</p>
-          <p className="card-text">Location: {profile.location}</p>
+          <p className="card-text">Location: {localStorage.location}</p>
           <p className="card-text">Rating: {profile.rating}</p>
         </div>
       </div>

@@ -1,10 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
-import { DayPickerSingleDateController } from 'react-dates';
+import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const PricedDatePicker = () => {
-  const [selectedDate, setSelectedDate] = useState(moment());
-  const [focused, setFocused] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   // Define your dates and prices
   const prices = {
@@ -18,44 +18,57 @@ const PricedDatePicker = () => {
     return !!prices[date.format('YYYY-MM-DD')];
   };
 
-  const renderDay = (day) => {
-    const dateString = day.format('YYYY-MM-DD');
+  const renderDay = (date, currentDate) => {
+    const dateString = moment(currentDate).format('YYYY-MM-DD');
     const price = prices[dateString];
 
     return (
       <>
-        {day.format('D')}
+        {date}
         {price && (
           <div style={{ fontSize: '12px', color: 'green' }}>{`$${price}`}</div>
         )}
-        {!price && (
-            <div style={{ fontSize: '12px', color: 'red' }}>{`-`}</div>
-        )}
+          {!price && (
+            <div style={{ fontSize: '12px', color: 'red' }}>{`--`}</div>
+          )}
       </>
     );
   };
 
   return (
     <div className="datepicker-container">
-      <input
-        type="text"
-        value={selectedDate ? selectedDate.format('YYYY-MM-DD') : ''}
-        onClick={() => setFocused(!focused)}
-        readOnly
-        style={{ cursor: 'pointer' }}
+      <DatePicker
+        selected={selectedDate}
+        onChange={(date) => setSelectedDate(date)}
+        filterDate={(date) => isDatePickable(moment(date))}
+        renderCustomHeader={({
+          date,
+          decreaseMonth,
+          increaseMonth,
+          prevMonthButtonDisabled,
+          nextMonthButtonDisabled,
+        }) => (
+          <div>
+            <button
+              onClick={decreaseMonth}
+              disabled={prevMonthButtonDisabled}
+              className="prev-month-button"
+            >
+              {'<'}
+            </button>
+            <span>{moment(date).format('MMMM YYYY')}</span>
+            <button
+              onClick={increaseMonth}
+              disabled={nextMonthButtonDisabled}
+              className="next-month-button"
+            >
+              {'>'}
+            </button>
+          </div>
+        )}
+        dateFormat="yyyy-MM-dd"
+        renderDayContents={renderDay}
       />
-      {focused && (
-        <DayPickerSingleDateController
-          date={selectedDate}
-          onDateChange={(date) => setSelectedDate(date)}
-          focused={focused}
-          onFocusChange={({ focused }) => setFocused(focused)}
-          isOutsideRange={() => false}
-          isDayBlocked={(date) => !isDatePickable(date)}
-          numberOfMonths={1}
-          renderDayContents={renderDay}
-        />
-      )}
     </div>
   );
 };

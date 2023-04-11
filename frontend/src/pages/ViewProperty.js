@@ -149,7 +149,7 @@ export default function ViewProperty() {
             <div className="modal fade" id="book" data-bs-backdrop="static" data-bs-keyboard="false"
              tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div className="modal-content">
+                    <div className="modal-content" style={{minHeight: '80vh'}}>
                         <div className="modal-header">
                             <h5 className="modal-title" id="book-title">Book</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"

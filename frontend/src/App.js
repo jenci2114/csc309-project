@@ -1,6 +1,6 @@
 import './App.css';
-import {Route, Routes, BrowserRouter as Router} from "react-router-dom";
- import useAuth from "./hooks/useAuth";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import useAuth from "./hooks/useAuth";
 import Login from "./pages/Login";
 import HomePage from "./pages/HomePage";
 import HostNotifications from "./pages/HostNotifications";
@@ -11,6 +11,8 @@ import UserComments from "./pages/UserComments";
 import Register from "./pages/Register";
 import PropertyComments from "./pages/PropertyComments";
 import ViewProperty from "./pages/ViewProperty";
+import AddProperty from "./pages/AddProperty";
+import EditProperty from "./pages/EditProperty";
 // import "bootstrap/dist/css/bootstrap.min.css"
 // import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import Profile from "./pages/Profile";
@@ -19,28 +21,30 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 
 function App() {
-   const {isLoggedin} = useAuth();
+  const { isLoggedin } = useAuth();
   return (
     <div>
 
-        {isLoggedin ? (
-          <LoginNavBar name = {localStorage.username} avatar = {localStorage.avatar} />
-        ) : (
-          <LogoutNavBar/>
-        )}
+      {isLoggedin ? (
+        <LoginNavBar name={localStorage.username} avatar={localStorage.avatar} />
+      ) : (
+        <LogoutNavBar />
+      )}
 
       <Router>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/login/" element={<Login />} />
-             <Route path="/register/" element={<Register />} />
-            <Route path="/setting/" element={<Setting />} />
-            <Route path="/profile/" element={<Profile />} />
-          <Route path="/notifications/host/" element={<HostNotifications/>} />
-          <Route path="/notifications/tenant/" element={<TenantNotifications/>} />
-          <Route path="/comments/user/:id/" element={<UserComments/>} />
-          <Route path="/comments/property/:id/" element={<PropertyComments/>} />
-            <Route path="/property/view/:id/" element={<ViewProperty/>} />
+          <Route path="/register/" element={<Register />} />
+          <Route path="/setting/" element={<Setting />} />
+          <Route path="/profile/" element={<Profile />} />
+          <Route path="/notifications/host/" element={<HostNotifications />} />
+          <Route path="/notifications/tenant/" element={<TenantNotifications />} />
+          <Route path="/comments/user/:id/" element={<UserComments />} />
+          <Route path="/comments/property/:id/" element={<PropertyComments />} />
+          <Route path="/property/view/:id/" element={<ViewProperty />} />
+          <Route path="/property/add/" element={<AddProperty />} />
+          <Route path="/property/edit/:id/" element={<EditProperty />} />
           <Route path="*" element={<h1>404: Not Found</h1>} />
         </Routes>
       </Router>

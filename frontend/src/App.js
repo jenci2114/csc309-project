@@ -17,6 +17,7 @@ import EditProperty from "./pages/EditProperty";
 // import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import Profile from "./pages/Profile";
 import Setting from "./pages/Setting";
+import MyProperty from "./pages/MyProperty";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import PropertyImages from "./pages/PropertyImages";
@@ -37,6 +38,7 @@ function App() {
           <Route exact path="/" element={<HomePage />} />
           <Route path="/login/" element={<Login />} />
           <Route path="/register/" element={<Register />} />
+          <Route path="/my_home/" element={<MyProperty />} />
           <Route path="/setting/" element={<Setting />} />
           <Route path="/profile/" element={<Profile />} />
           <Route path="/notifications/host/" element={<HostNotifications />} />

@@ -25,7 +25,8 @@ export default function LoginPage() {
 				localStorage.setItem("avatar", "http://127.0.0.1:8000" + queryResult.avatar_url);
 				localStorage.setItem("email", queryResult.email);
 				localStorage.setItem("first_name", queryResult.first_name);
-				console.log(localStorage.first_name)
+				localStorage.setItem("id", queryResult.id);
+				console.log(localStorage.id)
 				localStorage.setItem("last_name", queryResult.last_name);
 				console.log(localStorage.last_name)
 				localStorage.setItem("phone", queryResult.phone);

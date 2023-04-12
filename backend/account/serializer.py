@@ -38,7 +38,7 @@ class ProfileEditSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type': 'password'}, write_only=True, required=False)
     class Meta:
         model = User
-        fields = ['username', 'email', 'password', 'password2', 'first_name', 'last_name', 'phone', 'location', 'avatar_url']
+        fields = ['username', 'id', 'email', 'password', 'password2', 'first_name', 'last_name', 'phone', 'location', 'avatar_url']
         # make username and email unchangeable AND everrything
         extra_kwargs = {'username': {'read_only': True},
                         'email': {'required': False},

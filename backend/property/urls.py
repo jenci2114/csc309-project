@@ -22,6 +22,7 @@ from property.views.get_property import GetSelfPropertyView
 
 from property.views.get_property_image import GetPropertyImageView, GetSelfPropertyImageView
 from property.views.get_user_rating import GetUserRatingView
+from property.views.my_property import MyPropertyView
 
 app_name = 'property'
 urlpatterns = [
@@ -55,5 +56,5 @@ urlpatterns = [
     path('<int:pk>/rating/', GetPropertyRatingView.as_view(), name='get_property_rating'),
     path('user_rating/<str:pk>/', GetUserRatingView.as_view(), name='get_user_rating'),
     path('<int:pk>/available_dates/', GetAvailableDatesView.as_view(), name='get_available_dates'),
-
+    path('my_home/', MyPropertyView.as_view(), name='my_home'),
 ]

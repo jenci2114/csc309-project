@@ -13,8 +13,8 @@ import PropertyComments from "./pages/PropertyComments";
 import ViewProperty from "./pages/ViewProperty";
 import AddProperty from "./pages/AddProperty";
 import EditProperty from "./pages/EditProperty";
-// import "bootstrap/dist/css/bootstrap.min.css"
-// import "bootstrap/dist/js/bootstrap.bundle.min.js"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import Profile from "./pages/Profile";
 import Setting from "./pages/Setting";
 import MyProperty from "./pages/MyProperty";

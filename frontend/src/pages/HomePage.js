@@ -1,5 +1,5 @@
 import axios from "axios";
-import {useState} from "react";
+import React, {useEffect, useState} from "react";
 import PropertyCard from "../components/PropertyCard";
 
 export default function HomePage() {
@@ -10,16 +10,30 @@ export default function HomePage() {
     const [sortBy, setSortBy] = useState("name_asc")
     const [propertyList, setPropertyList] = useState([]);
 
-    function resetFilter() {
+    const [nextPage, setNextPage] = useState(null);
+
+    const [shouldSendRequest, setShouldSendRequest] = useState(false);
+
+    async function resetFilter() {
         setPropertySearch("");
         setStartDate("");
         setEndDate("");
         setGuests("");
         setSortBy("name_asc");
+        setShouldSendRequest(true);
     }
 
+    useEffect(() => {
+        if (shouldSendRequest) {
+            handleSearch();
+            setShouldSendRequest(false);
+        }
+    })
+
     async function handleSearch(e) {
-        e.preventDefault();
+        if (e != null) {
+            e.preventDefault();
+        }
         try {
             const response = await axios({
                 method: 'get',
@@ -51,8 +65,41 @@ export default function HomePage() {
                 // get rating
                 response.data.results[i].rating = await getRating(id);
             }
-
             setPropertyList(response.data.results);
+            setNextPage(response.data.next);
+        } catch (err) {
+            alert(err);
+        }
+    }
+
+    useEffect(() => {
+        handleSearch();
+    }, [])
+
+    async function loadNextPage() {
+        try {
+            const response = await axios({
+                method: 'get',
+                url: nextPage,
+            });
+
+            for (let i = 0; i < response.data.results.length; i++) {
+                // get image
+                const id = response.data.results[i].id;
+                response.data.results[i].image = await getImage(id);
+
+                // get start date, end date, cheapest price, and priciest price
+                const [startDate, endDate, cheapestPrice, priciestPrice] = await getDatesAndPrices(id);
+                response.data.results[i].start_date = startDate;
+                response.data.results[i].end_date = endDate;
+                response.data.results[i].cheapest_price = cheapestPrice;
+                response.data.results[i].priciest_price = priciestPrice;
+
+                // get rating
+                response.data.results[i].rating = await getRating(id);
+            }
+            setPropertyList(propertyList.concat(response.data.results));
+            setNextPage(response.data.next);
         } catch (err) {
             alert(err);
         }
@@ -179,6 +226,15 @@ export default function HomePage() {
                         </div>
                     ))}
                 </div>
+                {nextPage != null ? (
+                    <div style={{ textAlign: "center", margin: '30px' }}>
+                      <button className="btn btn-primary" onClick={loadNextPage}>Load More</button>
+                    </div>
+                ) : (
+                    <div style={{ textAlign: "center", margin: '30px' }}>
+                      <p><b>End of Page</b></p>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -23,7 +23,6 @@ export default function ViewProperty() {
 
     async function searchProperty() {
         setCurrUser(localStorage.getItem("id"));
-        console.log("currUser: " + currUser)
         try {
             const response = await axios({
                 method: "get",

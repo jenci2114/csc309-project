@@ -1,7 +1,7 @@
 from django.urls import path
 
 from property.views.create_property import CreatePropertyView
-from property.views.get_availability import GetAvailabilityView
+from property.views.get_availability import GetAvailabilityView, GetSelfAvailabilityView
 from property.views.get_available_dates import GetAvailableDatesView
 from property.views.get_property import GetPropertyView
 from property.views.search_reservation import SearchView
@@ -23,6 +23,7 @@ from property.views.get_property import GetSelfPropertyView
 from property.views.get_property_image import GetPropertyImageView, GetSelfPropertyImageView
 from property.views.get_user_rating import GetUserRatingView
 from property.views.my_property import MyPropertyView
+
 
 app_name = 'property'
 urlpatterns = [
@@ -46,6 +47,7 @@ urlpatterns = [
     path('availability/update/<int:pk>/', UpdateAvailabilityView.as_view(), name='update_availability'),
     path('availability/delete/<int:pk>/', DeleteAvailabilityView.as_view(), name='delete_availability'),
     path('availability/get/<int:pk>/', GetAvailabilityView.as_view(), name='get_availability'),
+    path('my/availability/get/<int:pk>/', GetSelfAvailabilityView.as_view(), name='get_availability'),
     path('image/create/<int:pk>/', CreatePropertyImageView.as_view(), name='create_image'),
     path('image/delete/<int:pk>/', DeletePropertyImageView.as_view(), name='delete_image'),
     path('image/get/<int:pk>/', GetPropertyImageView.as_view(), name='get_image'),

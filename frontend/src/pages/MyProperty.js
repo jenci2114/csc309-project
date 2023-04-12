@@ -48,6 +48,7 @@ export default function MyProperty() {
         {properties.map((property) => (
           <div key={property.id} className="col-md-4" style={{ margin: "5px"}}>
             <div className="card h-100">
+              <Link to={`/property/edit/${property.id}`}>
               <img src={property.image.image} className="card-img-top" alt="..." />
               <div className="card-body">
                 <h5 className="card-title">{property.city}</h5>
@@ -60,6 +61,12 @@ export default function MyProperty() {
                   </li>
                 </ul>
               </div>
+              </Link>
+              <Link to={`/comments/property/${property.id}`}>
+                <div className="card-footer h-100">
+                    <span className="fa fa-bell"></span> Comments
+                </div>
+            </Link>
             </div>
           </div>
         ))}

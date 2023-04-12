@@ -10,6 +10,7 @@ const PropertyImages = () => {
     const [propertyImagesMine, setPropertyImagesMine] = useState(true);
     const [propertyImagesValid, setPropertyImagesValid] = useState(true);
     const [deleted, setDeleted] = useState(false);
+    const [imageCount, setImageCount] = useState(0);
 
 
     function fetchPropertyData() {
@@ -28,6 +29,7 @@ const PropertyImages = () => {
             })
             .then((queryResult) => {
                 setPropertyImages(queryResult);
+                setImageCount(queryResult.length);
             })
             .catch((error) => {
                 console.error("Error:", error);
@@ -44,10 +46,15 @@ const PropertyImages = () => {
     }, []);
 
     const deleteImage = async (image_id) => {
+        if (imageCount === 1) {
+            alert("Cannot delete last image");
+            return;
+        }
         const headers = { Authorization: `Bearer ${localStorage.token}` };
         await fetch(`http://127.0.0.1:8000/property/image/delete/${image_id}/`, { headers, method: "DELETE" });
         setDeleted(true);
         setPropertyImages(propertyImages.filter((image) => image.id !== image_id));
+        setImageCount(imageCount - 1);
     }
 
     const addImage = async () => {

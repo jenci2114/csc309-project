@@ -43,10 +43,12 @@ export default function MyProperty() {
   }, []);
 
   return (
-    <div className="container" style={{ marginTop: "50px"}}>
+      <>
+      <center><h1 style={{ margin: "50px"}}>My Properties</h1></center>
+    <div className="container">
       <div className="row">
         {properties.map((property) => (
-          <div key={property.id} className="col-md-4" style={{ margin: "5px"}}>
+          <div key={property.id} className="col-md-4" style={{ margin: "0px"}}>
             <div className="card h-100">
               <Link to={`/property/edit/${property.id}`}>
               <img src={property.image.image} className="card-img-top" alt="..." />
@@ -72,5 +74,6 @@ export default function MyProperty() {
         ))}
       </div>
     </div>
+        </>
   );
 }

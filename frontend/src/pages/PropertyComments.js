@@ -8,6 +8,7 @@ const PropertyComments = () => {
     const [nextPage, setNextPage] = useState(null);
     const [firstFetch, setFirstFetch] = useState(true);
     const [propertyValid, setPropertyValid] = useState(true);
+    const [propertyImage, setPropertyImage] = useState("");
 
 
     const fetchPropertyComments = async (url) => {
@@ -33,8 +34,31 @@ const PropertyComments = () => {
         }
     };
 
+    function fetchPropertyImage() {
+        fetch(`http://127.0.0.1:8000/property/image/get/${id}/`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            },
+        })
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw response.status;
+                }
+            })
+            .then((queryResult) => {
+                setPropertyImage(queryResult[0]);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+    }
+
     useEffect(() => {
         fetchPropertyComments(`http://127.0.0.1:8000/property/comments/property/${id}/`);
+        fetchPropertyImage();
     }, []);
 
     const loadMorePropertyComments = () => {
@@ -49,6 +73,9 @@ const PropertyComments = () => {
         <>
             <div className="container" style={{ paddingTop: "30px", paddingBottom: "30px" }}>
                 <h1 className="display-4 text-center">Property Comments</h1>
+                <div className="col-md-12" style={{ textAlign: "center" }}>
+                    <img src={propertyImage.image} alt="propertyImage" />
+                </div>
 
                 {Object.keys(propertyComments).map((key) => (
                     <div key={key} style={{ marginTop: "30px" }}>

@@ -42,7 +42,7 @@ export default function PropertyCard(property) {
                     </ul>
                 </div>
             </a>
-            <a href=""> {/* view comments page */}
+            <a href={`/comments/property/${property.id}/`}> {/* view comments page */}
                 <div className="card-footer h-100">
                     <span className="fa fa-bell"></span> Comments
                 </div>

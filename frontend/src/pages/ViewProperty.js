@@ -253,7 +253,7 @@ export default function ViewProperty() {
                     </div>
                 </div>
                 <br/>
-                <a href="search_comments.html">
+                <a href={`/comments/property/${property.id}/`}>
                     <button type="button" className="btn btn-success" style={{marginRight: "10px"}}>View Comments</button>
                 </a>
                 {currUser == null ? (

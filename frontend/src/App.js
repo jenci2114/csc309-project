@@ -21,6 +21,7 @@ import MyProperty from "./pages/MyProperty";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import PropertyImages from "./pages/PropertyImages";
+import Reservation from "./pages/Reservation";
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -40,6 +41,7 @@ function App() {
           <Route path="/register/" element={<Register />} />
           <Route path="/my_home/" element={<MyProperty />} />
           <Route path="/setting/" element={<Setting />} />
+          <Route path="/reservations/" element={<Reservation />} />
           <Route path="/profile/" element={<Profile />} />
           <Route path="/notifications/host/" element={<HostNotifications />} />
           <Route path="/notifications/tenant/" element={<TenantNotifications />} />

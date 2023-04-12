@@ -13,8 +13,6 @@ import PropertyComments from "./pages/PropertyComments";
 import ViewProperty from "./pages/ViewProperty";
 import AddProperty from "./pages/AddProperty";
 import EditProperty from "./pages/EditProperty";
-// import "bootstrap/dist/css/bootstrap.min.css"
-// import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import Profile from "./pages/Profile";
 import Setting from "./pages/Setting";
 import MyProperty from "./pages/MyProperty";
@@ -22,6 +20,7 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import PropertyImages from "./pages/PropertyImages";
 import Reservation from "./pages/Reservation";
+import PropertyAvailabilities from './pages/PropertyAvailabilities';
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -51,6 +50,7 @@ function App() {
           <Route path="/property/add/" element={<AddProperty />} />
           <Route path="/property/edit/:id/" element={<EditProperty />} />
           <Route path="/property/:id/images/" element={<PropertyImages />} />
+          <Route path="/property/:id/availabilities/" element={<PropertyAvailabilities />} />
           <Route path="*" element={<h1>404: Not Found</h1>} />
         </Routes>
       </Router>

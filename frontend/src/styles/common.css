@@ -31,21 +31,24 @@ body {
     object-fit: cover;
 }
 
-.datepicker-container {
-  position: relative;
+.react-datepicker__day--selected,
+.react-datepicker__day--selected:hover,
+.react-datepicker__day--today {
+    background-color: transparent !important;
+    color: inherit !important;
 }
 
-.DateInput {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0 11px;
+.react-datepicker__month-container {
+    width: 350px; /* Adjust the width to your desired value */
 }
 
-.CalendarDay__selected {
-  background: #00a699;
-  border: 1px solid #00a699;
-  color: #fff;
+.react-datepicker__day-names, .react-datepicker__week {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
 }
 
-
-
+.react-datepicker__day-name, .react-datepicker__day {
+    width: calc(100% / 7);
+    text-align: center;
+}

@@ -10,16 +10,11 @@ const BookModal = () => {
 export default function ViewProperty() {
     const { id } = useParams();
     const [property, setProperty] = useState({});
-    const [host, setHost] = useState("");
     const [hostPhone, setHostPhone] = useState("");
     const [hostEmail, setHostEmail] = useState("");
     const [images, setImages] = useState([]);
 
-    const [booking, setBooking] = useState(false);
-
-    function bookingClicked() {
-        setBooking(true);
-    }
+    const [dateAndPrice, setDateAndPrice] = useState([]);
 
     async function searchProperty() {
         try {
@@ -28,7 +23,6 @@ export default function ViewProperty() {
                 url: `http://localhost:8000/property/${id}/get/`,
             })
             setProperty(response.data);
-            setHost(response.data.user);
 
             // get host contact info
             const hostContact = await axios({
@@ -44,6 +38,13 @@ export default function ViewProperty() {
                 url: `http://localhost:8000/property/image/get/${id}/`,
             })
             setImages(propertyImages.data);
+
+            // get property date and price
+            const propertyDateAndPrice = await axios({
+                method: "get",
+                url: `http://localhost:8000/property/${id}/available_dates/`,
+            })
+            setDateAndPrice(propertyDateAndPrice.data);
         } catch (err) {
             alert(err);
         }
@@ -149,7 +150,7 @@ export default function ViewProperty() {
             <div className="modal fade" id="book" data-bs-backdrop="static" data-bs-keyboard="false"
              tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                    <div className="modal-content" style={{minHeight: '80vh'}}>
+                    <div className="modal-content" style={{minHeight: '70vh'}}>
                         <div className="modal-header">
                             <h5 className="modal-title" id="book-title">Book</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
@@ -157,8 +158,18 @@ export default function ViewProperty() {
                         </div>
                         <div className="modal-body">
                             <div className="mb-3">
-                                <h1>Choose a start date:</h1>
-                                <PricedDatePicker/>
+                                Choose a start date:
+                                <PricedDatePicker prices={dateAndPrice}/>
+                            </div>
+                            <div className="mb-3">
+                                Choose an end date:
+                                <PricedDatePicker prices={dateAndPrice}/>
+                            </div>
+                            <div className="mb-3">
+                                <label htmlFor="additional_comments" className="col-form-label">Additional
+                                    Comments</label>
+                                <textarea id="additional_comments"
+                                          className="form-control"></textarea>
                             </div>
                         </div>
                         <div className="modal-footer">

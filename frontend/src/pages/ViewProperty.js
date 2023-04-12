@@ -15,6 +15,9 @@ export default function ViewProperty() {
     const [images, setImages] = useState([]);
 
     const [dateAndPrice, setDateAndPrice] = useState([]);
+    const [startDate, setStartDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+    const [totalPrice, setTotalPrice] = useState(null);
 
     async function searchProperty() {
         try {
@@ -45,6 +48,7 @@ export default function ViewProperty() {
                 url: `http://localhost:8000/property/${id}/available_dates/`,
             })
             setDateAndPrice(propertyDateAndPrice.data);
+            console.log(propertyDateAndPrice.data)
         } catch (err) {
             alert(err);
         }
@@ -53,6 +57,113 @@ export default function ViewProperty() {
     useEffect(() => {
         searchProperty();
     }, [id]);
+
+
+    function validateDates() {
+        if (startDate == null || endDate == null) {
+            alert("Please select a date range.");
+            return false;
+        } else if (startDate > endDate) {
+            alert("Please select a valid date range.");
+            return false;
+        }
+
+        let tempDate = new Date(startDate);
+
+        while (tempDate <= endDate) {
+            let dateValid = false;
+            for (let i = 0; i < dateAndPrice.length; i++) {
+                const date1 = new Date(dateAndPrice[i]["date"]);
+                // compensate for time zone time loss
+                date1.setMinutes(date1.getMinutes() + date1.getTimezoneOffset())
+                if (date1.getFullYear() === tempDate.getFullYear() &&
+                    date1.getMonth() === tempDate.getMonth() &&
+                    date1.getDate() === tempDate.getDate()) {
+                    dateValid = true;
+                    break;
+                }
+            }
+            if (!dateValid) {
+                return false;
+            }
+            tempDate.setDate(tempDate.getDate() + 1);
+        }
+        return true;
+    }
+
+
+    function calculateTotalPrice() {
+        if (startDate == null || endDate == null) {
+            setTotalPrice(null);
+        } else if (startDate > endDate) {
+            setTotalPrice(-1);
+        } else if (!validateDates()) {
+            setTotalPrice(-2);
+        } else {
+            let total = 0;
+            let tempDate = new Date(startDate);
+            while (tempDate <= endDate) {
+                for (let i = 0; i < dateAndPrice.length; i++) {
+                    const date1 = new Date(dateAndPrice[i]["date"]);
+                    // compensate for time zone time loss
+                    date1.setMinutes(date1.getMinutes() + date1.getTimezoneOffset())
+                    if (date1.getFullYear() === tempDate.getFullYear() &&
+                        date1.getMonth() === tempDate.getMonth() &&
+                        date1.getDate() === tempDate.getDate()) {
+                        total += parseInt(dateAndPrice[i]["price"]);
+                        break;
+                    }
+                }
+                tempDate.setDate(tempDate.getDate() + 1);
+            }
+            setTotalPrice(total);
+        }
+    }
+
+    useEffect(() => {
+        calculateTotalPrice();
+    }, [startDate, endDate]);
+
+    function validateBook() {
+        if (totalPrice == null) {
+            alert("Please select a date range.");
+            return false;
+        } else if (totalPrice === -1) {
+            alert("Please select a valid date range.");
+            return false;
+        } else if (totalPrice === -2) {
+            alert("All dates in the selected range must be available.");
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    async function handleBook() {
+        if (validateBook()) {
+            try {
+                await axios({
+                    method: "post",
+                    url: "http://localhost:8000/property/reserve/",
+                    data: {
+                        start_date: startDate.toISOString().split('T')[0],
+                        end_date: endDate.toISOString().split('T')[0],
+                        property_id: id,
+                    },
+                    headers: {
+                        Authorization: `Bearer ${localStorage.token}`,
+                    }
+                })
+                document.getElementById("closeBook").click();
+                alert("Property booked successfully!");
+                await searchProperty();
+                setStartDate(null);
+                setEndDate(null);
+            } catch (err) {
+                alert(err);
+            }
+        }
+    }
 
     return (
         <>
@@ -154,29 +265,44 @@ export default function ViewProperty() {
                         <div className="modal-header">
                             <h5 className="modal-title" id="book-title">Book</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                    aria-label="Close" id="closeBook"></button>
                         </div>
                         <div className="modal-body">
                             <div className="mb-3">
                                 Choose a start date:
-                                <PricedDatePicker prices={dateAndPrice}/>
+                                <PricedDatePicker dateAndPrice={dateAndPrice}
+                                                  selectedDate={startDate}
+                                                  changeSelectedDate={setStartDate}/>
                             </div>
                             <div className="mb-3">
                                 Choose an end date:
-                                <PricedDatePicker prices={dateAndPrice}/>
+                                <PricedDatePicker dateAndPrice={dateAndPrice}
+                                                  selectedDate={endDate}
+                                                  changeSelectedDate={setEndDate}/>
                             </div>
-                            <div className="mb-3">
-                                <label htmlFor="additional_comments" className="col-form-label">Additional
-                                    Comments</label>
-                                <textarea id="additional_comments"
-                                          className="form-control"></textarea>
-                            </div>
+                            {totalPrice == null ? (
+                                <div className="mb-3">
+                                    Total price will be calculated once dates are selected
+                                </div>
+                            ) : totalPrice === -1 ? (
+                                <div className="mb-3">
+                                    Start date cannot be after end date
+                                </div>
+                            ) : totalPrice === -2 ? (
+                                <div className="mb-3">
+                                    All dates between start date and end date must be available
+                                </div>
+                            ) : (
+                                <div className="mb-3">
+                                    Total Price: ${totalPrice}
+                                </div>
+                            )}
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary"
                                     data-bs-dismiss="modal">Close
                             </button>
-                            <button type="button" className="btn btn-primary">Book</button>
+                            <button type="button" className="btn btn-primary" onClick={handleBook}>Book</button>
                         </div>
                     </div>
                 </div>

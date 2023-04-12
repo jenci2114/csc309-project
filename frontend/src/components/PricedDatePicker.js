@@ -3,12 +3,14 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const PricedDatePicker = (dateAndPrice) => {
-    const [selectedDate, setSelectedDate] = useState(null);
+const PricedDatePicker = ( {dateAndPrice, selectedDate, changeSelectedDate} ) => {
+    const setSelectedDate = (date) => {
+        changeSelectedDate(date);
+    }
 
     var prices = {};
-    for (var i = 0; i < dateAndPrice.prices.length; i++) {
-        prices[dateAndPrice.prices[i].date] = dateAndPrice.prices[i].price;
+    for (var i = 0; i < dateAndPrice.length; i++) {
+        prices[dateAndPrice[i].date] = dateAndPrice[i].price;
     }
 
     // Check if a date is pickable

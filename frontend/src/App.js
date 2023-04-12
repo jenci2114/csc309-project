@@ -19,6 +19,7 @@ import Profile from "./pages/Profile";
 import Setting from "./pages/Setting";
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
+import PropertyImages from "./pages/PropertyImages";
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -45,6 +46,7 @@ function App() {
           <Route path="/property/view/:id/" element={<ViewProperty />} />
           <Route path="/property/add/" element={<AddProperty />} />
           <Route path="/property/edit/:id/" element={<EditProperty />} />
+          <Route path="/property/:id/images/" element={<PropertyImages />} />
           <Route path="*" element={<h1>404: Not Found</h1>} />
         </Routes>
       </Router>

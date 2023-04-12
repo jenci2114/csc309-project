@@ -13,6 +13,10 @@ const PropertyAvailabilities = () => {
     const [propertyAvailabilitiesValid, setPropertyAvailabilitiesValid] = useState(true);
     const [deleted, setDeleted] = useState(false);
     const [availabilityCount, setAvailabilityCount] = useState(0);
+    const [updateError, setUpdateError] = useState("");
+    const [updateSuccess, setUpdateSuccess] = useState(false);
+    const [addError, setAddError] = useState("");
+    const [addSuccess, setAddSuccess] = useState(false);
 
 
     function fetchPropertyData() {
@@ -55,12 +59,20 @@ const PropertyAvailabilities = () => {
         const headers = { Authorization: `Bearer ${localStorage.token}` };
         await fetch(`http://127.0.0.1:8000/property/availability/delete/${availability_id}/`, { headers, method: "DELETE" });
         setDeleted(true);
+        setUpdateSuccess(false);
+        setAddSuccess(false);
+        setUpdateError("");
+        setAddError("");
         setPropertyAvailabilities(propertyAvailabilities.filter((availability) => availability.id !== availability_id));
         setAvailabilityCount(availabilityCount - 1);
     }
 
     const addAvailability = async () => {
         setDeleted(false);
+        setUpdateSuccess(false);
+        setAddSuccess(false);
+        setUpdateError("");
+        setAddError("");
         if (newStartDate === "" || newEndDate === "" || newPrice === 0) {
             alert("Choose start date, end date, and price per night");
             return;
@@ -68,7 +80,7 @@ const PropertyAvailabilities = () => {
 
         await fetch(`http://127.0.0.1:8000/property/availability/create/${id}/`, {
             method: 'POST',
-            body: JSON.stringify({start_date: newStartDate, end_date: newEndDate, price_per_night: newPrice}),
+            body: JSON.stringify({ start_date: newStartDate, end_date: newEndDate, price_per_night: newPrice }),
             headers: {
                 Authorization: `Bearer ${localStorage.token}`,
                 'Content-Type': 'application/json'
@@ -81,10 +93,53 @@ const PropertyAvailabilities = () => {
                 setNewEndDate("");
                 setNewPrice(0);
                 fetchPropertyData();
+                if (data.id !== undefined){
+                    setAddError("");
+                    setAddSuccess(true);
+                } else{
+                    setAddError(data[0]);
+                }
             })
-            .catch(error => console.error(error));
+            .catch(error => {alert(error)});
 
     };
+
+    const updateAvailability = async (availability_id, index) => {
+        setDeleted(false);
+        setUpdateSuccess(false);
+        setAddSuccess(false);
+        setUpdateError("");
+        setAddError("");
+        const start_date = propertyAvailabilities[index].start_date
+        const end_date = propertyAvailabilities[index].end_date
+        const price = propertyAvailabilities[index].price_per_night
+
+        await fetch(`http://127.0.0.1:8000/property/availability/update/${availability_id}/`, {
+            method: 'PATCH',
+            body: JSON.stringify({ start_date: start_date, end_date: end_date, price_per_night: price }),
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setNewStartDate("");
+                setNewEndDate("");
+                setNewPrice(0);
+                fetchPropertyData();
+                if (data.id !== undefined){
+                    setUpdateSuccess(true);
+                } else{
+                    setUpdateError(data[0]);
+                }
+                
+            })
+            .catch(error => alert(error));
+        
+    };
+
 
     if (!isLoggedin) {
         return <Navigate to="/login" />;
@@ -103,6 +158,8 @@ const PropertyAvailabilities = () => {
             <div className="container" style={{ paddingTop: "30px", paddingBottom: "30px" }} >
                 <div className="row g-3">
                     <h1>Add New Availability</h1>
+                    {addError && <div className="alert alert-warning" style={{ paddingBottom: "0px" }} role="alert"><p className="text-center">{addError}</p></div>}
+                    {addSuccess && <div className="alert alert-success" style={{ paddingBottom: "0px" }} role="alert"><p className="text-center">Successfully Added Availability</p></div>}
                     <div className="col-md-4">
                         <label htmlFor="availability_start" className="form-label">Start Date</label>
                         <input type="date" className="form-control" id="availability_end" required onChange={(event) => setNewStartDate(event.target.value)} value={newStartDate}></input>
@@ -120,23 +177,40 @@ const PropertyAvailabilities = () => {
                     </div>
 
                     <h1>Current Availabilities for Property # {id}</h1>
+                    {updateError && <div className="alert alert-warning" style={{ paddingBottom: "0px" }} role="alert"><p className="text-center">{updateError}</p></div>}
+                    {updateSuccess && <div className="alert alert-success" style={{ paddingBottom: "0px" }} role="alert"><p className="text-center">Successfully Updated Availability</p></div>}
                     {deleted && <div className="alert alert-success" style={{ paddingBottom: "0px" }} role="alert"><p className="text-center">Successfully Deleted Availability</p></div>}
                     {propertyAvailabilities.map((propertyAvailability, index) => (
                         <div className="row g-3" key={index}>
                             <div className="col-md-4">
                                 <label htmlFor="availability_start" className="form-label">Start Date</label>
-                                <input type="date" className="form-control" id="availability_end" value={propertyAvailability.start_date}></input>
+                                <input type="date" className="form-control" id="availability_end" value={propertyAvailability.start_date}
+                                    onChange={(e) => {
+                                        const newPropertyAvailabilities = [...propertyAvailabilities];
+                                        newPropertyAvailabilities[index].start_date = e.target.value;
+                                        setPropertyAvailabilities(newPropertyAvailabilities);
+                                    }}></input>
                             </div>
                             <div className="col-md-4">
                                 <label htmlFor="availability_start" className="form-label">End Date</label>
-                                <input type="date" className="form-control" id="availability_end" value={propertyAvailability.end_date}></input>
+                                <input type="date" className="form-control" id="availability_end" value={propertyAvailability.end_date}
+                                    onChange={(e) => {
+                                        const newPropertyAvailabilities = [...propertyAvailabilities];
+                                        newPropertyAvailabilities[index].end_date = e.target.value;
+                                        setPropertyAvailabilities(newPropertyAvailabilities);
+                                    }}></input>
                             </div>
                             <div className="col-md-4">
                                 <label htmlFor="price" className="form-label">Price per night</label>
-                                <input type="number" className="form-control" id="price" min="1" max="1000" value={propertyAvailability.price_per_night}></input>
+                                <input type="number" className="form-control" id="price" min="1" max="1000" value={propertyAvailability.price_per_night}
+                                    onChange={(e) => {
+                                        const newPropertyAvailabilities = [...propertyAvailabilities];
+                                        newPropertyAvailabilities[index].price_per_night = e.target.value;
+                                        setPropertyAvailabilities(newPropertyAvailabilities);
+                                    }}></input>
                             </div>
                             <div className="col-md-10">
-                                <button type="submit" className="btn btn-primary">Update</button>
+                                <button type="submit" className="btn btn-primary" onClick={(event) => updateAvailability(propertyAvailability.id, index)}>Update</button>
                             </div>
                             <div className="col-md-2">
                                 <button type="submit" className="btn btn-primary" style={{ backgroundColor: "red", borderColor: "red" }}

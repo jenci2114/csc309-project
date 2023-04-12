@@ -19,7 +19,11 @@ export default function ViewProperty() {
     const [endDate, setEndDate] = useState(null);
     const [totalPrice, setTotalPrice] = useState(null);
 
+    const [currUser, setCurrUser] = useState(localStorage.getItem("id"));
+
     async function searchProperty() {
+        setCurrUser(localStorage.getItem("id"));
+        console.log("currUser: " + currUser)
         try {
             const response = await axios({
                 method: "get",
@@ -48,7 +52,6 @@ export default function ViewProperty() {
                 url: `http://localhost:8000/property/${id}/available_dates/`,
             })
             setDateAndPrice(propertyDateAndPrice.data);
-            console.log(propertyDateAndPrice.data)
         } catch (err) {
             alert(err);
         }
@@ -253,9 +256,19 @@ export default function ViewProperty() {
                 <a href="search_comments.html">
                     <button type="button" className="btn btn-success" style={{marginRight: "10px"}}>View Comments</button>
                 </a>
-                <button type="button" className="btn btn-primary" data-bs-toggle="modal"
+                {currUser == null ? (
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#book" disabled>Must Login To Book
+                    </button>
+                ) : currUser == property.user ? (
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#book" disabled>Cannot Book Your Own Property
+                    </button>
+                ) : (
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal"
                         data-bs-target="#book">Book
-                </button>
+                    </button>
+                )}
             </div>
 
             <div className="modal fade" id="book" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -302,7 +315,13 @@ export default function ViewProperty() {
                             <button type="button" className="btn btn-secondary"
                                     data-bs-dismiss="modal">Close
                             </button>
-                            <button type="button" className="btn btn-primary" onClick={handleBook}>Book</button>
+                            {currUser == null ? (
+                                <button type="button" className="btn btn-primary" disabled>Must Login To Book</button>
+                            ) : currUser == property.user ? (
+                                <button type="button" className="btn btn-primary" disabled>Cannot Book Your Own Property</button>
+                            ) : (
+                                <button type="button" className="btn btn-primary" onClick={handleBook}>Book</button>
+                            )}
                         </div>
                     </div>
                 </div>

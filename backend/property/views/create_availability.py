@@ -26,6 +26,10 @@ class CreateAvailabilityView(CreateAPIView):
                 end_date__lte=serializer.validated_data['end_date'],
                 end_date__gte=serializer.validated_data['start_date'],
                 property_id=self.get_object().id
+            ) | PropertyAvailability.objects.filter(
+                start_date__lte=serializer.validated_data['start_date'],
+                end_date__gte=serializer.validated_data['end_date'],
+                property_id=self.get_object().id
             )
 
             if conflicts.exists():

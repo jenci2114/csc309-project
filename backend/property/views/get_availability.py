@@ -13,7 +13,7 @@ class GetAvailabilityView(ListAPIView):
     pagination_class = None
 
     def get_queryset(self):
-        return PropertyAvailability.objects.filter(property_id=self.kwargs['pk'])
+        return PropertyAvailability.objects.filter(property_id=self.kwargs['pk']).order_by('start_date')
     
 class GetSelfAvailabilityView(ListAPIView):
     serializer_class = AvailabilitySerializer
@@ -21,7 +21,7 @@ class GetSelfAvailabilityView(ListAPIView):
     pagination_class = None
 
     def get_queryset(self):
-        return PropertyAvailability.objects.filter(property_id=self.kwargs['pk'])
+        return PropertyAvailability.objects.filter(property_id=self.kwargs['pk']).order_by('start_date')
     
     def get(self, request, *args, **kwargs):
         property = get_object_or_404(Property, pk=self.kwargs['pk'])

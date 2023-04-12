@@ -10,9 +10,7 @@ function useAuth() {
 
 	function logout() {
 		setIsLoggedIn(false);
-		localStorage.removeItem("isLoggedin");
-		localStorage.removeItem("token");
-		localStorage.removeItem("username");
+		localStorage.clear();
 	}
 
 	return {isLoggedin, login, logout};

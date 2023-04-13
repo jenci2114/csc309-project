@@ -188,6 +188,7 @@ export default function Setting() {
     };
 
     return (
+        <>
         <div className="container" style={{paddingTop: "5vw"}}>
             <div className="row gutters-sm">
                 <div className="col-md-4 d-none d-md-block">
@@ -387,6 +388,6 @@ export default function Setting() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div></>
     );
 }

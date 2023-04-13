@@ -301,12 +301,12 @@ export default function Setting() {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <label htmlFor="last_name">First Name</label>
+                                        <label htmlFor="last_name">Last Name</label>
                                         <input
                                             type="text"
                                             className="form-control"
                                             id="last_name"
-                                            placeholder="Enter your Lasr Name"
+                                            placeholder="Enter your Last Name"
                                             defaultValue={profile.lastName}
                                         />
                                     </div>

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import PropertyCard from "../components/PropertyCard";
 import BookingCard from "../components/BookingCard";
 
 export default function TenantBooking() {
@@ -154,7 +153,7 @@ export default function TenantBooking() {
             <div className="row row-cols-1 g-4 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                 {bookingList.map(booking => (
                     <div className="col" key={booking.id}>
-                        <BookingCard booking={booking}/>
+                        <BookingCard booking={booking} bookingType={bookingType}/>
                     </div>
                 ))}
                 </div>

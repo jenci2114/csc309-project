@@ -84,6 +84,7 @@ export default function Reservation() {
       config
     );
     // Refresh reservations to reflect the updated status
+      alert('Your have make your decision successfully');
     window.location.reload();
   };
 
@@ -99,6 +100,7 @@ export default function Reservation() {
       { reservation_id, decision },
       config
     );
+    alert('Your have make your decision successfully');
     window.location.reload();
   };
 
@@ -114,10 +116,8 @@ export default function Reservation() {
       { reservation_id },
       config
     );
+    alert('Your have make your decision successfully');
     window.location.reload();
-  };
-
-    const handleComment = async (reservation) => {
   };
 
     async function handleRate(e) {
@@ -243,6 +243,8 @@ export default function Reservation() {
   } catch (error) {
     console.error('Error:', error);
   }
+  alert('Your have commented successfully');
+  window.location.reload();
 }
 
     const isComment = (reservation) => {

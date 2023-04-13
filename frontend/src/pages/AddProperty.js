@@ -58,15 +58,15 @@ export default function AddProperty() {
             .then(data => console.log(data))
             .catch(error => console.error(error));
 
-        // setAddress("");
-        // setCity("");
-        // setProvince("");
-        // setZip("");
-        // setBeds(0);
-        // setBaths(0);
-        // setGuests(0);
-        // setDescription("");
-        // setImage("");
+        setAddress("");
+        setCity("");
+        setProvince("");
+        setZip("");
+        setBeds(0);
+        setBaths(0);
+        setGuests(0);
+        setDescription("");
+        setImage("");
         setAdded(true);
     };
 

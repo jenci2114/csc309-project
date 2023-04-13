@@ -11,7 +11,7 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=15)
     location = models.CharField(max_length=100)
-    avatar_url = models.ImageField(upload_to='avatars/', blank=True, null=True, default='/avatars/user.png')
+    avatar_url = models.ImageField(upload_to='avatars/', blank=True, null=True, default='avatars/user.png')
 
 
 class Notification(models.Model):

@@ -117,8 +117,31 @@ export default function Reservation() {
     window.location.reload();
   };
 
+    const handleComment = async (reservation) => {
+  };
 
-  const renderActionButtons = (status, reservation_id) => {
+    async function handleRate(e) {
+        const rating = e.target.id.split('-star-')[0];
+        const booking_id = e.target.id.split('-star-')[1];
+
+        try {
+            await axios({
+                method: 'put',
+                url: `http://localhost:8000/property/reservation/${booking_id}/host_to_user_rating/`,
+                data: {
+                    host_to_user_rating: rating,
+                },
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                }
+            })
+        } catch (err) {
+            alert(err);
+        }
+    }
+
+
+  const renderActionButtons = (reservation, status, reservation_id) => {
     if (status === "pending") {
       return (
         <>
@@ -161,13 +184,96 @@ export default function Reservation() {
           </button>
         </>
       );
+    } else if (status === "terminated") {
+      return (
+          <>
+            <form action="" onInput={handleRate}>
+                                <div className="stars">
+                                    <input className="star star-5" id={`5-star-${reservation.id}`}
+                                           type="radio" name="star"
+                                           defaultChecked={reservation.host_to_user_rating === 5}/>
+                                    <label className="star star-5"
+                                           htmlFor={`5-star-${reservation.id}`}></label>
+                                    <input className="star star-4" id={`4-star-${reservation.id}`}
+                                           type="radio" name="star"
+                                           defaultChecked={reservation.host_to_user_rating === 4}/>
+                                    <label className="star star-4"
+                                           htmlFor={`4-star-${reservation.id}`}></label>
+                                    <input className="star star-3" id={`3-star-${reservation.id}`}
+                                           type="radio" name="star"
+                                           defaultChecked={reservation.host_to_user_rating === 3}/>
+                                    <label className="star star-3"
+                                           htmlFor={`3-star-${reservation.id}`}></label>
+                                    <input className="star star-2" id={`2-star-${reservation.id}`}
+                                           type="radio" name="star"
+                                           defaultChecked={reservation.host_to_user_rating === 2}/>
+                                    <label className="star star-2"
+                                           htmlFor={`2-star-${reservation.id}`}></label>
+                                    <input className="star star-1" id={`1-star-${reservation.id}`}
+                                           type="radio" name="star"
+                                           defaultChecked={reservation.host_to_user_rating === 1}/>
+                                    <label className="star star-1"
+                                           htmlFor={`1-star-${reservation.id}`}></label>
+                                </div>
+                            </form>
+              {isComment(reservation)}
+          </>
+      )
     }
     return null;
   };
 
+    async function submitComment(reservation_id) {
+  const url = `http://127.0.0.1:8000/property/reservation/${reservation_id}/host_to_user_msg/`;
+  const requestOptions = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.token}`,
+    },
+    body: JSON.stringify({ host_to_user_msg: document.getElementById(`comment${reservation_id}`).value }),
+      // body: JSON.stringify({ host_to_user_msg: "test1" }),
+  };
+
+  try {
+    const response = await fetch(url, requestOptions);
+    if (!response.ok) {
+      throw new Error('Failed to submit comment');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+    const isComment = (reservation) => {
+        if (!reservation.host_to_user_msg) {
+            return (<>
+    <input
+      type="text"
+      id={`comment${reservation.id}`}
+      defaultValue=""
+      placeholder="Enter your comment"
+      // onChange={(e) => setCommentText(e.target.value)}
+      className="form-control"
+    />
+    <button
+      className="btn btn-dark"
+      onClick={() => submitComment(reservation.id)}
+    >
+      Submit
+    </button></>
+            )
+        }
+        else return (
+            <center>
+                <p style={{ marginTop: "35px" }}>You have already commented</p></center>
+        )
+    }
+
 
   return (
       <>
+
   <center>
     <h1 style={{ margin: "50px" }}>Reservations to Your Properties</h1>
   </center>
@@ -201,7 +307,7 @@ export default function Reservation() {
                 {reservations[status] &&
                   reservations[status].results &&
                   reservations[status].results.map((reservation) => (
-                    <div key={reservation.id} className="col-md-4 mb-3">
+                    <div key={reservation.id} className="col-md-3 mb-3">
                       <div className="card">
                         <Link to={`/comments/user/${reservation.guest_id}/`}>
                         <div className="card-body">
@@ -218,7 +324,7 @@ export default function Reservation() {
 
                         </div>
                         </Link>
-                        {renderActionButtons(reservation.status, reservation.id)}
+                        {renderActionButtons(reservation, reservation.status, reservation.id)}
                         <Link to={`/comments/user/${reservation.guest_id}/`}>
                 <div className="card-footer h-100">
                     <span className="fa fa-user-circle-o"></span> Tenant Info

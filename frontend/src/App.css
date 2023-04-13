@@ -67,3 +67,7 @@ label.star:before {
   font-family: FontAwesome;
 }
 
+img{
+  max-width: 60vw;
+}
+

@@ -1,21 +1,15 @@
 import {useState} from "react";
-import {Link, Navigate} from "react-router-dom";
+import {Navigate} from "react-router-dom";
 import axios from "axios";
 import useAuth from "../hooks/useAuth";
 import '../styles/common.css';
 import '../styles/setting.css';
-import logo2 from '../assets/property_images/logo2.jpeg'
-import backgroundImage from '../assets/profile_bg/bg2.jpg'
 import SettingScripts from "../components/SettingScript";
 
 
 export default function Setting() {
-    const [isSettingPage, setIsSettingPage] = useState(true);
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const {isLoggedin, login} = useAuth();
-    const [showErr, setShowError] = useState(false);
-    const [errMesg, setErrorMsg] = useState("");
+    const [isSettingPage] = useState(true);
+    const {isLoggedin} = useAuth();
 
     if (!isLoggedin) {
         return <Navigate to="/login"/>;
@@ -170,14 +164,6 @@ export default function Setting() {
 
 // Call the function to fetch the profile data and update the local storage
     fetchProfileData();
-
-    const profileBg2Style = {
-        minHeight: '100vh',
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-    };
 
     const profile = {
         username: localStorage.username,

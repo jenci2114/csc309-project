@@ -87,7 +87,7 @@ export default function BookingCard( {booking, bookingType} ) {
             <div className="card h-100" style={{textAlign: 'left'}}>
                 <img src={booking.image} className="card-img-top" alt="..."/>
                 <div className="card-body">
-                    <a href=""> {/* view booking page */}
+                    <a href={`/booking/view/${booking.id}/`}> {/* view booking page */}
                         <h5 className="card-title">{booking.city}</h5>
                     </a>
                     <ul className="list-group list-group-flush">

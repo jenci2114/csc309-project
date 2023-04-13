@@ -29,6 +29,12 @@ class ReservationSerializer(serializers.ModelSerializer):
                         'state': {'required': True}}
 
 
+class FullReservationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reservation
+        fields = '__all__'
+
+
 
 class PropertyCommentSerializer(serializers.ModelSerializer):
     class Meta:

@@ -74,6 +74,7 @@ const UserComments = () => {
                         host_to_user_msg={userComment.host_to_user_msg}
                         host_to_user_rating={userComment.host_to_user_rating}
                         end_date={userComment.end_date}
+                        status={userComment.status}
                     />
                 ))}
                 <div style={{ textAlign: "center" }}>

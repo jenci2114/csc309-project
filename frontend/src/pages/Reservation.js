@@ -70,6 +70,99 @@ export default function Reservation() {
     }
   };
 
+
+  const handleProcessPending = async (reservation_id, decision) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+    };
+
+    await axios.put(
+      "http://127.0.0.1:8000/property/process_pending/",
+      { reservation_id, decision },
+      config
+    );
+    // Refresh reservations to reflect the updated status
+  };
+
+  const handleProcessCancel = async (reservation_id, decision) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+    };
+
+    await axios.put(
+      "http://127.0.0.1:8000/property/process_cancel/",
+      { reservation_id, decision },
+      config
+    );
+  };
+
+  const handleTerminate = async (reservation_id) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+      },
+    };
+
+    await axios.put(
+      "http://127.0.0.1:8000/property/terminate/",
+      { reservation_id },
+      config
+    );
+  };
+
+
+  const renderActionButtons = (status, reservation_id) => {
+    if (status === "pending") {
+      return (
+        <>
+          <button
+            className="btn btn-success"
+            onClick={() => handleProcessPending(reservation_id, true)}
+          >
+            Approve
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => handleProcessPending(reservation_id, false)}
+          >
+            Deny
+          </button>
+        </>
+      );
+    } else if (status === "approved") {
+      return ( <button
+          className="btn btn-warning"
+          onClick={() => handleTerminate(reservation_id)}
+        >
+          Terminate
+        </button>
+      );
+    } else if (status === "canceling") {
+      return (
+        <>
+          <button
+            className="btn btn-success"
+            onClick={() => handleProcessCancel(reservation_id, true)}
+          >
+            Approve
+          </button>
+          <button
+            className="btn btn-danger"
+            onClick={() => handleProcessCancel(reservation_id, false)}
+          >
+            Deny
+          </button>
+        </>
+      );
+    }
+    return null;
+  };
+
+
   return (
       <>
         <center><h1 style={{ margin: "50px"}}>Reservations to Your Properties</h1></center>
@@ -113,8 +206,10 @@ export default function Reservation() {
                           </p>
                       <p className="card-text">End Date: {reservation.end_date}</p>
                           <p className="card-text">Total Price: ${reservation.total_price}</p>
+
                         </div>
                         </Link>
+                        {renderActionButtons(reservation.status, reservation.id)}
                         <Link to={`/comments/user/${reservation.guest_id}/`}>
                 <div className="card-footer h-100">
                     <span className="fa fa-user-circle-o"></span> Tenant Info

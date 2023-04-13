@@ -21,6 +21,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import PropertyImages from "./pages/PropertyImages";
 import Reservation from "./pages/Reservation";
 import PropertyAvailabilities from './pages/PropertyAvailabilities';
+import TenantBooking from "./pages/TenantBooking";
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -51,6 +52,7 @@ function App() {
           <Route path="/property/edit/:id/" element={<EditProperty />} />
           <Route path="/property/:id/images/" element={<PropertyImages />} />
           <Route path="/property/:id/availabilities/" element={<PropertyAvailabilities />} />
+          <Route path="/booking/" element={<TenantBooking />} />
           <Route path="*" element={<h1>404: Not Found</h1>} />
         </Routes>
       </Router>

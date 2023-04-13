@@ -16,8 +16,6 @@ import EditProperty from "./pages/EditProperty";
 import Profile from "./pages/Profile";
 import Setting from "./pages/Setting";
 import MyProperty from "./pages/MyProperty";
-import 'react-dates/initialize';
-import 'react-dates/lib/css/_datepicker.css';
 import PropertyImages from "./pages/PropertyImages";
 import Reservation from "./pages/Reservation";
 import PropertyAvailabilities from './pages/PropertyAvailabilities';

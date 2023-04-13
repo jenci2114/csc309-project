@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import useAuth from "../hooks/useAuth";
 
@@ -14,7 +14,6 @@ export default function AddProperty() {
     const [guests, setGuests] = useState(0);
     const [description, setDescription] = useState("");
     const [image, setImage] = useState("");
-    const [property_id, setPropertyId] = useState(0);
     const [added, setAdded] = useState(false);
 
 
@@ -28,8 +27,6 @@ export default function AddProperty() {
             return;
         }
 
-        const imageFile = document.getElementById("image").files[0];
-
         fetch(`http://127.0.0.1:8000/property/create/`, {
             method: 'POST',
             body: JSON.stringify({ address: address, city: city, province: province, zip: zip, beds: beds, bathrooms: baths, max_guests: guests, description: description }),
@@ -41,34 +38,35 @@ export default function AddProperty() {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                setPropertyId(data.id);
+                addImage(data.id);
             })
             .catch(error => console.error(error));
+    };
 
-        console.log(property_id);
-        if (property_id !== 0) {
-            const formData = new FormData();
-            formData.append("image", imageFile);
-            fetch(`http://127.0.0.1:8000/property/image/create/${property_id}/`, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                }
-            })
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error(error));
-        }
-        setAddress("");
-        setCity("");
-        setProvince("");
-        setZip("");
-        setBeds(0);
-        setBaths(0);
-        setGuests(0);
-        setDescription("");
-        setImage("");
+    const addImage = (data_id) => {
+        const imageFile = document.getElementById("image").files[0];
+        const formData = new FormData();
+        formData.append("image", imageFile);
+        fetch(`http://127.0.0.1:8000/property/image/create/${data_id}/`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                Authorization: `Bearer ${localStorage.token}`,
+            }
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+
+        // setAddress("");
+        // setCity("");
+        // setProvince("");
+        // setZip("");
+        // setBeds(0);
+        // setBaths(0);
+        // setGuests(0);
+        // setDescription("");
+        // setImage("");
         setAdded(true);
     };
 

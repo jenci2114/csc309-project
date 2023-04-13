@@ -6,8 +6,11 @@ import '../styles/common.css';
 import '../styles/setting.css';
 import logo2 from '../assets/property_images/logo2.jpeg'
 import backgroundImage from '../assets/profile_bg/bg2.jpg'
+import SettingScripts from "../components/SettingScript";
+
 
 export default function Setting() {
+    const [isSettingPage, setIsSettingPage] = useState(true);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const {isLoggedin, login} = useAuth();
@@ -189,6 +192,7 @@ export default function Setting() {
 
     return (
         <>
+            {isSettingPage && <SettingScripts />}
         <div className="container" style={{paddingTop: "5vw"}}>
             <div className="row gutters-sm">
                 <div className="col-md-4 d-none d-md-block">

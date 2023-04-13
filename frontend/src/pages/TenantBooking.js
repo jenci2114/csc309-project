@@ -41,6 +41,21 @@ export default function TenantBooking() {
         }
     }
 
+    async function getHasComment(id) {
+        try {
+            const response = await axios({
+                method: 'get',
+                url: `http://localhost:8000/property/comments/reservation/${id}/`,
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                }
+            })
+            return response.data.length > 0;
+        } catch (err) {
+            alert(err);
+        }
+    }
+
     async function handleSearch() {
         try {
             const response = await axios({
@@ -62,6 +77,9 @@ export default function TenantBooking() {
 
                 // get city
                 response.data.results[i].city = await getCity(id);
+
+                // get has comment
+                response.data.results[i].has_comment = await getHasComment(response.data.results[i].id);
             }
 
             setBookingList(response.data.results);
@@ -96,6 +114,9 @@ export default function TenantBooking() {
 
                 // get city
                 response.data.results[i].city = await getCity(id);
+
+                // get has comment
+                response.data.results[i].has_comment = await getHasComment(response.data.results[i].id);
             }
             setBookingList(bookingList.concat(response.data.results));
             setNextPage(response.data.next);

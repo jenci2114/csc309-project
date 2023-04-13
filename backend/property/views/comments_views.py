@@ -50,9 +50,47 @@ class PropertyCommentView(ListAPIView):
         if page is not None:
             data = dict(page)
             return self.get_paginated_response(data)
-        
+
         return Response(comment_group)
-    
+
+
+class ReservationCommentView(ListAPIView):
+    pagination_class = None
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        # return all comments for a reservation
+        if not Reservation.objects.filter(id=self.kwargs['pk']).exists():
+            return Response(status=404)
+
+        client = Reservation.objects.get(id=self.kwargs['pk']).client
+        host = Reservation.objects.get(id=self.kwargs['pk']).property.user
+        if self.request.user != client and self.request.user != host:
+            return Response("You are not authorized to view this reservation", status=403)
+
+        return PropertyComment.objects.filter(reservation_id=self.kwargs['pk']).order_by('comment_number')
+
+    def get(self, request, *args, **kwargs):
+        comment_list = []
+        queryset = self.get_queryset()
+        # if queryset status code is not 200, then return the queryset
+        if type(queryset) == Response:
+            return queryset
+
+        for comment in queryset:
+            if comment.comment_number % 2 == 0:
+                # host comment
+                user = comment.reservation.property.user.username
+            else:
+                # client comment
+                user = comment.reservation.client.username
+            comment_list.append({
+                'msg': comment.msg,
+                'comment_number': comment.comment_number,
+                'user_from': user,
+            })
+        return Response(comment_list)
+
 
 class CreateReservationCommentView(CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
@@ -63,21 +101,21 @@ class CreateReservationCommentView(CreateAPIView):
         # create a comment for a reservation
         if not Reservation.objects.filter(id=pk).exists():
             return Response(status=404)
-        
+
         client = Reservation.objects.get(id=pk).client
         host = Reservation.objects.get(id=pk).property.user
         if self.request.user != client and self.request.user != host:
             return Response("You are not authorized to comment on this reservation",status=403)
-        
+
         if not Reservation.objects.get(id=pk).status == 'terminated':
             return Response("Reservation is not completed, you cannot comment yet", status=403)
-        
+
         current_count = PropertyComment.objects.filter(reservation__id=pk).count()
         if self.request.user == client and current_count % 2 == 1:
             return Response("You need to wait for host to comment first", status=403)
         if self.request.user == host and current_count % 2 == 0:
             return Response("You need to wait for client to comment first", status=403)
-        
+
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             comment_number = PropertyComment.objects.filter(reservation__id=pk).count() + 1
@@ -93,8 +131,8 @@ class CreateReservationCommentView(CreateAPIView):
             return Response(serializer.data, status=201)
         else:
             return Response(serializer.errors, status=400)
-        
-        
+
+
 class UpdateUserToPropertyRatingView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ReservationUserToPropertyRatingSerializer
@@ -104,23 +142,23 @@ class UpdateUserToPropertyRatingView(APIView):
         # update the user_to_property_rating for a reservation
         if not Reservation.objects.filter(id=pk).exists():
             return Response(status=404)
-        
+
         client = Reservation.objects.get(id=pk).client
 
         if self.request.user != client:
             return Response("You are not authorized to rate this property",status=403)
-        
+
         if not Reservation.objects.get(id=pk).status == 'terminated':
             return Response("Reservation is not completed, you cannot rate the property yet", status=403)
-        
+
         rating = request.data.get('user_to_property_rating')
         if rating not in {'1', '2', '3', '4', '5'}:
             return Response("Rating must be an integer between 1 and 5", status=400)
-        
+
         Reservation.objects.filter(id=pk).update(user_to_property_rating=rating)
         return Response("You have successfully rated this property", status=200)
-    
-    
+
+
 class UpdateHostToUserRatingView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = ReservationHostToUserRatingSerializer
@@ -130,19 +168,19 @@ class UpdateHostToUserRatingView(APIView):
         # update the user_to_property_rating for a reservation
         if not Reservation.objects.filter(id=pk).exists():
             return Response(status=404)
-        
+
         host = Reservation.objects.get(id=pk).property.user
 
         if self.request.user != host:
             return Response("You are not authorized to rate this tenant of the reservation",status=403)
-        
+
         if not Reservation.objects.get(id=pk).status == 'terminated':
             return Response("Reservation is not completed, you cannot rate the tenant yet", status=403)
-        
+
         rating = request.data.get('host_to_user_rating')
         if rating not in {'1', '2', '3', '4', '5'}:
             return Response("Rating must be an integer between 1 and 5", status=400)
-        
+
         Reservation.objects.filter(id=pk).update(host_to_user_rating=rating)
         return Response("You have successfully rated this tenant", status=200)
 
@@ -156,22 +194,22 @@ class UpdateHostToUserMsgView(APIView):
         # update the user_to_property_rating for a reservation
         if not Reservation.objects.filter(id=pk).exists():
             return Response(status=404)
-        
+
         host = Reservation.objects.get(id=pk).property.user
 
         if self.request.user != host:
             return Response("You are not authorized to comment on this tenant of the reservation",status=403)
-        
+
         if not Reservation.objects.get(id=pk).status == 'terminated':
             return Response("Reservation is not completed, you cannot comment on the tenant yet", status=403)
-        
+
         msg = request.data.get('host_to_user_msg')
         if msg == '' or msg is None:
             return Response("Message cannot be empty", status=400)
-        
+
         Reservation.objects.filter(id=pk).update(host_to_user_msg=msg)
         return Response("You have successfully commented on this tenant", status=200)
-    
+
 
 class UserCommentView(ListAPIView):
     permission_classes = [permissions.AllowAny]

@@ -4,6 +4,7 @@ from property.views.create_property import CreatePropertyView
 from property.views.get_availability import GetAvailabilityView, GetSelfAvailabilityView
 from property.views.get_available_dates import GetAvailableDatesView
 from property.views.get_property import GetPropertyView
+from property.views.get_reservation import GetReservationView
 from property.views.search_reservation import SearchView
 from property.views.process_reservation import *
 from property.views.update_property import UpdatePropertyView
@@ -43,6 +44,7 @@ urlpatterns = [
     path('reservation/<int:pk>/user_to_property_rating/', UpdateUserToPropertyRatingView.as_view(), name='user_to_property_rating'),
     path('reservation/<int:pk>/host_to_user_rating/', UpdateHostToUserRatingView.as_view(), name='host_to_user_rating'),
     path('reservation/<int:pk>/host_to_user_msg/', UpdateHostToUserMsgView.as_view(), name='host_to_user_msg)'),
+    path('reservation/<int:pk>/get/', GetReservationView.as_view(), name='get_reservation'),
     path('delete/<int:pk>/', DeletePropertyView.as_view(), name='delete'),
     path('availability/create/<int:pk>/', CreateAvailabilityView.as_view(), name='create_availability'),
     path('availability/update/<int:pk>/', UpdateAvailabilityView.as_view(), name='update_availability'),

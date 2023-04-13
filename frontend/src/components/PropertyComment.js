@@ -21,8 +21,22 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
         }
     };
 
+    const fetchReservationRating = async () => {
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/property/reservation/${reservation_id}/user_to_property_rating/get/`);
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+            const data = await response.json();
+            setRating(data.rating);
+        } catch {
+            console.log("Shouldn't be here");
+        }
+    };
+
     useEffect(() => {
         fetchReservationUsers(`http://127.0.0.1:8000/property/reservation/users/${reservation_id}/`);
+        fetchReservationRating();
     }, []);
 
     const is_host = localStorage.username === reservation_users[0];
@@ -76,19 +90,27 @@ const PropertyComment = ({ reservation_id, msg, comment_number, user_from, len }
                         <div className="col-md-12">
                             <div className="stars" style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
                                 <form>
-                                    <input className="star star-5" id={`first-star-5-${reservation_id}`} type="radio" name="star" value="5" onClick={handleRatingChange}/>
+                                    <input className="star star-5" id={`first-star-5-${reservation_id}`} type="radio" name="star" value="5" onClick={handleRatingChange} defaultChecked={rating === 5}/>
                                     <label className="star star-5" htmlFor={`first-star-5-${reservation_id}`} style={{float: 'right', padding: '5px', fontSize: '20px', color: '#4A148C', transition: 'all .2s'}}></label>
-                                    <input className="star star-4" id={`first-star-4-${reservation_id}`} type="radio" name="star" value="4" onClick={handleRatingChange} />
+                                    <input className="star star-4" id={`first-star-4-${reservation_id}`} type="radio" name="star" value="4" onClick={handleRatingChange} defaultChecked={rating === 4}/>
                                     <label className="star star-4" htmlFor={`first-star-4-${reservation_id}`} style={{float: 'right', padding: '5px', fontSize: '20px', color: '#4A148C', transition: 'all .2s'}}></label>
-                                    <input className="star star-3" id={`first-star-3-${reservation_id}`} type="radio" name="star" value="3" onClick={handleRatingChange} />
+                                    <input className="star star-3" id={`first-star-3-${reservation_id}`} type="radio" name="star" value="3" onClick={handleRatingChange} defaultChecked={rating === 3}/>
                                     <label className="star star-3" htmlFor={`first-star-3-${reservation_id}`} style={{float: 'right', padding: '5px', fontSize: '20px', color: '#4A148C', transition: 'all .2s'}}></label>
-                                    <input className="star star-2" id={`first-star-2-${reservation_id}`} type="radio" name="star" value="2" onClick={handleRatingChange} />
+                                    <input className="star star-2" id={`first-star-2-${reservation_id}`} type="radio" name="star" value="2" onClick={handleRatingChange} defaultChecked={rating === 2}/>
                                     <label className="star star-2" htmlFor={`first-star-2-${reservation_id}`} style={{float: 'right', padding: '5px', fontSize: '20px', color: '#4A148C', transition: 'all .2s'}}></label>
-                                    <input className="star star-1" id={`first-star-1-${reservation_id}`} type="radio" name="star" value="1" onClick={handleRatingChange} />
+                                    <input className="star star-1" id={`first-star-1-${reservation_id}`} type="radio" name="star" value="1" onClick={handleRatingChange} defaultChecked={rating === 1}/>
                                     <label className="star star-1" htmlFor={`first-star-1-${reservation_id}`} style={{float: 'right', padding: '5px', fontSize: '20px', color: '#4A148C', transition: 'all .2s'}}></label>
                                 </form>
                             </div>
                         </div>
+                    </div>
+                    <div className="row" style={{ display: comment_number === 1 && !is_tenant ? "block" : "none" }}>
+                        <p style={{display: rating === 0 ? "block" : "none"}}>
+                            Rating: Not rated yet
+                        </p>
+                        <p style={{display: rating !== 0 ? "block" : "none"}}>
+                            Rating: {rating}
+                        </p>
                     </div>
                 </div>
             </div>

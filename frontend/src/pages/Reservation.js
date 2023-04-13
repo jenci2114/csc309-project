@@ -84,6 +84,7 @@ export default function Reservation() {
       config
     );
     // Refresh reservations to reflect the updated status
+    window.location.reload();
   };
 
   const handleProcessCancel = async (reservation_id, decision) => {
@@ -98,6 +99,7 @@ export default function Reservation() {
       { reservation_id, decision },
       config
     );
+    window.location.reload();
   };
 
   const handleTerminate = async (reservation_id) => {
@@ -112,6 +114,7 @@ export default function Reservation() {
       { reservation_id },
       config
     );
+    window.location.reload();
   };
 
 
@@ -165,29 +168,35 @@ export default function Reservation() {
 
   return (
       <>
-        <center><h1 style={{ margin: "50px"}}>Reservations to Your Properties</h1></center>
-    <div className="container-lg">
-      <div className="row">
+  <center>
+    <h1 style={{ margin: "50px" }}>Reservations to Your Properties</h1>
+  </center>
+  <div className="container-lg">
+    <center>
+      <div className="btn-group">
         {statusList.map((status, index) => (
-          <div key={index} className="col">
-            <button
-              className="btn btn-primary"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target={`#collapse${index}`}
-              aria-expanded="false"
-              aria-controls={`collapse${index}`}
-              style={{ marginTop: "10px" }}
-            >
-              {status.charAt(0).toUpperCase() + status.slice(1)}
-            </button>
-          </div>
+          <button
+            key={index}
+            className="btn btn btn-outline-primary"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target={`#collapse${index}`}
+            aria-expanded={index === 0 ? "true" : "false"} // Set the first button to be expanded
+            aria-controls={`collapse${index}`}
+          >
+            {status.charAt(0).toUpperCase() + status.slice(1)}
+          </button>
         ))}
       </div>
-      <div className="accordion" id="reservationAccordion"style={{ marginTop: "20px" }}>
-        {statusList.map((status, index) => (
-          <div key={index}>
-            <div className="collapse" id={`collapse${index}`} data-bs-parent="#reservationAccordion">
+    </center>
+    <div className="accordion" id="reservationAccordion" style={{ marginTop: "20px" }}>
+      {statusList.map((status, index) => (
+        <div key={index}>
+          <div
+            className={`collapse${index === 0 ? " show" : ""}`} // Add 'show' class to the first collapse element
+            id={`collapse${index}`}
+            data-bs-parent="#reservationAccordion"
+          >
               <div className="row">
                 {reservations[status] &&
                   reservations[status].results &&

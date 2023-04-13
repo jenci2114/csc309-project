@@ -1,11 +1,11 @@
-const UserComment = ({ host, host_to_user_msg, host_to_user_rating, end_date, status }) => {
+const UserComment = ({ host, host_to_user_msg, host_to_user_rating, end_date }) => {
     // if (!host_to_user_msg && !host_to_user_rating) {
     //     return null;
     // }
         
     return (
         <>
-        <div className="card" style={{marginBottom: "30px", textAlign: "center", display: status === "terminated" ? "block" : "none"}}>
+        <div className="card" style={{marginBottom: "30px", textAlign: "center"}}>
             <div className="card-header">
                 <h5>From user: {host}</h5>
                 </div>

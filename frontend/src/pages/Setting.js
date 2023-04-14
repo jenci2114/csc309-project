@@ -110,9 +110,12 @@ export default function Setting() {
                 },
             })
             .then((response) => {
-                console.log("Profile updated successfully:", response.data);
-                fetchProfileData();
-                alert("Profile updated successfully");
+                setTimeout(function() {
+                    console.log("Profile updated successfully:", response.data);
+                    fetchProfileData();
+                    alert("Profile updated successfully");
+                    window.location.reload();
+                }, 1000);
             })
             .catch((error) => {
                 console.error("Error updating profile:", error);

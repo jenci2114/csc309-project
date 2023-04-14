@@ -72,44 +72,6 @@ export default function ReservationDetails() {
         searchBooking();
     }, [id]);
 
-    async function handleCancel() {
-        if (window.confirm('Are you sure to cancel this booking?')) {
-            const res = await performCancel();
-            if (res) {
-                alert('Booking cancelled successfully!');
-                window.location.reload();
-            }
-        }
-    }
-
-    async function handleRequestCancel() {
-        if (window.confirm('Request host\'s approval to cancel?')) {
-            const res = await performCancel();
-            if (res) {
-                alert('Request sent successfully!');
-                window.location.reload();
-            }
-        }
-    }
-
-    async function performCancel() {
-        try {
-            await axios({
-                method: 'put',
-                url: `http://localhost:8000/property/cancel/`,
-                data: {
-                    reservation_id: booking.id,
-                },
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                }
-            })
-            return true;
-        } catch (err) {
-            alert(err);
-            return false;
-        }
-    }
 
     async function handleComment() {
         try {
@@ -217,23 +179,7 @@ export default function ReservationDetails() {
                     </div>
                 </div>
                 <br/>
-                {booking.status === 'pending' ? (
-                    <button type="button" className="btn btn-danger" onClick={handleCancel}>Cancel
-                    </button>
-                ) : booking.status === 'approved' ? (
-                    <button type="button" className="btn btn-danger" onClick={handleRequestCancel}>Request Cancel
-                    </button>
-                ) : booking.status === 'terminated' && !hasComment ? (
-                    <button type="button" className="btn btn-primary"
-                            data-bs-toggle="modal" data-bs-target={`#comment_${booking.id}`}>Comment
-                    </button>
-                ) : booking.status === 'terminated' && hasComment ? (
-                    <a href={`/comments/property/${booking.property}/`}>
-                        <button type="button" className="btn btn-success">View Comment
-                        </button>
-                    </a>
-                ) : (<></>)}
-                <a href="/booking/">
+                <a href="/reservations/">
                     <button className="btn btn-primary" style={{marginLeft: '10px'}}>Go Back</button>
                 </a>
             </div>

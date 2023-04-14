@@ -5,20 +5,23 @@
 
 Open two terminal windows:
 
-Window 1:
+Window 1 (This will start up the Django REST Server):
 ```
-cd backend
 ./startup.sh
+```
+
+Window 2 (This will start up the React App):
+```
 ./run.sh
 ```
 
-Window 2:
-```
-cd frontend
-./run.sh
-```
+The React app can be accessed via `localhost:3000`
 
-Then, open the react app via `localhost:3000`
+Note: if there are permission issues executing the shell scripts:
+First run:
+```
+chmod u+x ./startup.sh ./run.sh
+```
 
 ## 2. Completed User Stories:
 

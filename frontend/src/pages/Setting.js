@@ -80,6 +80,21 @@ export default function Setting() {
             console.log("avatar uploading:");
             const formData = new FormData();
             formData.append("avatar_url", avatarFile);
+            if (updatedFirstName) {
+                formData.append("first_name", updatedFirstName);
+            }
+            if (updatedLastName) {
+                formData.append("last_name", updatedLastName);
+            }
+            if (updatedPhone) {
+                formData.append("phone", updatedPhone);
+            }
+            if (updatedEmail) {
+                formData.append("email", updatedEmail);
+            }
+            if (updatedLocation) {
+                formData.append("location", updatedLocation);
+            }
 
             axios
                 .put("http://127.0.0.1:8000/account/profile/edit/", formData, {

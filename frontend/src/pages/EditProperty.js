@@ -98,7 +98,7 @@ export default function EditProperty() {
     }
 
     if (deleted) {
-        return <Navigate to="/my_properties/" />;
+        return <Navigate to="/my_home/" />;
     }
 
 

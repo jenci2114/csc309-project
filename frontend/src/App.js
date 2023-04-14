@@ -21,6 +21,7 @@ import Reservation from "./pages/Reservation";
 import PropertyAvailabilities from './pages/PropertyAvailabilities';
 import TenantBooking from "./pages/TenantBooking";
 import BookingDetails from "./pages/BookingDetails";
+import ReservationDetails from "./pages/ReservationDetial";
 
 function App() {
   const { isLoggedin } = useAuth();
@@ -53,6 +54,7 @@ function App() {
           <Route path="/property/:id/availabilities/" element={<PropertyAvailabilities />} />
           <Route path="/booking/" element={<TenantBooking />} />
           <Route path="/booking/view/:id/" element={<BookingDetails />} />
+          <Route path="/reservation/view/:id/" element={<ReservationDetails />} />
           <Route path="*" element={<h1>404: Not Found</h1>} />
         </Routes>
       </Router>

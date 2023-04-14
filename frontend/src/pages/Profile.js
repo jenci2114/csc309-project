@@ -1,18 +1,11 @@
-import {useState, useEffect} from "react";
-import {Link, Navigate} from "react-router-dom";
-import axios from "axios";
+import { Navigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import '../styles/common.css';
 import '../styles/profile.css';
-import logo2 from '../assets/property_images/logo2.jpeg'
 import backgroundImage from '../assets/profile_bg/bg2.jpg'
 
 export default function Profile() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
     const {isLoggedin, login} = useAuth();
-    const [showErr, setShowError] = useState(false);
-    const [errMesg, setErrorMsg] = useState("");
 
     if (!isLoggedin) {
         return <Navigate to="/login"/>;
@@ -63,11 +56,8 @@ export default function Profile() {
             .then((queryResult) => {
                 if (queryResult.rating !== localStorage.rating) {
                     localStorage.setItem("rating", queryResult.rating);
-                    console.log(1);
                     console.log(queryResult.rating);
                     console.log(localStorage.rating);
-                    console.log(2);
-                    window.location.reload();
                 }
             })
             .catch((error) => {

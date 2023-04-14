@@ -53,7 +53,7 @@ export default function MyProperty() {
 
                 <div className="row">
                     {properties.map((property) => (
-                        <div key={property.id} className="col-md-3" style={{margin: "0px"}}>
+                        <div key={property.id} className="col-md-3" style={{marginBottom: "20px"}}>
                             <div className="card h-100">
                                 <Link to={`/property/edit/${property.id}`}>
                                     <img src={property.image.image} className="card-img-top" alt="..."/>

@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from collections import defaultdict
 from rest_framework.generics import get_object_or_404
+from backend.constants import *
 
 
 class CommentsPagination(PageNumberPagination):
@@ -220,4 +221,4 @@ class UserCommentView(ListAPIView):
 
     def get_queryset(self):
         get_object_or_404(User, id=self.kwargs['pk'])
-        return Reservation.objects.filter(client=self.kwargs['pk']).order_by('-end_date')
+        return Reservation.objects.filter(client=self.kwargs['pk']).filter(status=TERMINATED).order_by('-end_date')

@@ -5,20 +5,23 @@
 
 Open two terminal windows:
 
-Window 1:
+Window 1 (This will start up the Django REST Server):
 ```
-cd backend
 ./startup.sh
+```
+
+Window 2 (This will start up the React App):
+```
 ./run.sh
 ```
 
-Window 2:
-```
-cd frontend
-./run.sh
-```
+The React app can be accessed via `localhost:3000`
 
-Then, open the react app via `localhost:3000`
+Note: if there are permission issues executing the shell scripts:
+First run:
+```
+chmod u+x ./startup.sh ./run.sh
+```
 
 ## 2. Completed User Stories:
 
@@ -71,14 +74,21 @@ On Restify, reservations to a rental property may be in one of the following sta
 ## 3. Sample Pages:
 
 ### Reservation
+<img width="1572" alt="image" src="https://user-images.githubusercontent.com/32078486/231922789-cb649cfa-218f-4401-8717-e3ff88645fe4.png">
 
 ### Accounts
+<img width="1577" alt="image" src="https://user-images.githubusercontent.com/32078486/231922892-7b8352d2-bbfe-4fc7-b860-052046237e9a.png">
 
 ### Property creation & administration
+<img width="1087" alt="image" src="https://user-images.githubusercontent.com/32078486/231923185-9f65ab85-2519-4ee7-a529-a7a423d12c0b.png">
 
 ### Property info & search
+<img width="1578" alt="image" src="https://user-images.githubusercontent.com/32078486/231922922-9f31dd9d-6824-41c3-a390-057ed2e54b01.png">
 
 ### Social network
+<img width="979" alt="image" src="https://user-images.githubusercontent.com/32078486/231923413-8bb24399-1217-4ade-a261-12c497031631.png">
 
 ### Notifications
+<img width="1091" alt="image" src="https://user-images.githubusercontent.com/32078486/231923371-a37d9662-1baa-408e-9de6-4b33902b6163.png">
+
 

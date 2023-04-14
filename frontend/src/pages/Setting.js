@@ -16,7 +16,6 @@ export default function Setting() {
     }
 
     function fetchProfileData() {
-        console.log("profile1")
         fetch("http://127.0.0.1:8000/account/profile/view/", {
             method: "GET",
             headers: {
@@ -114,7 +113,6 @@ export default function Setting() {
                 console.log("Profile updated successfully:", response.data);
                 fetchProfileData();
                 alert("Profile updated successfully");
-                window.location.reload();
             })
             .catch((error) => {
                 console.error("Error updating profile:", error);
